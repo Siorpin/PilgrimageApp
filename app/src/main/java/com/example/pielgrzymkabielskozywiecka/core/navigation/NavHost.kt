@@ -18,11 +18,11 @@ fun AppNavigation(
 ) {
     NavHost(
         navController = navController,
-        startDestination = startDestination,
+        startDestination = startDestination.name,
         modifier = modifier
             .padding(padding)
     ) {
-        composable(route = startDestination.name){
+        composable(route = "HOME"){
             HomeScreen()
         }
     }
