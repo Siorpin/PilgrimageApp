@@ -33,7 +33,7 @@ class MainActivity : ComponentActivity() {
 
                 Scaffold(
                     topBar = {
-                        TopBar(isHidden = isHidden)
+                        TopBar()
                     },
                     modifier = Modifier.fillMaxSize()
                 ) { innerPadding ->

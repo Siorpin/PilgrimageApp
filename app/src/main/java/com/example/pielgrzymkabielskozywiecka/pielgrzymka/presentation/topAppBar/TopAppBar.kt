@@ -4,6 +4,7 @@ import androidx.compose.animation.core.animateDpAsState
 import androidx.compose.animation.core.spring
 import androidx.compose.animation.core.tween
 import androidx.compose.foundation.background
+import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -25,14 +26,8 @@ import androidx.compose.ui.unit.dp
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun TopBar(
-    modifier: Modifier = Modifier,
-    isHidden: Boolean = false
+    modifier: Modifier = Modifier
 ) {
-    val height by animateDpAsState(
-        if (isHidden) 0.dp else 80.dp,
-        animationSpec = tween(durationMillis = 1000)
-    )
-
     TopAppBar(
         modifier = modifier
             .fillMaxWidth()
@@ -42,10 +37,11 @@ fun TopBar(
                     bottomEnd = 60.dp,
                     bottomStart = 60.dp
                 )
-            )
-            .height(height),
+            ),
+        expandedHeight = 80.dp,
         colors = TopAppBarDefaults.topAppBarColors(
-            containerColor = MaterialTheme.colorScheme.primary
+            containerColor = MaterialTheme.colorScheme.primary,
+            titleContentColor = MaterialTheme.colorScheme.onPrimary
         ),
         title = {
             Row (
