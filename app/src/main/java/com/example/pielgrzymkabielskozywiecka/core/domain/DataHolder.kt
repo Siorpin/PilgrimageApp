@@ -1,6 +1,5 @@
 package com.example.pielgrzymkabielskozywiecka.core.domain
 
-import androidx.compose.ui.layout.ScaleFactor
 import com.example.pielgrzymkabielskozywiecka.core.navigation.Screen
 import com.example.pielgrzymkabielskozywiecka.pielgrzymka.domain.Root
 

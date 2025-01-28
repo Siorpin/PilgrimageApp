@@ -1,5 +1,11 @@
 package com.example.pielgrzymkabielskozywiecka.core.navigation
 
+import androidx.compose.animation.EnterTransition
+import androidx.compose.animation.ExitTransition
+import androidx.compose.animation.core.tween
+import androidx.compose.animation.slideIn
+import androidx.compose.animation.slideInHorizontally
+import androidx.compose.animation.slideOutHorizontally
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.padding
 import androidx.compose.runtime.Composable
@@ -24,12 +30,20 @@ fun AppNavigation(
             .padding(padding)
     ) {
         // HOME
-        composable(route = Screen.HOME.name){
+        composable(
+            route = Screen.HOME.name,
+            enterTransition = { EnterTransition.None },
+            exitTransition = { ExitTransition.None }
+        ){
             HomeScreen(navController)
         }
 
         // AUTHORS
-        composable(route = Screen.AUTORZY.name) {
+        composable(
+            route = Screen.AUTORZY.name,
+            enterTransition = { slideInHorizontally(tween(300)) { fullWidth -> fullWidth  } },
+            exitTransition = { slideOutHorizontally(tween(300)) { fullWidth -> fullWidth  } }
+        ) {
             AuthorsScreen(navController)
         }
     }

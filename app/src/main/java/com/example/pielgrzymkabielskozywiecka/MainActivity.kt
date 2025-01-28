@@ -4,17 +4,19 @@ import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
+import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material3.Scaffold
-import androidx.compose.material3.TopAppBar
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.unit.dp
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
-import com.example.pielgrzymkabielskozywiecka.ui.theme.PielgrzymkaAppTheme
 import com.example.pielgrzymkabielskozywiecka.core.navigation.AppNavigation
 import com.example.pielgrzymkabielskozywiecka.core.navigation.Screen
-import com.example.pielgrzymkabielskozywiecka.pielgrzymka.presentation.topAppBar.TopBar
+import com.example.pielgrzymkabielskozywiecka.pielgrzymka.presentation.bottomBar.BottomBar
+import com.example.pielgrzymkabielskozywiecka.pielgrzymka.presentation.topBar.TopBar
+import com.example.pielgrzymkabielskozywiecka.ui.theme.PielgrzymkaAppTheme
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -35,12 +37,21 @@ class MainActivity : ComponentActivity() {
                     topBar = {
                         TopBar()
                     },
+                    bottomBar =  { BottomBar() } ,
                     modifier = Modifier.fillMaxSize()
                 ) { innerPadding ->
+
+                    val topPadding = innerPadding.calculateTopPadding()
+                    var bottomPadding = innerPadding.calculateBottomPadding()
+                    if (bottomPadding > 0.dp) bottomPadding -= 15.dp
+
                     AppNavigation(
                         navController = navController,
                         startDestination = Screen.HOME,
-                        padding = innerPadding
+                        padding = PaddingValues(
+                            top = topPadding,
+                            bottom = bottomPadding
+                        )
                     )
                 }
             }
