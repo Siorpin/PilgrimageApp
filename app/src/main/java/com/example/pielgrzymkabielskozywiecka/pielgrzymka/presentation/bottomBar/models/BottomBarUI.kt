@@ -9,6 +9,6 @@ import com.example.pielgrzymkabielskozywiecka.pielgrzymka.domain.Root
 data class BottomBarUI(
     val name: String,
     val icon: ImageVector,
-    val onFocusShape: Shape,
+    val isOnFocus: Boolean = false,
     val onClick: () -> Unit
 )
