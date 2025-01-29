@@ -41,8 +41,8 @@ fun AppNavigation(
         // AUTHORS
         composable(
             route = Screen.AUTORZY.name,
-            enterTransition = { slideInHorizontally(tween(300)) { fullWidth -> fullWidth  } },
-            exitTransition = { slideOutHorizontally(tween(300)) { fullWidth -> fullWidth  } }
+            enterTransition = { EnterTransition.None },
+            exitTransition = { ExitTransition.None }
         ) {
             AuthorsScreen(navController)
         }
