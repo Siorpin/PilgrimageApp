@@ -1,7 +1,7 @@
 package com.example.pielgrzymkabielskozywiecka.ui.theme
 import androidx.compose.ui.graphics.Color
 
-val primaryLight = Color(0xFF4352FA)
+val primaryLight = Color(0xFF2386FF)
 val onPrimaryLight = Color(0xFFFFFFFF)
 val primaryContainerLight = Color(0xFFE0E0FF)
 val onPrimaryContainerLight = Color(0xFF3D4279)
