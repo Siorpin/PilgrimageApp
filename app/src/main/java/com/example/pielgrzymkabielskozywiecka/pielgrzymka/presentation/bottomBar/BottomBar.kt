@@ -13,7 +13,10 @@ import androidx.compose.material3.Surface
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.shadow
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
+import androidx.core.graphics.translationMatrix
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavHostController
@@ -28,7 +31,7 @@ fun BottomBar(
     val state = viewModel.state.collectAsStateWithLifecycle()
 
     Surface(
-        color = MaterialTheme.colorScheme.primary,
+        color = Color(0xfffdfdfd),
         shape = RoundedCornerShape(
             topEnd = 16.dp,
             topStart = 16.dp
@@ -36,6 +39,13 @@ fun BottomBar(
         modifier = modifier
             .height(80.dp)
             .fillMaxWidth()
+            .shadow(
+                elevation = 16.dp,
+                shape = RoundedCornerShape(
+                    topEnd = 16.dp,
+                    topStart = 16.dp
+                )
+            )
     ) {
         LazyRow (
             verticalAlignment = Alignment.Bottom,

@@ -23,37 +23,16 @@ import androidx.compose.ui.unit.dp
 import com.example.pielgrzymkabielskozywiecka.pielgrzymka.domain.Root
 
 @Composable
-fun OptionButton(
-    root: Root,
-    onClick: (String) -> Unit,
+fun AnnouncementsBox(
     modifier: Modifier = Modifier
 ) {
-    var enabled by remember { mutableStateOf(true) }
-
+    Text("Ogłoszenia")
     Card(
         modifier = modifier
-            .clickable(enabled = enabled) {
-                enabled = false
-                onClick(root.destination.name)
-            }
-            .fillMaxWidth()
-            .padding(top = 16.dp)
-            .height(170.dp)
-            .aspectRatio(1f),
-        shape = RectangleShape,
-        colors = CardDefaults.cardColors(
-            containerColor = MaterialTheme.colorScheme.onPrimary
-        ),
-        elevation = CardDefaults.cardElevation(
-            defaultElevation = 4.dp
-        )
     ) {
-        Box(
-            modifier = Modifier
-                .fillMaxSize(),
-            contentAlignment = Alignment.Center
-        ) {
-            Text(root.name)
-        }
+        Text(
+            text = " Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi varius nunc est, sed gravida sem rutrum et. Etiam pharetra, eros vitae sagittis varius, urna tellus sagittis nunc, eget fermentum urna neque vitae elit. Aliquam ut arcu non nisl luctus tempus. Pellentesque id facilisis nisi. In vel lacus vitae erat sollicitudin rhoncus. Aenean ac venenatis ligula. Vestibulum maximus turpis sit amet eleifend euismod."
+
+        )
     }
 }
