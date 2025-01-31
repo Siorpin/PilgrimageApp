@@ -15,6 +15,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavHostController
 import com.example.pielgrzymkabielskozywiecka.pielgrzymka.presentation.homeScreen.components.AnnouncementsBox
+import com.example.pielgrzymkabielskozywiecka.pielgrzymka.presentation.homeScreen.components.HelloSegment
 import com.example.pielgrzymkabielskozywiecka.pielgrzymka.presentation.homeScreen.components.TopBar
 
 @Composable
@@ -22,33 +23,21 @@ fun HomeScreen(
     navController: NavHostController,
     modifier: Modifier = Modifier
 ) {
-    Box(
-        modifier = modifier
+
+    Column(
+        verticalArrangement = Arrangement.Top,
+        modifier = Modifier
             .fillMaxSize()
-            .background(MaterialTheme.colorScheme.primary)
+            .background(
+                color = Color(0xFFF4F7FC),
+                shape = RoundedCornerShape(
+                    topEnd = 16.dp,
+                    topStart = 16.dp
+                )
+            )
     ) {
-        Column(
-            verticalArrangement = Arrangement.Top,
-            modifier = Modifier
-                .fillMaxSize()
-                .padding(top = 40.dp)
-                .shadow(
-                    elevation = 4.dp,
-                    shape = RoundedCornerShape(
-                        topEnd = 16.dp,
-                        topStart = 16.dp
-                    )
-                )
-                .background(
-                    color = Color(0xFFF4F7FC),
-                    shape = RoundedCornerShape(
-                        topEnd = 16.dp,
-                        topStart = 16.dp
-                    )
-                )
-        ) {
-            //TopBar()
-            AnnouncementsBox()
-        }
+        HelloSegment()
+        //TopBar()
+        AnnouncementsBox()
     }
 }
