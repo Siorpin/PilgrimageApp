@@ -1,34 +1,36 @@
 package com.example.pielgrzymkabielskozywiecka.pielgrzymka.presentation.homeScreen.components
 
-import android.graphics.Canvas
-import androidx.compose.foundation.background
-import androidx.compose.foundation.layout.Box
-import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.height
-import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.Text
-import androidx.compose.material3.TopAppBarDefaults
+import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.shape.CircleShape
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Notifications
+import androidx.compose.material3.Icon
+import androidx.compose.material3.Surface
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.draw.clip
-import androidx.compose.ui.draw.drawWithContent
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 
 @Composable
 fun TopBar(
     modifier: Modifier = Modifier
 ) {
-    Box(
-        modifier = Modifier
-            .fillMaxWidth()
-            .height(90.dp)
-            .background(MaterialTheme.colorScheme.primary)
-            .drawWithContent {
-                Canvas(
-
-                )
-            }
+    Surface(
+        color = Color(0xFF83B9F8),
+        shape = CircleShape,
+        modifier = modifier
+            .padding(
+                horizontal = 20.dp,
+                vertical = 5.dp
+            )
+            .size(40.dp)
     ) {
-        Text("test")
+        Icon(
+            imageVector = Icons.Default.Notifications,
+            contentDescription = "Powiadomienia",
+            modifier = Modifier
+                .padding(7.dp)
+        )
     }
 }

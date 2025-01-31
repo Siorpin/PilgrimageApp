@@ -48,8 +48,7 @@ fun BottomNavButton(
                 detectTapGestures { onClick() }
             }
             .background(
-                color = if(bottomBarUI.isOnFocus) (Color(0xFFA5CDFD))
-                    else Color(0xFFA5CDFD),
+                color = Color(0xFF83B9F8),
                 shape = RoundedCornerShape(45.dp)
             )
             .fillMaxHeight()

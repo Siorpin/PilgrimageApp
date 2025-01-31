@@ -35,15 +35,16 @@ fun BottomBar(
             topStart = 16.dp
         ),
         modifier = modifier
-            .height(80.dp)
-            .fillMaxWidth()
             .shadow(
                 elevation = 16.dp,
+                ambientColor = Color(0xFF83B9F8),
                 shape = RoundedCornerShape(
                     topEnd = 16.dp,
                     topStart = 16.dp
                 )
             )
+            .height(80.dp)
+            .fillMaxWidth()
     ) {
         LazyRow (
             verticalAlignment = Alignment.Bottom,
