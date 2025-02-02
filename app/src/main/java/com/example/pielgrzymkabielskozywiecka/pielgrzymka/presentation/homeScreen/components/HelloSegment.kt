@@ -1,12 +1,14 @@
 package com.example.pielgrzymkabielskozywiecka.pielgrzymka.presentation.homeScreen.components
 
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
@@ -29,6 +31,11 @@ fun HelloSegment(
         modifier = modifier
             .fillMaxWidth()
             .padding(20.dp)
+            .background(
+                color = Color(0x3383B9F8),
+                shape = RoundedCornerShape(16.dp)
+            )
+            .padding(10.dp)
     ) {
         Image(
             painter = painterResource(R.drawable.logo_white),
@@ -36,7 +43,7 @@ fun HelloSegment(
             contentDescription = "logo",
             modifier = Modifier
                 .align(Alignment.TopEnd)
-                .size(150.dp)
+                .size(130.dp)
         )
         Column(
             verticalArrangement = Arrangement.Center,

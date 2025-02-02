@@ -4,6 +4,7 @@ import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
@@ -12,6 +13,7 @@ import androidx.compose.ui.unit.dp
 import androidx.navigation.NavHostController
 import com.example.pielgrzymkabielskozywiecka.pielgrzymka.presentation.homeScreen.components.AnnouncementsBox
 import com.example.pielgrzymkabielskozywiecka.pielgrzymka.presentation.homeScreen.components.HelloSegment
+import com.example.pielgrzymkabielskozywiecka.pielgrzymka.presentation.homeScreen.components.OptionsRow
 import com.example.pielgrzymkabielskozywiecka.pielgrzymka.presentation.homeScreen.components.TopBar
 
 @Composable
@@ -35,5 +37,6 @@ fun HomeScreen(
         TopBar()
         HelloSegment()
         AnnouncementsBox()
+        OptionsRow()
     }
 }

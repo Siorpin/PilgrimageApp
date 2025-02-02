@@ -33,9 +33,6 @@ class MainActivity : ComponentActivity() {
             }
 
                 Scaffold(
-//                    topBar = {
-//                        TopBar()
-//                    },
                     bottomBar =  { BottomBar(navController) } ,
                     modifier = Modifier.fillMaxSize()
                 ) { innerPadding ->

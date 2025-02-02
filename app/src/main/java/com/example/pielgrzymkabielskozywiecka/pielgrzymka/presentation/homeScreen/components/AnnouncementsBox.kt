@@ -22,26 +22,16 @@ fun AnnouncementsBox(
 ) {
     Column(
         modifier = modifier
-            .fillMaxSize()
+            .fillMaxWidth()
             .padding(20.dp)
     ) {
-        Text(
-            text = "Ogłoszenia",
-            fontFamily = Poppins,
-            fontWeight = FontWeight.Bold,
-            fontSize = 20.sp,
-            textAlign = TextAlign.Left,
-            modifier = modifier
-                .fillMaxWidth()
-                .padding(6.dp)
-        )
+        HeaderText("Ogłoszenia")
         Card(
             colors = CardDefaults.cardColors(
                 containerColor = Color(0xFF83B9F8),
-
             ),
             elevation = CardDefaults.cardElevation(
-                defaultElevation = 10.dp
+                defaultElevation = 4.dp
             ),
             modifier = modifier
                 .padding(6.dp)
