@@ -11,11 +11,10 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavHostController
-import androidx.navigation.compose.NavHost
 
 @Composable
 fun OptionsRow(
-    navHost: NavHostController,
+    navController: NavHostController,
     modifier: Modifier = Modifier
 ) {
     Column(
@@ -33,14 +32,14 @@ fun OptionsRow(
             OptionButton(
                 buttonText = "Galeria",
                 color = Color(0xFFA6AAF3),
-                onClick = { navHost.navigate("") }, //TODO
+                onClick = { navController.navigate("") }, //TODO
                 modifier = Modifier
                     .weight(1f)
             )
             OptionButton(
                 buttonText = "Strona internetowa",
                 color = Color(0xFFC4C5FF),
-                onClick = { navHost.navigate("") }, //TODO
+                onClick = { navController.navigate("") }, //TODO
                 modifier = Modifier
                     .weight(1f)
             )

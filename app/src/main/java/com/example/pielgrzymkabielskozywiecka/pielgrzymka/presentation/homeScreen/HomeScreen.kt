@@ -36,6 +36,6 @@ fun HomeScreen(
         TopBar()
         HelloSegment()
         AnnouncementsBox()
-        OptionsRow()
+        OptionsRow(navController)
     }
 }
