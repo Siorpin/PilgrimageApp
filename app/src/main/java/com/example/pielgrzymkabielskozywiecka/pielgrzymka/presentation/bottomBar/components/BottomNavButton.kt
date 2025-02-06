@@ -45,7 +45,7 @@ fun BottomNavButton(
         contentAlignment = Alignment.Center,
         modifier = modifier
             .pointerInput(Unit) {
-                detectTapGestures { onClick() }
+                detectTapGestures { if(!bottomBarUI.isOnFocus) onClick() }
             }
             .background(
                 color = Color(0xFF83B9F8),

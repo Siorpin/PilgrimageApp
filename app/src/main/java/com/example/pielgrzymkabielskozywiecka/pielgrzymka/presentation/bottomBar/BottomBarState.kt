@@ -1,4 +1,4 @@
-package com.example.pielgrzymkabielskozywiecka.pielgrzymka.presentation.bottomBar.components
+package com.example.pielgrzymkabielskozywiecka.pielgrzymka.presentation.bottomBar
 
 import com.example.pielgrzymkabielskozywiecka.core.domain.DataHolder
 import com.example.pielgrzymkabielskozywiecka.core.presentation.BottomBarUI

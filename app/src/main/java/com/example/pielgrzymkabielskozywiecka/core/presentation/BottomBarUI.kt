@@ -7,7 +7,6 @@ data class BottomBarUI(
     val name: String,
     val icon: ImageVector,
     val screen: Screen,
-    val onFocusColor: androidx.compose.ui.graphics.Color,
     val isOnFocus: Boolean = false
 )
 

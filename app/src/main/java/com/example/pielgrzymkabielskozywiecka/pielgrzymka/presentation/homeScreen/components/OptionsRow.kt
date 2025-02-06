@@ -37,7 +37,7 @@ fun OptionsRow(
                     .weight(1f)
             )
             OptionButton(
-                buttonText = "Strona internetowa",
+                buttonText = "Trasa",
                 color = Color(0xFFC4C5FF),
                 onClick = { navController.navigate("") }, //TODO
                 modifier = Modifier
