@@ -7,6 +7,7 @@ import androidx.compose.material.icons.filled.Star
 import androidx.compose.ui.graphics.Color
 import com.example.pielgrzymkabielskozywiecka.core.navigation.Screen
 import com.example.pielgrzymkabielskozywiecka.core.presentation.BottomBarUI
+import com.example.pielgrzymkabielskozywiecka.core.presentation.ZakladkiUI
 
 object DataHolder {
     val bottomBarButtons = listOf(
@@ -25,6 +26,21 @@ object DataHolder {
             name = "Duchowi",
             screen = Screen.AUTORZY,
             icon = Icons.Default.AccountCircle,
+        )
+    )
+
+    val zakladki = listOf(
+        ZakladkiUI(
+            name = "Śpiewnik",
+            destination = Screen.SPIEWNIK
+        ),
+        ZakladkiUI(
+            name = "Modlitewnik",
+            destination = Screen.MODLITEWNIK
+        ),
+        ZakladkiUI(
+            name = "Tajemnice różańca",
+            destination = Screen.TAJEMNICE
         )
     )
 }
