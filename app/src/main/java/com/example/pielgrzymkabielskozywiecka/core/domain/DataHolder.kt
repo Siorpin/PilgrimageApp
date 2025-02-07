@@ -19,12 +19,12 @@ object DataHolder {
         ),
         BottomBarUI(
             name = "Zakładki",
-            screen = Screen.AUTORZY,
+            screen = Screen.ZAKLADKI,
             icon = Icons.Default.Star,
         ),
         BottomBarUI(
             name = "Duchowi",
-            screen = Screen.AUTORZY,
+            screen = Screen.DUCHOWI,
             icon = Icons.Default.AccountCircle,
         )
     )
@@ -41,6 +41,14 @@ object DataHolder {
         ZakladkiUI(
             name = "Tajemnice różańca",
             destination = Screen.TAJEMNICE
+        ),
+        ZakladkiUI(
+            name = "Strona internetowa",
+            destination = Screen.WWW
+        ),
+        ZakladkiUI(
+            name = "Autorzy",
+            destination = Screen.AUTORZY
         )
     )
 }

@@ -2,9 +2,11 @@ package com.example.pielgrzymkabielskozywiecka.core.navigation
 
 enum class Screen {
     HOME,
-    OGLOSZENIA,
+    ZAKLADKI,
+    DUCHOWI,
     SPIEWNIK,
     MODLITEWNIK,
+    WWW,
     INTENCJE,
     TAJEMNICE,
     LITURGIA_SLOWA,

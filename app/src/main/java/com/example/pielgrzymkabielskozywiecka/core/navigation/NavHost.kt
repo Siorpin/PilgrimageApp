@@ -10,7 +10,9 @@ import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import com.example.pielgrzymkabielskozywiecka.pielgrzymka.presentation.authorsScreen.AuthorsScreen
+import com.example.pielgrzymkabielskozywiecka.pielgrzymka.presentation.duchowiScreen.DuchowiScreen
 import com.example.pielgrzymkabielskozywiecka.pielgrzymka.presentation.homeScreen.HomeScreen
+import com.example.pielgrzymkabielskozywiecka.pielgrzymka.presentation.zakladkiScreen.ZakladkiScreen
 
 @Composable
 fun AppNavigation(
@@ -41,6 +43,24 @@ fun AppNavigation(
             exitTransition = { ExitTransition.None }
         ) {
             AuthorsScreen(navController)
+        }
+
+        // ZAKŁADKI
+        composable(
+            route = Screen.ZAKLADKI.name,
+            enterTransition = { EnterTransition.None },
+            exitTransition = { ExitTransition.None }
+        ) {
+            ZakladkiScreen(navController)
+        }
+
+        // DUCHOWI
+        composable(
+            route = Screen.DUCHOWI.name,
+            enterTransition = { EnterTransition.None },
+            exitTransition = { ExitTransition.None }
+        ) {
+            DuchowiScreen(navController)
         }
     }
 }
