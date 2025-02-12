@@ -1,13 +1,29 @@
 package com.example.pielgrzymkabielskozywiecka.pielgrzymka.presentation.zakladkiScreen
 
+import androidx.compose.foundation.Image
+import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
+import androidx.compose.material3.HorizontalDivider
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.input.pointer.motionEventSpy
+import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavController
 import androidx.navigation.NavHostController
+import com.example.pielgrzymkabielskozywiecka.R
+import com.example.pielgrzymkabielskozywiecka.pielgrzymka.presentation.zakladkiScreen.components.ZakladkiHeader
+import com.example.pielgrzymkabielskozywiecka.pielgrzymka.presentation.zakladkiScreen.components.ZakladkiListItem
 
 @Composable
 fun ZakladkiScreen(
@@ -16,11 +32,37 @@ fun ZakladkiScreen(
 ) {
     val viewModel: ZakladkiScreenViewModel = viewModel()
 
-    LazyColumn(
-
+    Box(
+        modifier = modifier
+            .fillMaxSize()
     ) {
-        items(viewModel.state.value.zakladki) { it ->
+        Image(
+            painter = painterResource(R.drawable.bird_background),
+            contentDescription = null,
+            contentScale = ContentScale.FillBounds,
+            alpha = 0.4f,
+            modifier = Modifier
+                .fillMaxSize()
+        )
+        Column(
+            verticalArrangement = Arrangement.Top,
+            horizontalAlignment = Alignment.CenterHorizontally,
+            modifier = Modifier
+                .fillMaxSize()
+                .padding(vertical = 15.dp)
+        ) {
+            ZakladkiHeader()
+            Spacer(modifier = Modifier.height(30.dp))
+            LazyColumn(
 
+            ) {
+                items(viewModel.state.value.zakladki) {
+                    ZakladkiListItem(
+                        zakladkiUI = it,
+                        onClick = { navController.navigate(it.destination.name) }
+                    )
+                }
+            }
         }
     }
 }

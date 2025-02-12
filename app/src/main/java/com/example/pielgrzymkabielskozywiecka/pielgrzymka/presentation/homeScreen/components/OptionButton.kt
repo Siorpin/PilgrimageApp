@@ -35,7 +35,7 @@ fun OptionButton(
         Text(
             text = buttonText,
             fontFamily = Poppins,
-            fontSize = 20.sp,
+            fontSize = 18.sp,
             textAlign = TextAlign.Center
         )
     }

@@ -1,7 +1,9 @@
 package com.example.pielgrzymkabielskozywiecka.pielgrzymka.presentation.homeScreen
 
+import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.rememberScrollState
@@ -23,22 +25,27 @@ fun HomeScreen(
     modifier: Modifier = Modifier
 ) {
 
-    Column(
-        verticalArrangement = Arrangement.Top,
+    Box(
         modifier = modifier
-            .verticalScroll(rememberScrollState())
             .fillMaxSize()
-            .background(
-                color = Color(0xFFF4F7FC),
-                shape = RoundedCornerShape(
-                    topEnd = 16.dp,
-                    topStart = 16.dp
-                )
-            )
     ) {
-        TopBar()
-        HelloSegment()
-        AnnouncementsBox()
-        OptionsRow(navController)
+        Column(
+            verticalArrangement = Arrangement.Top,
+            modifier = Modifier
+                .verticalScroll(rememberScrollState())
+                .fillMaxSize()
+                .background(
+                    color = Color(0xFFF4F7FC),
+                    shape = RoundedCornerShape(
+                        topEnd = 16.dp,
+                        topStart = 16.dp
+                    )
+                )
+        ) {
+            TopBar()
+            HelloSegment()
+            AnnouncementsBox()
+            OptionsRow(navController)
+        }
     }
 }
