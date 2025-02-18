@@ -36,4 +36,8 @@ class BottomBarViewModel: ViewModel() {
 
         _state.update { it.copy(buttonsList = temp) }
     }
+
+    fun toggleVisible() {
+        _state.update { it.copy(visible = !it.visible) }
+    }
 }

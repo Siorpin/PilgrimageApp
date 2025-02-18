@@ -23,17 +23,18 @@ class MainActivity : ComponentActivity() {
         enableEdgeToEdge()
         setContent {
             val navController = rememberNavController()
-
             PielgrzymkaAppTheme (dynamicColor = false) {
                 // Checks what is current screen
                 val backStackEntry by navController.currentBackStackEntryAsState()
-                val isHidden = when(backStackEntry?.destination?.route){
-                    Screen.HOME.name -> false
-                    else -> true
+                val isBottomBarVisible = when(backStackEntry?.destination?.route){
+                    Screen.HOME.name -> true
+                    Screen.ZAKLADKI.name -> true
+                    Screen.DUCHOWI.name -> true
+                    else -> false
             }
 
                 Scaffold(
-                    bottomBar =  { BottomBar(navController) } ,
+                    bottomBar =  { BottomBar(navController,isBottomBarVisible) } ,
                     modifier = Modifier.fillMaxSize()
                 ) { innerPadding ->
 

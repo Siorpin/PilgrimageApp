@@ -1,6 +1,9 @@
 package com.example.pielgrzymkabielskozywiecka.pielgrzymka.presentation.bottomBar
 
 import android.util.Log
+import androidx.compose.animation.AnimatedVisibility
+import androidx.compose.animation.slideInVertically
+import androidx.compose.animation.slideOutVertically
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -26,43 +29,50 @@ import com.example.pielgrzymkabielskozywiecka.pielgrzymka.presentation.bottomBar
 @Composable
 fun BottomBar(
     navController: NavHostController,
+    isVisible: Boolean,
     modifier: Modifier = Modifier
 ) {
     val viewModel: BottomBarViewModel = viewModel()
     val state = viewModel.state.collectAsStateWithLifecycle()
 
-    Surface(
-        color = Color(0xfffdfdfd),
-        shape = RoundedCornerShape(
-            topEnd = 16.dp,
-            topStart = 16.dp
-        ),
-        modifier = modifier
-            .shadow(
-                elevation = 16.dp,
-                ambientColor = Color(0xFF83B9F8),
-                shape = RoundedCornerShape(
-                    topEnd = 16.dp,
-                    topStart = 16.dp
-                )
-            )
-            .height(80.dp)
-            .fillMaxWidth()
+    AnimatedVisibility(
+        visible = isVisible,
+        enter = slideInVertically { it },
+        exit = slideOutVertically { it }
     ) {
-        LazyRow (
-            verticalAlignment = Alignment.Bottom,
-            horizontalArrangement = Arrangement.SpaceEvenly,
-            modifier = Modifier
-                .fillMaxSize()
-                .padding(
-                    vertical = 15.dp,
-                    horizontal = 30.dp
+        Surface(
+            color = Color(0xfffdfdfd),
+            shape = RoundedCornerShape(
+                topEnd = 16.dp,
+                topStart = 16.dp
+            ),
+            modifier = modifier
+                .shadow(
+                    elevation = 16.dp,
+                    ambientColor = Color(0xFF83B9F8),
+                    shape = RoundedCornerShape(
+                        topEnd = 16.dp,
+                        topStart = 16.dp
+                    )
                 )
+                .height(80.dp)
+                .fillMaxWidth()
         ) {
-            items(state.value.buttonsList) { button ->
-                BottomNavButton(button){
-                    navController.navigate(button.screen.name)
-                    viewModel.changeButtonsState(button)
+            LazyRow (
+                verticalAlignment = Alignment.Bottom,
+                horizontalArrangement = Arrangement.SpaceEvenly,
+                modifier = Modifier
+                    .fillMaxSize()
+                    .padding(
+                        vertical = 15.dp,
+                        horizontal = 30.dp
+                    )
+            ) {
+                items(state.value.buttonsList) { button ->
+                    BottomNavButton(button){
+                        navController.navigate(button.screen.name)
+                        viewModel.changeButtonsState(button)
+                    }
                 }
             }
         }
