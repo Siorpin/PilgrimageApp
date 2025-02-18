@@ -17,12 +17,12 @@ import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Icon
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.input.pointer.pointerInput
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
@@ -48,7 +48,7 @@ fun BottomNavButton(
                 detectTapGestures { if(!bottomBarUI.isOnFocus) onClick() }
             }
             .background(
-                color = Color(0xFF83B9F8),
+                color = MaterialTheme.colorScheme.primary,
                 shape = RoundedCornerShape(45.dp)
             )
             .fillMaxHeight()
@@ -65,7 +65,7 @@ fun BottomNavButton(
             Icon(
                 imageVector = bottomBarUI.icon,
                 contentDescription = null,
-                tint = Color(0xfffdfdfd)
+                tint = MaterialTheme.colorScheme.background
             )
             AnimatedVisibility(
                 visible = bottomBarUI.isOnFocus,
@@ -76,7 +76,7 @@ fun BottomNavButton(
                     text = bottomBarUI.name,
                     fontFamily = Poppins,
                     fontWeight = FontWeight.Medium,
-                    color = Color(0xfffdfdfd)
+                    color = MaterialTheme.colorScheme.background
                 )
             }
         }

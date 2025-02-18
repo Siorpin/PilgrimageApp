@@ -1,6 +1,5 @@
 package com.example.pielgrzymkabielskozywiecka.core.presentation
 
-import androidx.compose.ui.graphics.vector.VectorPainter
 import com.example.pielgrzymkabielskozywiecka.core.navigation.Screen
 
 data class ZakladkiUI(

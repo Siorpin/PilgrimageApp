@@ -9,6 +9,7 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
@@ -32,14 +33,14 @@ fun HelloSegment(
             .fillMaxWidth()
             .padding(20.dp)
             .background(
-                color = Color(0x3383B9F8),
+                color = Color(0xFFD5E8FF),
                 shape = RoundedCornerShape(16.dp)
             )
             .padding(10.dp)
     ) {
         Image(
             painter = painterResource(R.drawable.logo_white),
-            colorFilter = ColorFilter.tint(Color(0xFF83B9F8)),
+            colorFilter = ColorFilter.tint(MaterialTheme.colorScheme.primary),
             contentDescription = "logo",
             modifier = Modifier
                 .align(Alignment.TopEnd)

@@ -1,6 +1,5 @@
 package com.example.pielgrzymkabielskozywiecka.pielgrzymka.presentation.bottomBar
 
-import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.pielgrzymkabielskozywiecka.core.domain.DataHolder

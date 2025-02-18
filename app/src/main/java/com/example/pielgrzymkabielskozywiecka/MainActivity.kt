@@ -23,7 +23,7 @@ class MainActivity : ComponentActivity() {
         enableEdgeToEdge()
         setContent {
             val navController = rememberNavController()
-            PielgrzymkaAppTheme (dynamicColor = false) {
+            PielgrzymkaAppTheme {
                 // Checks what is current screen
                 val backStackEntry by navController.currentBackStackEntryAsState()
                 val isBottomBarVisible = when(backStackEntry?.destination?.route){
@@ -40,7 +40,7 @@ class MainActivity : ComponentActivity() {
 
                     val topPadding = innerPadding.calculateTopPadding()
                     var bottomPadding = innerPadding.calculateBottomPadding()
-                    if (bottomPadding > 0.dp) bottomPadding -= 15.dp
+                    if (bottomPadding > 0.dp) bottomPadding = 0.dp
 
                     AppNavigation(
                         navController = navController,

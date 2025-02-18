@@ -1,15 +1,14 @@
 package com.example.pielgrzymkabielskozywiecka.pielgrzymka.presentation.authorsScreen
 
 import androidx.compose.foundation.background
-import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.material3.Button
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.navigation.NavHostController
+import com.example.pielgrzymkabielskozywiecka.pielgrzymka.presentation.shared.SecondaryScreenTopBar
 
 @Composable
 fun AuthorsScreen(
@@ -21,11 +20,10 @@ fun AuthorsScreen(
             .fillMaxSize()
             .background(MaterialTheme.colorScheme.background)
     ) {
-        Button(
-            onClick = { navController.popBackStack() }
-        ) {
-            Text("back")
-        }
+        SecondaryScreenTopBar(
+            name = "Autorzy",
+            navController = navController
+        )
         Text("Aplikację stworzył Kuba Sierpień")
     }
 }
