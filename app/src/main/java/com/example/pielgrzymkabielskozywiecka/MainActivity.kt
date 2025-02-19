@@ -39,8 +39,7 @@ class MainActivity : ComponentActivity() {
                 ) { innerPadding ->
 
                     val topPadding = innerPadding.calculateTopPadding()
-                    var bottomPadding = innerPadding.calculateBottomPadding()
-                    if (bottomPadding > 0.dp) bottomPadding = 0.dp
+                    val bottomPadding = 80.dp
 
                     AppNavigation(
                         navController = navController,

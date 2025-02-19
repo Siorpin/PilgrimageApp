@@ -38,7 +38,7 @@ fun BottomBar(
         exit = slideOutVertically { it }
     ) {
         Surface(
-            color = MaterialTheme.colorScheme.background,
+            color = MaterialTheme.colorScheme.surface,
             shape = RoundedCornerShape(
                 topEnd = 16.dp,
                 topStart = 16.dp
