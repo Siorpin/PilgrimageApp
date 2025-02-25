@@ -24,14 +24,16 @@ fun ZakladkiListItem(
     onClick: () -> Unit,
     modifier: Modifier = Modifier
 ) {
-    Column {
+    Column(
+        modifier = modifier
+            .clickable { onClick() }
+    ) {
         Row(
             verticalAlignment = Alignment.CenterVertically,
-            modifier = modifier
+            modifier = Modifier
                 .fillMaxWidth()
                 .height(80.dp)
                 .padding(20.dp)
-                .clickable { onClick() }
         ) {
             Text(
                 text = zakladkiUI.name,

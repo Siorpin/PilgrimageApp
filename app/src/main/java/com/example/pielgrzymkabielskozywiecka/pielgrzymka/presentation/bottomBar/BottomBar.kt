@@ -1,5 +1,6 @@
 package com.example.pielgrzymkabielskozywiecka.pielgrzymka.presentation.bottomBar
 
+import android.util.Log
 import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.animation.slideInVertically
 import androidx.compose.animation.slideOutVertically
@@ -14,6 +15,7 @@ import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.shadow
@@ -21,19 +23,23 @@ import androidx.compose.ui.unit.dp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavHostController
+import androidx.navigation.compose.currentBackStackEntryAsState
+import com.example.pielgrzymkabielskozywiecka.core.navigation.Screen
 import com.example.pielgrzymkabielskozywiecka.pielgrzymka.presentation.bottomBar.components.BottomNavButton
 
 @Composable
 fun BottomBar(
     navController: NavHostController,
-    isVisible: Boolean,
     modifier: Modifier = Modifier
 ) {
+    val backStackEntry by navController.currentBackStackEntryAsState()
     val viewModel: BottomBarViewModel = viewModel()
     val state = viewModel.state.collectAsStateWithLifecycle()
 
+    viewModel.updateViewModel(backStackEntry?.destination?.route)
+
     AnimatedVisibility(
-        visible = isVisible,
+        visible = state.value.isVisible,
         enter = slideInVertically { it },
         exit = slideOutVertically { it }
     ) {
@@ -68,7 +74,6 @@ fun BottomBar(
                 items(state.value.buttonsList) { button ->
                     BottomNavButton(button){
                         navController.navigate(button.screen.name)
-                        viewModel.changeButtonsState(button)
                     }
                 }
             }

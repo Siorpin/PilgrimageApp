@@ -5,5 +5,5 @@ import com.example.pielgrzymkabielskozywiecka.core.presentation.BottomBarUI
 
 data class BottomBarState(
     val buttonsList: List<BottomBarUI> = DataHolder.bottomBarButtons,
-    val visible: Boolean = true
+    val isVisible: Boolean = true
 )

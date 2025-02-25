@@ -12,6 +12,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
+import com.example.pielgrzymkabielskozywiecka.core.domain.DataHolder
 import com.example.pielgrzymkabielskozywiecka.core.navigation.AppNavigation
 import com.example.pielgrzymkabielskozywiecka.core.navigation.Screen
 import com.example.pielgrzymkabielskozywiecka.pielgrzymka.presentation.bottomBar.BottomBar
@@ -24,17 +25,8 @@ class MainActivity : ComponentActivity() {
         setContent {
             val navController = rememberNavController()
             PielgrzymkaAppTheme {
-                // Checks what is current screen
-                val backStackEntry by navController.currentBackStackEntryAsState()
-                val isBottomBarVisible = when(backStackEntry?.destination?.route){
-                    Screen.HOME.name -> true
-                    Screen.ZAKLADKI.name -> true
-                    Screen.DUCHOWI.name -> true
-                    else -> false
-            }
-
                 Scaffold(
-                    bottomBar =  { BottomBar(navController,isBottomBarVisible) } ,
+                    bottomBar =  { BottomBar(navController) } ,
                     modifier = Modifier.fillMaxSize()
                 ) { innerPadding ->
 

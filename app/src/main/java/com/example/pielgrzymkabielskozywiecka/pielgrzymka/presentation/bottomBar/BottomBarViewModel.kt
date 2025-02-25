@@ -2,7 +2,10 @@ package com.example.pielgrzymkabielskozywiecka.pielgrzymka.presentation.bottomBa
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import androidx.navigation.NavBackStackEntry
+import androidx.navigation.NavHostController
 import com.example.pielgrzymkabielskozywiecka.core.domain.DataHolder
+import com.example.pielgrzymkabielskozywiecka.core.navigation.Screen
 import com.example.pielgrzymkabielskozywiecka.core.presentation.BottomBarUI
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.SharingStarted
@@ -19,15 +22,40 @@ class BottomBarViewModel: ViewModel() {
         )
     )
 
-    fun changeButtonsState(clickedButton: BottomBarUI) {
+    fun updateViewModel(route: String?) {
+        when(route) {
+            Screen.HOME.name -> {
+                toggleVisible(true)
+                changeButtonsState(0)
+            }
+            Screen.ZAKLADKI.name -> {
+                toggleVisible(true)
+                changeButtonsState(1)
+            }
+            Screen.DUCHOWI.name -> {
+                toggleVisible(true)
+                changeButtonsState(2)
+            }
+            else -> {
+                toggleVisible(false)
+            }
+        }
+    }
+
+    private fun changeButtonsState(clickedButtonIndex: Int) {
         // Disable click to shrink
-        if (_state.value.buttonsList.find {  it == clickedButton.copy(isOnFocus = true) } != null) {
+        if (
+            _state.value.buttonsList.find {
+                it == _state.value.buttonsList[clickedButtonIndex].copy(isOnFocus = true)
+            } != null
+            )
+        {
             return
         }
 
         val temp: MutableList<BottomBarUI> = mutableListOf()
         _state.value.buttonsList.forEach{ el ->
-            if (el == clickedButton)
+            if (el ==  _state.value.buttonsList[clickedButtonIndex])
                 temp.add(el.copy(isOnFocus = true))
             else
                 temp.add(el.copy(isOnFocus = false))
@@ -36,7 +64,8 @@ class BottomBarViewModel: ViewModel() {
         _state.update { it.copy(buttonsList = temp) }
     }
 
-    fun toggleVisible() {
-        _state.update { it.copy(visible = !it.visible) }
+    private fun toggleVisible(toVisible: Boolean) {
+        if (toVisible) _state.update { it.copy(isVisible = true) }
+        else _state.update { it.copy(isVisible = false) }
     }
 }
