@@ -9,7 +9,7 @@ import com.example.pielgrzymkabielskozywiecka.core.presentation.BottomBarUI
 import com.example.pielgrzymkabielskozywiecka.core.presentation.ZakladkiUI
 
 object DataHolder {
-    val bottomBarButtons = mutableListOf(
+    val bottomBarButtons = listOf(
         BottomBarUI(
             name = "Dom",
             screen = Screen.HOME,
