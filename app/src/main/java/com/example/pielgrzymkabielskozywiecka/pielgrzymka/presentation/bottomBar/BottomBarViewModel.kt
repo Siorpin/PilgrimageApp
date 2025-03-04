@@ -43,7 +43,6 @@ class BottomBarViewModel: ViewModel() {
     }
 
     private fun changeButtonsState(clickedButtonIndex: Int) {
-        // Disable click to shrink
         if (
             _state.value.buttonsList.find {
                 it == _state.value.buttonsList[clickedButtonIndex].copy(isOnFocus = true)

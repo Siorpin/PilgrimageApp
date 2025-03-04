@@ -5,7 +5,11 @@ import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
 import androidx.compose.foundation.layout.PaddingValues
+import androidx.compose.foundation.layout.WindowInsets
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.navigationBars
+import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.windowInsetsPadding
 import androidx.compose.material3.Scaffold
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
@@ -26,20 +30,18 @@ class MainActivity : ComponentActivity() {
             val navController = rememberNavController()
             PielgrzymkaAppTheme {
                 Scaffold(
-                    bottomBar =  { BottomBar(navController) } ,
+                    bottomBar =  { BottomBar(
+                        navController = navController,
+                        modifier = Modifier
+                            .windowInsetsPadding(WindowInsets.navigationBars)
+                    ) } ,
                     modifier = Modifier.fillMaxSize()
                 ) { innerPadding ->
-
-                    val topPadding = innerPadding.calculateTopPadding()
-                    val bottomPadding = 80.dp
 
                     AppNavigation(
                         navController = navController,
                         startDestination = Screen.HOME,
-                        padding = PaddingValues(
-                            top = topPadding,
-                            bottom = bottomPadding
-                        )
+                        padding = innerPadding
                     )
                 }
             }
