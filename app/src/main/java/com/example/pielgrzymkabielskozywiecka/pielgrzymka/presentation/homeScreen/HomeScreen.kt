@@ -10,8 +10,12 @@ import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
+import androidx.lifecycle.ViewModel
+import androidx.lifecycle.compose.collectAsStateWithLifecycle
+import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavHostController
 import com.example.pielgrzymkabielskozywiecka.pielgrzymka.presentation.homeScreen.components.AnnouncementsBox
 import com.example.pielgrzymkabielskozywiecka.pielgrzymka.presentation.homeScreen.components.HelloSegment
@@ -23,6 +27,8 @@ fun HomeScreen(
     navController: NavHostController,
     modifier: Modifier = Modifier
 ) {
+    val viewModel: HomeScreenViewModel = viewModel()
+    val state = viewModel.state.collectAsStateWithLifecycle()
 
     Box(
         modifier = modifier
@@ -43,7 +49,10 @@ fun HomeScreen(
         ) {
             TopBar()
             HelloSegment()
-            AnnouncementsBox()
+            AnnouncementsBox(
+                text = state.value.ogloszeniaText,
+                isLoading = state.value.isOgloszenieLoading
+            )
             OptionsRow(navController)
         }
     }
