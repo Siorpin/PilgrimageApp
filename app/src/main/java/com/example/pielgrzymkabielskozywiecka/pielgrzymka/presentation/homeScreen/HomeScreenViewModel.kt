@@ -2,7 +2,7 @@ package com.example.pielgrzymkabielskozywiecka.pielgrzymka.presentation.homeScre
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.pielgrzymkabielskozywiecka.core.data.networking.BuilApiResponse
+import com.example.pielgrzymkabielskozywiecka.core.data.networking.BuildApiResponse
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.stateIn
@@ -21,13 +21,13 @@ class HomeScreenViewModel: ViewModel() {
         getOgloszenia(false)
     }
 
-    fun getOgloszenia(all: Boolean) {
+    private fun getOgloszenia(all: Boolean) {
         viewModelScope.launch {
             _state.update { it.copy(isOgloszenieLoading = true) }
-            val result = BuilApiResponse.api.getOgloszenia(all)
+            val result = BuildApiResponse.api.getOgloszenia(all)
             _state.update { it.copy(
                 isOgloszenieLoading = false,
-                ogloszeniaText = result.text
+                ogloszeniaText = result.results[0].text
             ) }
         }
     }
