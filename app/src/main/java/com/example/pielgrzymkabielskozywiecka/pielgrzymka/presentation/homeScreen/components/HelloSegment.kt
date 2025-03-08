@@ -33,7 +33,7 @@ fun HelloSegment(
             .fillMaxWidth()
             .padding(20.dp)
             .background(
-                color = Color(0xFFD5E8FF),
+                color = MaterialTheme.colorScheme.secondaryContainer,
                 shape = RoundedCornerShape(16.dp)
             )
             .padding(10.dp)

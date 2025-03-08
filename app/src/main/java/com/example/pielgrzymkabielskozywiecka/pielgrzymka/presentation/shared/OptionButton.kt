@@ -1,4 +1,4 @@
-package com.example.pielgrzymkabielskozywiecka.pielgrzymka.presentation.homeScreen.components
+package com.example.pielgrzymkabielskozywiecka.pielgrzymka.presentation.shared
 
 import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.height

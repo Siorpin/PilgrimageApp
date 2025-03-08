@@ -9,6 +9,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import com.example.pielgrzymkabielskozywiecka.ui.theme.Poppins
 
 @Composable
@@ -18,7 +19,7 @@ fun DuchowiText(
 ) {
     Card(
         colors = CardDefaults.cardColors(
-            containerColor = MaterialTheme.colorScheme.primary
+            containerColor = MaterialTheme.colorScheme.secondaryContainer
         ),
         modifier = modifier
     ) {
@@ -26,8 +27,10 @@ fun DuchowiText(
             text = text,
             fontFamily = Poppins,
             textAlign = TextAlign.Center,
+            fontSize = 20.sp,
+            lineHeight = 29.sp,
             modifier = Modifier
-                .padding(6.dp)
+                .padding(10.dp)
         )
     }
 }

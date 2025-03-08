@@ -32,6 +32,7 @@ fun DuchowiScreen(
         DuchowiHeader(text = "Pielgrzymi duchowi")
         Spacer(modifier = Modifier.height(40.dp))
         DuchowiText(text = stringResource(R.string.duchowi_text))
+        Spacer(modifier = Modifier.height(40.dp))
         ButtonsBox()
     }
 }

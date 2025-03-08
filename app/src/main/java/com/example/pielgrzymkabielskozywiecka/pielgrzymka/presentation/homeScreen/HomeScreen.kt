@@ -50,6 +50,7 @@ fun HomeScreen(
             TopBar()
             HelloSegment()
             AnnouncementsBox(
+                title = state.value.title,
                 text = state.value.ogloszeniaText,
                 isLoading = state.value.isOgloszenieLoading
             )
