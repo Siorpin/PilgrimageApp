@@ -15,6 +15,7 @@ import com.example.pielgrzymkabielskozywiecka.pielgrzymka.presentation.wwwScreen
 import com.example.pielgrzymkabielskozywiecka.pielgrzymka.presentation.authorsScreen.AuthorsScreen
 import com.example.pielgrzymkabielskozywiecka.pielgrzymka.presentation.duchowiScreen.DuchowiScreen
 import com.example.pielgrzymkabielskozywiecka.pielgrzymka.presentation.homeScreen.HomeScreen
+import com.example.pielgrzymkabielskozywiecka.pielgrzymka.presentation.modlitewnikScreen.ModlitewnikScreen
 import com.example.pielgrzymkabielskozywiecka.pielgrzymka.presentation.zakladkiScreen.ZakladkiScreen
 
 @Composable
@@ -73,6 +74,15 @@ fun AppNavigation(
             exitTransition = { slideOutHorizontally { it } }
         ) {
             WWWScreen(navController)
+        }
+
+        // Modlitewnik
+        composable(
+            route = Screen.MODLITEWNIK.name,
+            enterTransition = { slideInHorizontally { it } },
+            exitTransition = { slideOutHorizontally { it } }
+        ) {
+            ModlitewnikScreen(navController)
         }
 
     }

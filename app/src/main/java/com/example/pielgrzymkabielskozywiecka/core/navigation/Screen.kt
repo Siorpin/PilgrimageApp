@@ -7,12 +7,6 @@ enum class Screen {
     SPIEWNIK,
     MODLITEWNIK,
     WWW,
-    INTENCJE,
     TAJEMNICE,
-    LITURGIA_SLOWA,
-    MAPA,
-    GRUPY,
-    DOKUMENTY,
-    GALERIA,
     AUTORZY
 }
