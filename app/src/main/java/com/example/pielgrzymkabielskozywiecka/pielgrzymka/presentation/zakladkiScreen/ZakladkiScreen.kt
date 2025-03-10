@@ -20,6 +20,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.platform.LocalUriHandler
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
@@ -36,7 +37,7 @@ fun ZakladkiScreen(
     modifier: Modifier = Modifier
 ) {
     val viewModel: ZakladkiScreenViewModel = viewModel()
-    val context = LocalContext.current
+    val handler = LocalUriHandler.current
 
     Box(
         modifier = modifier
@@ -63,10 +64,18 @@ fun ZakladkiScreen(
 
             ) {
                 items(viewModel.state.value.zakladki) {
-                    ZakladkiListItem(
-                        zakladkiUI = it,
-                        onClick = { navController.navigate(it.destination.name) }
-                    )
+                    if (it.name == "Strona internetowa") {
+                        ZakladkiListItem(
+                            zakladkiUI = it,
+                            onClick = { handler.openUri("https://pielgrzymka.bielsko.pl/") }
+                        )
+                    }
+                    else {
+                        ZakladkiListItem(
+                            zakladkiUI = it,
+                            onClick = { navController.navigate(it.destination.name) }
+                        )
+                    }
                 }
             }
         }

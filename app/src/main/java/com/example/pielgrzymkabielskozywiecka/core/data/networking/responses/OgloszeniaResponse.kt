@@ -7,6 +7,6 @@ data class OgloszeniaResponse(
     @SerializedName("text") val text: String
 )
 
-data class Results(
+data class OgloszeniaList(
     @SerializedName("results") val results: List<OgloszeniaResponse>
 )

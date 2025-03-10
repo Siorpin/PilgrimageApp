@@ -11,7 +11,6 @@ import androidx.compose.ui.Modifier
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
-import com.example.pielgrzymkabielskozywiecka.pielgrzymka.presentation.wwwScreen.WWWScreen
 import com.example.pielgrzymkabielskozywiecka.pielgrzymka.presentation.authorsScreen.AuthorsScreen
 import com.example.pielgrzymkabielskozywiecka.pielgrzymka.presentation.duchowiScreen.DuchowiScreen
 import com.example.pielgrzymkabielskozywiecka.pielgrzymka.presentation.homeScreen.HomeScreen
@@ -65,15 +64,6 @@ fun AppNavigation(
             exitTransition = { slideOutHorizontally { it } }
         ) {
             AuthorsScreen(navController)
-        }
-
-        // WWW
-        composable(
-            route = Screen.WWW.name,
-            enterTransition = { slideInHorizontally { it } },
-            exitTransition = { slideOutHorizontally { it } }
-        ) {
-            WWWScreen(navController)
         }
 
         // Modlitewnik
