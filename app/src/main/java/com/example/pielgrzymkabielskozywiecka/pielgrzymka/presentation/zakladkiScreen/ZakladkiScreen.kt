@@ -1,10 +1,6 @@
 package com.example.pielgrzymkabielskozywiecka.pielgrzymka.presentation.zakladkiScreen
 
 import android.annotation.SuppressLint
-import android.content.Intent
-import android.net.Uri
-import android.util.Log
-import android.widget.Toast
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
@@ -19,14 +15,12 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.layout.ContentScale
-import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.LocalUriHandler
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavHostController
 import com.example.pielgrzymkabielskozywiecka.R
-import com.example.pielgrzymkabielskozywiecka.core.presentation.ZakladkiUI
 import com.example.pielgrzymkabielskozywiecka.pielgrzymka.presentation.zakladkiScreen.components.ZakladkiHeader
 import com.example.pielgrzymkabielskozywiecka.pielgrzymka.presentation.zakladkiScreen.components.ZakladkiListItem
 

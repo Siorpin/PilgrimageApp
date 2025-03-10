@@ -6,8 +6,8 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
-import com.example.pielgrzymkabielskozywiecka.ui.theme.Poppins
 import androidx.compose.ui.unit.sp
+import com.example.pielgrzymkabielskozywiecka.ui.theme.Poppins
 
 @Composable
 fun AuthorsText(

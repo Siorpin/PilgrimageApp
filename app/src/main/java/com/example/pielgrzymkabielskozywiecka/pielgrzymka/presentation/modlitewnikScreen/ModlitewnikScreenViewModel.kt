@@ -2,7 +2,6 @@ package com.example.pielgrzymkabielskozywiecka.pielgrzymka.presentation.modlitew
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.pielgrzymkabielskozywiecka.core.data.networking.Api
 import com.example.pielgrzymkabielskozywiecka.core.data.networking.BuildApiResponse
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.SharingStarted

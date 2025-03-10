@@ -2,8 +2,6 @@ package com.example.pielgrzymkabielskozywiecka.pielgrzymka.presentation.bottomBa
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import androidx.navigation.NavBackStackEntry
-import androidx.navigation.NavHostController
 import com.example.pielgrzymkabielskozywiecka.core.domain.DataHolder
 import com.example.pielgrzymkabielskozywiecka.core.navigation.Screen
 import com.example.pielgrzymkabielskozywiecka.core.presentation.BottomBarUI

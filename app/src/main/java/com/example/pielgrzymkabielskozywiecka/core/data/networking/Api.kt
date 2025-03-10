@@ -1,10 +1,7 @@
 package com.example.pielgrzymkabielskozywiecka.core.data.networking
 
 import com.example.pielgrzymkabielskozywiecka.core.data.networking.responses.ModlitwyList
-import com.example.pielgrzymkabielskozywiecka.core.data.networking.responses.ModlitwyResponse
 import com.example.pielgrzymkabielskozywiecka.core.data.networking.responses.OgloszeniaList
-import com.example.pielgrzymkabielskozywiecka.core.data.networking.responses.OgloszeniaResponse
-import retrofit2.http.Body
 import retrofit2.http.GET
 import retrofit2.http.Query
 
