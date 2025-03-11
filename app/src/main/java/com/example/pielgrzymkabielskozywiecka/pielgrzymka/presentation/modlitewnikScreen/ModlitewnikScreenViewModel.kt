@@ -3,6 +3,8 @@ package com.example.pielgrzymkabielskozywiecka.pielgrzymka.presentation.modlitew
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.pielgrzymkabielskozywiecka.core.data.networking.BuildApiResponse
+import com.example.pielgrzymkabielskozywiecka.core.domain.DataHolder
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.stateIn
@@ -19,6 +21,7 @@ class ModlitewnikScreenViewModel: ViewModel() {
 
     init {
         getModlitwy()
+        delayPadding()
     }
 
     private fun getModlitwy() {
@@ -26,6 +29,13 @@ class ModlitewnikScreenViewModel: ViewModel() {
             _state.update { it.copy(isLoading = true) }
             val result = BuildApiResponse.api.getModlitwy()
             _state.update { it.copy(isLoading = false, modlitwy = result.modlitwy) }
+        }
+    }
+
+    private fun delayPadding() {
+        viewModelScope.launch {
+            delay(1000)
+            _state.update { it.copy(contentBottomPadding = DataHolder.overallBottomPadding) }
         }
     }
 }

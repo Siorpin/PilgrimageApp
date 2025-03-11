@@ -18,6 +18,7 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.draw.shadow
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
@@ -38,7 +39,10 @@ fun ModlitewnikListItem(
             .fillMaxWidth()
             .height(80.dp)
             .background(MaterialTheme.colorScheme.surface)
-            .shadow(1.dp)
+            .shadow(
+                elevation = 1.dp,
+                spotColor = MaterialTheme.colorScheme.onBackground
+            )
             .clickable { onClick() }
             .padding(horizontal = 20.dp)
     ) {

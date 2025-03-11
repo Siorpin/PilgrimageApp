@@ -20,7 +20,6 @@ fun OptionButton(
     color: Color,
     onClick: () -> Unit,
     modifier: Modifier = Modifier
-        .height(50.dp)
 ) {
     Button(
         onClick = { onClick() },

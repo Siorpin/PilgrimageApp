@@ -5,6 +5,7 @@ import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -16,28 +17,23 @@ import com.example.pielgrzymkabielskozywiecka.pielgrzymka.presentation.shared.Op
 fun ButtonsBox(
     modifier: Modifier = Modifier
 ) {
-    Box(
-        contentAlignment = Alignment.Center,
+    Row(
+        horizontalArrangement = Arrangement.spacedBy(4.dp, Alignment.CenterHorizontally),
+        verticalAlignment = Alignment.CenterVertically,
         modifier = modifier
             .fillMaxWidth()
+            .size(100.dp)
+            .padding(6.dp)
     ) {
-        Row(
-            horizontalArrangement = Arrangement.spacedBy(4.dp, Alignment.CenterHorizontally),
-            verticalAlignment = Alignment.CenterVertically,
-            modifier = Modifier
-                .fillMaxWidth()
-                .padding(6.dp)
-        ) {
-            OptionButton(
-                buttonText = "Msze online",
-                color = Color(0xFFA6AAF3),
-                onClick = { }
-            )
-            OptionButton(
-                buttonText = "Wyślij intencje",
-                color = Color(0xFFC4C5FF),
-                onClick = { }
-            )
-        }
+        OptionButton(
+            buttonText = "Msze online",
+            color = Color(0xFFA6AAF3),
+            onClick = { }
+        )
+        OptionButton(
+            buttonText = "Wyślij intencje",
+            color = Color(0xFFC4C5FF),
+            onClick = { }
+        )
     }
 }

@@ -24,11 +24,16 @@ class HomeScreenViewModel: ViewModel() {
     private fun getOgloszenia() {
         viewModelScope.launch {
             _state.update { it.copy(isOgloszenieLoading = true) }
-            val result = BuildApiResponse.api.getOgloszenia(false)
-            _state.update { it.copy(
-                isOgloszenieLoading = false,
-                ogloszeniaText = result.results[0].text
-            ) }
+            try {
+                val result = BuildApiResponse.api.getOgloszenia(false)
+                _state.update { it.copy(
+                    isOgloszenieLoading = false,
+                    ogloszeniaText = result.results[0].text
+                ) }
+            }
+            catch (e: Error){
+
+            }
         }
     }
 }

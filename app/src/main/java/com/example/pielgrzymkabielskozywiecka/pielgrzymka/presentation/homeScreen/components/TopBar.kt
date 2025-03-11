@@ -29,7 +29,7 @@ fun TopBar(
         Icon(
             imageVector = Icons.Default.Notifications,
             contentDescription = "Powiadomienia",
-            tint = MaterialTheme.colorScheme.onBackground,
+            tint = MaterialTheme.colorScheme.onPrimary,
             modifier = Modifier
                 .padding(7.dp)
         )

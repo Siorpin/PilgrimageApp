@@ -56,7 +56,7 @@ fun SecondaryScreenTopBar(
         Text(
             text = name,
             fontFamily = Poppins,
-            fontSize = 20.sp
+            fontSize = 28.sp
         )
         Spacer(modifier = Modifier.width(40.dp))
     }

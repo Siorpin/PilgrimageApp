@@ -1,5 +1,6 @@
 package com.example.pielgrzymkabielskozywiecka.pielgrzymka.presentation.homeScreen.components
 
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
@@ -17,6 +18,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import com.example.pielgrzymkabielskozywiecka.ui.theme.Poppins
 
 @Composable
@@ -56,25 +58,35 @@ fun AnnouncementsBox(
                 }
             }
             else {
-                Text(
-                    text = title,
-                    fontFamily = Poppins,
-                    textAlign = TextAlign.Center,
-                    fontWeight = FontWeight.Bold,
-                    color = MaterialTheme.colorScheme.onBackground,
+                Column(
+                    verticalArrangement = Arrangement.spacedBy(16.dp),
                     modifier = Modifier
-                        .padding(6.dp)
-                        .fillMaxWidth()
-                )
-                Text(
-                    text = text,
-                    fontFamily = Poppins,
-                    textAlign = TextAlign.Center,
-                    color = MaterialTheme.colorScheme.onBackground,
-                    modifier = Modifier
-                        .padding(6.dp)
+                        .padding(
+                            vertical = 16.dp,
+                            horizontal = 8.dp
+                        )
                         .fillMaxSize()
-                )
+                ) {
+                    Text(
+                        text = title,
+                        fontSize = 22.sp,
+                        fontFamily = Poppins,
+                        textAlign = TextAlign.Center,
+                        fontWeight = FontWeight.Bold,
+                        color = MaterialTheme.colorScheme.onPrimary,
+                        modifier = Modifier
+                            .fillMaxWidth()
+                    )
+                    Text(
+                        text = text,
+                        fontSize = 16.sp,
+                        fontFamily = Poppins,
+                        textAlign = TextAlign.Center,
+                        color = MaterialTheme.colorScheme.onPrimary,
+                        modifier = Modifier
+                            .fillMaxSize()
+                    )
+                }
             }
         }
     }

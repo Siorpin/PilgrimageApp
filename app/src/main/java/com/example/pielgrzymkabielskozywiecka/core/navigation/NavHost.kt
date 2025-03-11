@@ -11,6 +11,7 @@ import androidx.compose.ui.Modifier
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
+import com.example.pielgrzymkabielskozywiecka.core.domain.DataHolder
 import com.example.pielgrzymkabielskozywiecka.pielgrzymka.presentation.authorsScreen.AuthorsScreen
 import com.example.pielgrzymkabielskozywiecka.pielgrzymka.presentation.duchowiScreen.DuchowiScreen
 import com.example.pielgrzymkabielskozywiecka.pielgrzymka.presentation.homeScreen.HomeScreen
@@ -36,7 +37,11 @@ fun AppNavigation(
             enterTransition = { EnterTransition.None },
             exitTransition = { ExitTransition.None }
         ){
-            HomeScreen(navController)
+            HomeScreen(
+                navController,
+                modifier = Modifier
+                    .padding(bottom = DataHolder.overallBottomPadding)
+            )
         }
 
         // ZAKŁADKI
@@ -54,7 +59,11 @@ fun AppNavigation(
             enterTransition = { EnterTransition.None },
             exitTransition = { ExitTransition.None }
         ) {
-            DuchowiScreen(navController)
+            DuchowiScreen(
+                navController,
+                modifier = Modifier
+                    .padding(bottom = DataHolder.overallBottomPadding)
+            )
         }
 
         // AUTHORS
@@ -72,7 +81,9 @@ fun AppNavigation(
             enterTransition = { slideInHorizontally { it } },
             exitTransition = { slideOutHorizontally { it } }
         ) {
-            ModlitewnikScreen(navController)
+            ModlitewnikScreen(
+                navController
+            )
         }
 
     }
