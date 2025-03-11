@@ -1,6 +1,7 @@
 package com.example.pielgrzymkabielskozywiecka.pielgrzymka.presentation.modlitewnikScreen
 
 import androidx.compose.foundation.background
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
@@ -16,6 +17,7 @@ import androidx.compose.ui.unit.dp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavHostController
+import com.example.pielgrzymkabielskozywiecka.pielgrzymka.presentation.modlitewnikScreen.components.ModlitewnikListItem
 import com.example.pielgrzymkabielskozywiecka.pielgrzymka.presentation.shared.SecondaryScreenTopBar
 
 @Composable
@@ -40,11 +42,15 @@ fun ModlitewnikScreen(
         }
         else {
             LazyColumn(
+                verticalArrangement = Arrangement.spacedBy(3.dp),
                 modifier = Modifier
-                    .padding(20.dp)
+                //    .padding(20.dp)
             ) {
                 items(state.modlitwy) { modlitwa ->
-
+                    ModlitewnikListItem(
+                        modlitwa = modlitwa,
+                        onClick = {}
+                    )
                 }
             }
         }
