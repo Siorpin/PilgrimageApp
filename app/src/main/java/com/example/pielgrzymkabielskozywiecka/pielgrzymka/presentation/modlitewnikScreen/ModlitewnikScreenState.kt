@@ -7,5 +7,7 @@ import com.example.pielgrzymkabielskozywiecka.core.data.networking.responses.Mod
 data class ModlitewnikScreenState(
     val isLoading: Boolean = true,
     val contentBottomPadding: Dp = 0.dp,
-    val modlitwy: List<ModlitwyResponse> = emptyList()
+    val searchedText: String = "",
+    val prayers: List<ModlitwyResponse> = emptyList(),
+    val visiblePrayers: List<ModlitwyResponse> = emptyList()
 )

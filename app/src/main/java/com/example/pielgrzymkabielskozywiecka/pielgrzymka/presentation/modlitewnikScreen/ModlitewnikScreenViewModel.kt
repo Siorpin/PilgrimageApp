@@ -3,6 +3,7 @@ package com.example.pielgrzymkabielskozywiecka.pielgrzymka.presentation.modlitew
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.pielgrzymkabielskozywiecka.core.data.networking.BuildApiResponse
+import com.example.pielgrzymkabielskozywiecka.core.data.networking.responses.ModlitwyResponse
 import com.example.pielgrzymkabielskozywiecka.core.domain.DataHolder
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -24,11 +25,31 @@ class ModlitewnikScreenViewModel: ViewModel() {
         delayPadding()
     }
 
+    fun updateText(text: String) {
+        _state.update { it.copy(searchedText = text) }
+    }
+
+    fun search(text: String) {
+        val tempList: MutableList<ModlitwyResponse> = mutableListOf()
+
+        _state.value.prayers.forEach{ prayer ->
+            if (
+                prayer.title.lowercase().contains(text.lowercase()) ||
+                prayer.lyrics.lowercase().contains(text.lowercase()) ||
+                prayer.id.toString() == text
+                ) {
+                tempList.add(prayer)
+            }
+        }
+
+        _state.update { it.copy(visiblePrayers = tempList) }
+    }
+
     private fun getModlitwy() {
         viewModelScope.launch {
             _state.update { it.copy(isLoading = true) }
             val result = BuildApiResponse.api.getModlitwy()
-            _state.update { it.copy(isLoading = false, modlitwy = result.modlitwy) }
+            _state.update { it.copy(isLoading = false, prayers = result.modlitwy, visiblePrayers = result.modlitwy) }
         }
     }
 
