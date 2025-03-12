@@ -1,4 +1,4 @@
-package com.example.pielgrzymkabielskozywiecka.pielgrzymka.presentation.modlitewnikScreen
+package com.example.pielgrzymkabielskozywiecka.pielgrzymka.presentation.songbookScreen
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
@@ -18,16 +18,18 @@ import androidx.compose.ui.unit.dp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavHostController
+import com.example.pielgrzymkabielskozywiecka.pielgrzymka.presentation.modlitewnikScreen.ModlitewnikScreenViewModel
 import com.example.pielgrzymkabielskozywiecka.pielgrzymka.presentation.modlitewnikScreen.components.ModlitewnikListItem
 import com.example.pielgrzymkabielskozywiecka.pielgrzymka.presentation.shared.SearchBar
 import com.example.pielgrzymkabielskozywiecka.pielgrzymka.presentation.shared.SecondaryScreenTopBar
+import com.example.pielgrzymkabielskozywiecka.pielgrzymka.presentation.songbookScreen.components.SongbookListItem
 
 @Composable
-fun ModlitewnikScreen(
+fun SongbookScreen(
     navController: NavHostController,
     modifier: Modifier = Modifier
 ) {
-    val viewModel: ModlitewnikScreenViewModel = viewModel()
+    val viewModel: SongbookScreenViewModel = viewModel()
     val state by viewModel.state.collectAsStateWithLifecycle()
 
     Column(
@@ -37,7 +39,7 @@ fun ModlitewnikScreen(
             .padding(bottom = state.contentBottomPadding)
     ) {
         SecondaryScreenTopBar(
-            name = "Modlitewnik",
+            name = "Śpiewnik",
             navController = navController
         )
         SearchBar(
@@ -61,9 +63,9 @@ fun ModlitewnikScreen(
             LazyColumn(
                 verticalArrangement = Arrangement.spacedBy(3.dp)
             ) {
-                items(state.visiblePrayers) { prayer ->
-                    ModlitewnikListItem(
-                        modlitwa = prayer,
+                items(state.visibleSongs) { song ->
+                    SongbookListItem(
+                        song = song,
                         onClick = {}
                     )
                 }

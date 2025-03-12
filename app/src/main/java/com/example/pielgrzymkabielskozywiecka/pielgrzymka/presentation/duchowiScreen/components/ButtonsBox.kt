@@ -19,7 +19,7 @@ fun ButtonsBox(
     modifier: Modifier = Modifier
 ) {
     Row(
-        horizontalArrangement = Arrangement.spacedBy(4.dp, Alignment.CenterHorizontally),
+        horizontalArrangement = Arrangement.spacedBy(10.dp, Alignment.CenterHorizontally),
         verticalAlignment = Alignment.CenterVertically,
         modifier = modifier
             .fillMaxWidth()
@@ -32,7 +32,9 @@ fun ButtonsBox(
         OptionButton(
             buttonText = "Msze online",
             color = Color(0xFFA6AAF3),
-            onClick = { }
+            onClick = { },
+            modifier = Modifier
+                .weight(1f)
         )
         OptionButton(
             buttonText = "Wyślij intencje",
@@ -43,7 +45,9 @@ fun ButtonsBox(
                     subject = "test",
                     text = "Przykładowy tekst! Tutaj trzeba coś napisać bla bla bla\n\n"
                 )
-            }
+            },
+            modifier = Modifier
+                .weight(1f)
         )
     }
 }

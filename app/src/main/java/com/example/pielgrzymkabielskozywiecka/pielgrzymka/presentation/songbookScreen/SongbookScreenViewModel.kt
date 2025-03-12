@@ -1,9 +1,11 @@
-package com.example.pielgrzymkabielskozywiecka.pielgrzymka.presentation.modlitewnikScreen
+package com.example.pielgrzymkabielskozywiecka.pielgrzymka.presentation.songbookScreen
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.pielgrzymkabielskozywiecka.core.data.networking.BuildApiResponse
 import com.example.pielgrzymkabielskozywiecka.core.data.networking.responses.ModlitwyResponse
+import com.example.pielgrzymkabielskozywiecka.core.data.networking.responses.SongsList
+import com.example.pielgrzymkabielskozywiecka.core.data.networking.responses.SongsResponse
 import com.example.pielgrzymkabielskozywiecka.core.domain.DataHolder
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -12,12 +14,12 @@ import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
 
-class ModlitewnikScreenViewModel: ViewModel() {
-    private val _state = MutableStateFlow(ModlitewnikScreenState())
+class SongbookScreenViewModel: ViewModel() {
+    private val _state = MutableStateFlow(SongbookScreenState())
     val state = _state.stateIn(
         scope = viewModelScope,
         started = SharingStarted.WhileSubscribed(5000),
-        initialValue = ModlitewnikScreenState()
+        initialValue = SongbookScreenState()
     )
 
     init {
@@ -30,26 +32,26 @@ class ModlitewnikScreenViewModel: ViewModel() {
     }
 
     fun search(text: String) {
-        val tempList: MutableList<ModlitwyResponse> = mutableListOf()
+        val tempList: MutableList<SongsResponse> = mutableListOf()
 
-        _state.value.prayers.forEach{ prayer ->
+        _state.value.songs.forEach{ song ->
             if (
-                prayer.title.lowercase().contains(text.lowercase()) ||
-                prayer.lyrics.lowercase().contains(text.lowercase()) ||
-                prayer.id.toString() == text
+                song.title.lowercase().contains(text.lowercase()) ||
+                song.lyrics.lowercase().contains(text.lowercase()) ||
+                song.id.toString() == text
                 ) {
-                tempList.add(prayer)
+                tempList.add(song)
             }
         }
 
-        _state.update { it.copy(visiblePrayers = tempList) }
+        _state.update { it.copy(visibleSongs = tempList) }
     }
 
     private fun getModlitwy() {
         viewModelScope.launch {
             _state.update { it.copy(isLoading = true) }
-            val result = BuildApiResponse.api.getPrayers()
-            _state.update { it.copy(isLoading = false, prayers = result.modlitwy, visiblePrayers = result.modlitwy) }
+            val result = BuildApiResponse.api.getSongs()
+            _state.update { it.copy(isLoading = false, songs = result.songsList, visibleSongs = result.songsList) }
         }
     }
 

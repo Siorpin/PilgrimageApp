@@ -18,7 +18,7 @@ import com.example.pielgrzymkabielskozywiecka.pielgrzymka.presentation.duchowiSc
 
 @Composable
 fun DuchowiScreen(
-    nacController: NavHostController,
+    navController: NavHostController,
     modifier: Modifier = Modifier
 ) {
     Column(

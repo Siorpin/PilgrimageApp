@@ -1,5 +1,6 @@
 package com.example.pielgrzymkabielskozywiecka.pielgrzymka.presentation.homeScreen
 
+import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.pielgrzymkabielskozywiecka.core.data.networking.BuildApiResponse
@@ -26,13 +27,15 @@ class HomeScreenViewModel: ViewModel() {
             _state.update { it.copy(isOgloszenieLoading = true) }
             try {
                 val result = BuildApiResponse.api.getOgloszenia(false)
+                Log.d("", result.toString())
                 _state.update { it.copy(
                     isOgloszenieLoading = false,
+                    title = result.results[0].title,
                     ogloszeniaText = result.results[0].text
                 ) }
             }
             catch (e: Error){
-
+                // TODO
             }
         }
     }
