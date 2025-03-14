@@ -3,7 +3,7 @@ package com.example.pielgrzymkabielskozywiecka.pielgrzymka.presentation.homeScre
 import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.pielgrzymkabielskozywiecka.core.data.networking.BuildApiResponse
+import com.example.pielgrzymkabielskozywiecka.core.domain.networking.BuildApiResponse
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.stateIn

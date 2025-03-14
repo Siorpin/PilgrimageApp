@@ -1,4 +1,4 @@
-package com.example.pielgrzymkabielskozywiecka.core.domain
+package com.example.pielgrzymkabielskozywiecka.core.data
 
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.AccountCircle

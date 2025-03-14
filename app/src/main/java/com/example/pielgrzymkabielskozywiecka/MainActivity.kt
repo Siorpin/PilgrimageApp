@@ -28,6 +28,8 @@ class MainActivity : ComponentActivity() {
         setContent {
             val navController = rememberNavController()
             PielgrzymkaAppTheme {
+                // val postNotificationPermission = rememberPermissionState(permission = Manifest.permission.POST_NOTIFICATIONS)
+
                 Scaffold(
                     bottomBar =  { BottomBar(
                         navController = navController

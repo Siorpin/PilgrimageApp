@@ -2,7 +2,7 @@ package com.example.pielgrzymkabielskozywiecka.pielgrzymka.presentation.bottomBa
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.pielgrzymkabielskozywiecka.core.domain.DataHolder
+import com.example.pielgrzymkabielskozywiecka.core.data.DataHolder
 import com.example.pielgrzymkabielskozywiecka.core.navigation.Screen
 import com.example.pielgrzymkabielskozywiecka.core.presentation.BottomBarUI
 import kotlinx.coroutines.flow.MutableStateFlow

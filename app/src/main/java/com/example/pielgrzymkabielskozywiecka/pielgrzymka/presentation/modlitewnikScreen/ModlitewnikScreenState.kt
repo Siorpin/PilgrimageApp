@@ -2,7 +2,7 @@ package com.example.pielgrzymkabielskozywiecka.pielgrzymka.presentation.modlitew
 
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
-import com.example.pielgrzymkabielskozywiecka.core.data.networking.responses.ModlitwyResponse
+import com.example.pielgrzymkabielskozywiecka.core.domain.networking.responses.ModlitwyResponse
 
 data class ModlitewnikScreenState(
     val isLoading: Boolean = true,

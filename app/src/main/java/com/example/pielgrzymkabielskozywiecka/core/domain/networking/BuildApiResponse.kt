@@ -1,4 +1,4 @@
-package com.example.pielgrzymkabielskozywiecka.core.data.networking
+package com.example.pielgrzymkabielskozywiecka.core.domain.networking
 
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor

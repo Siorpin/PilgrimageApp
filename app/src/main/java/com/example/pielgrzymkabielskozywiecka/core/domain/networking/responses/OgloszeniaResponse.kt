@@ -1,4 +1,4 @@
-package com.example.pielgrzymkabielskozywiecka.core.data.networking.responses
+package com.example.pielgrzymkabielskozywiecka.core.domain.networking.responses
 
 import com.google.gson.annotations.SerializedName
 

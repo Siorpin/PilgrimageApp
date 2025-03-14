@@ -2,8 +2,7 @@ package com.example.pielgrzymkabielskozywiecka.pielgrzymka.presentation.songbook
 
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
-import com.example.pielgrzymkabielskozywiecka.core.data.networking.responses.ModlitwyResponse
-import com.example.pielgrzymkabielskozywiecka.core.data.networking.responses.SongsResponse
+import com.example.pielgrzymkabielskozywiecka.core.domain.networking.responses.SongsResponse
 
 data class SongbookScreenState(
     val isLoading: Boolean = true,
