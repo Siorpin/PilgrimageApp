@@ -16,6 +16,7 @@ import com.example.pielgrzymkabielskozywiecka.pielgrzymka.presentation.authorsSc
 import com.example.pielgrzymkabielskozywiecka.pielgrzymka.presentation.duchowiScreen.DuchowiScreen
 import com.example.pielgrzymkabielskozywiecka.pielgrzymka.presentation.homeScreen.HomeScreen
 import com.example.pielgrzymkabielskozywiecka.pielgrzymka.presentation.modlitewnikScreen.ModlitewnikScreen
+import com.example.pielgrzymkabielskozywiecka.pielgrzymka.presentation.rosaryScreen.RosaryScreen
 import com.example.pielgrzymkabielskozywiecka.pielgrzymka.presentation.songbookScreen.SongbookScreen
 import com.example.pielgrzymkabielskozywiecka.pielgrzymka.presentation.zakladkiScreen.ZakladkiScreen
 
@@ -82,9 +83,7 @@ fun AppNavigation(
             enterTransition = { slideInHorizontally { it } },
             exitTransition = { slideOutHorizontally { it } }
         ) {
-            ModlitewnikScreen(
-                navController
-            )
+            ModlitewnikScreen(navController)
         }
 
         // Songbook
@@ -93,10 +92,16 @@ fun AppNavigation(
             enterTransition = { slideInHorizontally { it } },
             exitTransition = { slideOutHorizontally { it } }
         ) {
-            SongbookScreen(
-                navController
-            )
+            SongbookScreen(navController)
         }
 
+        // mysteries of the rosary
+        composable(
+            route = Screen.TAJEMNICE.name,
+            enterTransition = { slideInHorizontally { it } },
+            exitTransition = { slideOutHorizontally { it } }
+        ) {
+            RosaryScreen(navController)
+        }
     }
 }
