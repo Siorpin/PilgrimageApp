@@ -8,5 +8,7 @@ enum class Screen {
     MODLITEWNIK,
     WWW,
     TAJEMNICE,
-    AUTORZY
+    AUTORZY,
+    PRAYER,
+    SONG
 }

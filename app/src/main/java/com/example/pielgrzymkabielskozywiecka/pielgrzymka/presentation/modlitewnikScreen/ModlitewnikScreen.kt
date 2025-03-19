@@ -18,6 +18,7 @@ import androidx.compose.ui.unit.dp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavHostController
+import com.example.pielgrzymkabielskozywiecka.core.navigation.Screen
 import com.example.pielgrzymkabielskozywiecka.pielgrzymka.presentation.modlitewnikScreen.components.ModlitewnikListItem
 import com.example.pielgrzymkabielskozywiecka.pielgrzymka.presentation.shared.SearchBar
 import com.example.pielgrzymkabielskozywiecka.pielgrzymka.presentation.shared.SecondaryScreenTopBar
@@ -64,7 +65,9 @@ fun ModlitewnikScreen(
                 items(state.visiblePrayers) { prayer ->
                     ModlitewnikListItem(
                         modlitwa = prayer,
-                        onClick = {}
+                        onClick = {
+                            navController.navigate(Screen.PRAYER.name + "/${prayer.title}/${prayer.lyrics}")
+                        }
                     )
                 }
             }

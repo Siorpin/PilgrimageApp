@@ -9,6 +9,7 @@ import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
+import java.net.UnknownHostException
 
 class HomeScreenViewModel: ViewModel() {
     private val _state = MutableStateFlow(HomeScreenState())
@@ -27,15 +28,15 @@ class HomeScreenViewModel: ViewModel() {
             _state.update { it.copy(isOgloszenieLoading = true) }
             try {
                 val result = BuildApiResponse.api.getOgloszenia(false)
-                Log.d("", result.toString())
                 _state.update { it.copy(
                     isOgloszenieLoading = false,
                     title = result.results[0].title,
                     ogloszeniaText = result.results[0].text
                 ) }
             }
-            catch (e: Error){
+            catch (e: UnknownHostException){
                 // TODO
+                Log.d("pfff", "pfff")
             }
         }
     }
