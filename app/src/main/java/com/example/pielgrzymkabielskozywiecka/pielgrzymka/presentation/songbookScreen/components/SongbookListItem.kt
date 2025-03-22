@@ -10,6 +10,10 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.shadow
@@ -25,6 +29,8 @@ fun SongbookListItem(
     onClick: () -> Unit,
     modifier: Modifier = Modifier
 ) {
+    var enabled by remember{ mutableStateOf(true) }
+
     Row(
         verticalAlignment = Alignment.CenterVertically,
         horizontalArrangement = Arrangement.spacedBy(10.dp),
@@ -36,7 +42,10 @@ fun SongbookListItem(
                 elevation = 1.dp,
                 spotColor = MaterialTheme.colorScheme.onBackground
             )
-            .clickable { onClick() }
+            .clickable(enabled) {
+                onClick()
+                enabled = false
+            }
             .padding(horizontal = 20.dp)
     ) {
         Text(
