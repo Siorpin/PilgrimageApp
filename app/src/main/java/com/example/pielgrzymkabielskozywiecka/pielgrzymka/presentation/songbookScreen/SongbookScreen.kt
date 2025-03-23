@@ -63,8 +63,10 @@ fun SongbookScreen(
             LazyColumn(
                 verticalArrangement = Arrangement.spacedBy(3.dp)
             ) {
+                var id = 1
                 items(state.visibleSongs) { song ->
                     SongbookListItem(
+                        id = id++,
                         song = song,
                         onClick = {}
                     )

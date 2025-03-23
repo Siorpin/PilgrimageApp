@@ -62,8 +62,10 @@ fun ModlitewnikScreen(
             LazyColumn(
                 verticalArrangement = Arrangement.spacedBy(3.dp)
             ) {
+                var id = 1
                 items(state.visiblePrayers) { prayer ->
                     ModlitewnikListItem(
+                        id = id++,
                         modlitwa = prayer,
                         onClick = {
                             navController.navigate(Screen.PRAYER.name + "/${prayer.title}/${prayer.lyrics}")

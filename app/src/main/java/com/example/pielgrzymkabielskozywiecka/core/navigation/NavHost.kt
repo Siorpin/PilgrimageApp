@@ -17,6 +17,7 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.navArgument
 import com.example.pielgrzymkabielskozywiecka.core.data.DataHolder
+import com.example.pielgrzymkabielskozywiecka.pielgrzymka.presentation.TrackScreen
 import com.example.pielgrzymkabielskozywiecka.pielgrzymka.presentation.authorsScreen.AuthorsScreen
 import com.example.pielgrzymkabielskozywiecka.pielgrzymka.presentation.duchowiScreen.DuchowiScreen
 import com.example.pielgrzymkabielskozywiecka.pielgrzymka.presentation.homeScreen.HomeScreen
@@ -137,6 +138,15 @@ fun AppNavigation(
                 lyrics = lyrics,
                 navController = navController
             )
+        }
+
+        // Track
+        composable(
+            route = Screen.TRACK.name,
+            enterTransition = { slideInHorizontally { it } },
+            exitTransition = { slideOutHorizontally { it } }
+        ) {
+            TrackScreen(navController)
         }
     }
 }

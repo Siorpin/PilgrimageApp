@@ -10,5 +10,5 @@ enum class Screen {
     TAJEMNICE,
     AUTORZY,
     PRAYER,
-    SONG
+    TRACK
 }

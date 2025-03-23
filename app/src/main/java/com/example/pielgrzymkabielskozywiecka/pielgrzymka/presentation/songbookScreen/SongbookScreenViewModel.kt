@@ -35,8 +35,7 @@ class SongbookScreenViewModel: ViewModel() {
         _state.value.songs.forEach{ song ->
             if (
                 song.title.lowercase().contains(text.lowercase()) ||
-                song.lyrics.lowercase().contains(text.lowercase()) ||
-                song.id.toString() == text
+                song.lyrics.lowercase().contains(text.lowercase())
                 ) {
                 tempList.add(song)
             }

@@ -35,8 +35,7 @@ class ModlitewnikScreenViewModel: ViewModel() {
         _state.value.prayers.forEach{ prayer ->
             if (
                 prayer.title.lowercase().contains(text.lowercase()) ||
-                prayer.lyrics.lowercase().contains(text.lowercase()) ||
-                prayer.id.toString() == text
+                prayer.lyrics.lowercase().contains(text.lowercase())
                 ) {
                 tempList.add(prayer)
             }

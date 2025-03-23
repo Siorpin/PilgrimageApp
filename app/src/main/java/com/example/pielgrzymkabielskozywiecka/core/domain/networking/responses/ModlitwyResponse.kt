@@ -3,7 +3,6 @@ package com.example.pielgrzymkabielskozywiecka.core.domain.networking.responses
 import com.google.gson.annotations.SerializedName
 
 data class ModlitwyResponse(
-    @SerializedName("id") val id: Int,
     @SerializedName("title") val title: String,
     @SerializedName("lyrics") val lyrics: String
 )

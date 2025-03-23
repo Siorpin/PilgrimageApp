@@ -26,6 +26,7 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.unit.LayoutDirection
 import androidx.compose.ui.unit.dp
 import androidx.core.content.ContextCompat
+import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.compose.rememberNavController
 import com.example.pielgrzymkabielskozywiecka.core.navigation.AppNavigation
 import com.example.pielgrzymkabielskozywiecka.core.navigation.Screen
@@ -48,7 +49,9 @@ class MainActivity : ComponentActivity() {
         checkNotificationPermission(this, requestPermissionLauncher)
 
         setContent {
+            val viewModel: MainViewModel = viewModel()
             val navController = rememberNavController()
+
             PielgrzymkaAppTheme {
                 Scaffold(
                     bottomBar = { BottomBar(navController = navController) },
