@@ -45,11 +45,12 @@ class ModlitewnikScreenViewModel: ViewModel() {
     }
 
     private fun getModlitwy() {
-        viewModelScope.launch {
-            _state.update { it.copy(isLoading = true) }
-            val result = BuildApiResponse.api.getPrayers()
-            _state.update { it.copy(isLoading = false, prayers = result.modlitwy, visiblePrayers = result.modlitwy) }
-        }
+//        viewModelScope.launch {
+//            _state.update { it.copy(isLoading = true) }
+//            val result = BuildApiResponse.api.getPrayers()
+//            _state.update { it.copy(isLoading = false, prayers = result.modlitwy, visiblePrayers = result.modlitwy) }
+//        }
+        _state.update { it.copy(isLoading = false, prayers = DataHolder.prayers, visiblePrayers = DataHolder.prayers) }
     }
 
     private fun delayPadding() {

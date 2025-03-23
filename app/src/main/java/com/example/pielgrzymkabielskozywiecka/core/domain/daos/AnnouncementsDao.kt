@@ -1,6 +1,7 @@
 package com.example.pielgrzymkabielskozywiecka.core.domain.daos
 
 import androidx.room.Dao
+import androidx.room.Delete
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
@@ -11,6 +12,9 @@ interface AnnouncementsDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insertAnnouncement(annoucement: Announcements)
 
-    @Query("SELECT title, text FROM Announcements")
-    suspend fun getAnnouncements(): Announcements
+    @Query("SELECT id, title, text FROM Announcements")
+    suspend fun getAnnouncements(): List<Announcements>
+
+    @Query("DELETE FROM Announcements")
+    suspend fun deleteAnnouncements()
 }

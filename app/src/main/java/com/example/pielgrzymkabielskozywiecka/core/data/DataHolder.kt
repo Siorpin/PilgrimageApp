@@ -5,12 +5,18 @@ import androidx.compose.material.icons.filled.AccountCircle
 import androidx.compose.material.icons.filled.Home
 import androidx.compose.material.icons.filled.Star
 import androidx.compose.ui.unit.dp
+import com.example.pielgrzymkabielskozywiecka.core.domain.networking.responses.ModlitwyResponse
+import com.example.pielgrzymkabielskozywiecka.core.domain.networking.responses.SongsResponse
 import com.example.pielgrzymkabielskozywiecka.core.navigation.Screen
 import com.example.pielgrzymkabielskozywiecka.core.presentation.BottomBarUI
 import com.example.pielgrzymkabielskozywiecka.core.presentation.ZakladkiUI
 
 object DataHolder {
     val overallBottomPadding = 100.dp
+    var areNetworkFunctionsLoading = false
+
+    var songs: List<SongsResponse> = emptyList()
+    var prayers: List<ModlitwyResponse> = emptyList()
 
     val bottomBarButtons = listOf(
         BottomBarUI(

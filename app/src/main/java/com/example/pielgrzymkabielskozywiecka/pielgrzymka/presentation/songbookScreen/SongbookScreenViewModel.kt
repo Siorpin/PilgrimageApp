@@ -21,7 +21,7 @@ class SongbookScreenViewModel: ViewModel() {
     )
 
     init {
-        getModlitwy()
+        getSongs()
         delayPadding()
     }
 
@@ -44,12 +44,13 @@ class SongbookScreenViewModel: ViewModel() {
         _state.update { it.copy(visibleSongs = tempList) }
     }
 
-    private fun getModlitwy() {
-        viewModelScope.launch {
-            _state.update { it.copy(isLoading = true) }
-            val result = BuildApiResponse.api.getSongs()
-            _state.update { it.copy(isLoading = false, songs = result.songsList, visibleSongs = result.songsList) }
-        }
+    private fun getSongs() {
+//        viewModelScope.launch {
+//            _state.update { it.copy(isLoading = true) }
+//            val result = BuildApiResponse.api.getSongs()
+//            _state.update { it.copy(isLoading = false, songs = result.songsList, visibleSongs = result.songsList) }
+//        }
+        _state.update { it.copy(isLoading = false, songs = DataHolder.songs, visibleSongs = DataHolder.songs) }
     }
 
     private fun delayPadding() {
