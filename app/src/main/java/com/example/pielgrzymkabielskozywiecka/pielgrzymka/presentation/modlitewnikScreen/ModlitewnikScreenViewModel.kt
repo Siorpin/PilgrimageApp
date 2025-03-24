@@ -2,9 +2,8 @@ package com.example.pielgrzymkabielskozywiecka.pielgrzymka.presentation.modlitew
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.pielgrzymkabielskozywiecka.core.domain.networking.BuildApiResponse
-import com.example.pielgrzymkabielskozywiecka.core.domain.networking.responses.ModlitwyResponse
 import com.example.pielgrzymkabielskozywiecka.core.data.DataHolder
+import com.example.pielgrzymkabielskozywiecka.core.presentation.UIModels.PrayerUI
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.SharingStarted
@@ -30,7 +29,7 @@ class ModlitewnikScreenViewModel: ViewModel() {
     }
 
     fun search(text: String) {
-        val tempList: MutableList<ModlitwyResponse> = mutableListOf()
+        val tempList: MutableList<PrayerUI> = mutableListOf()
 
         _state.value.prayers.forEach{ prayer ->
             if (
@@ -45,11 +44,6 @@ class ModlitewnikScreenViewModel: ViewModel() {
     }
 
     private fun getModlitwy() {
-//        viewModelScope.launch {
-//            _state.update { it.copy(isLoading = true) }
-//            val result = BuildApiResponse.api.getPrayers()
-//            _state.update { it.copy(isLoading = false, prayers = result.modlitwy, visiblePrayers = result.modlitwy) }
-//        }
         _state.update { it.copy(isLoading = false, prayers = DataHolder.prayers, visiblePrayers = DataHolder.prayers) }
     }
 

@@ -2,9 +2,8 @@ package com.example.pielgrzymkabielskozywiecka.pielgrzymka.presentation.songbook
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.pielgrzymkabielskozywiecka.core.domain.networking.BuildApiResponse
-import com.example.pielgrzymkabielskozywiecka.core.domain.networking.responses.SongsResponse
 import com.example.pielgrzymkabielskozywiecka.core.data.DataHolder
+import com.example.pielgrzymkabielskozywiecka.core.presentation.UIModels.SongUI
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.SharingStarted
@@ -30,7 +29,7 @@ class SongbookScreenViewModel: ViewModel() {
     }
 
     fun search(text: String) {
-        val tempList: MutableList<SongsResponse> = mutableListOf()
+        val tempList: MutableList<SongUI> = mutableListOf()
 
         _state.value.songs.forEach{ song ->
             if (
@@ -45,11 +44,6 @@ class SongbookScreenViewModel: ViewModel() {
     }
 
     private fun getSongs() {
-//        viewModelScope.launch {
-//            _state.update { it.copy(isLoading = true) }
-//            val result = BuildApiResponse.api.getSongs()
-//            _state.update { it.copy(isLoading = false, songs = result.songsList, visibleSongs = result.songsList) }
-//        }
         _state.update { it.copy(isLoading = false, songs = DataHolder.songs, visibleSongs = DataHolder.songs) }
     }
 

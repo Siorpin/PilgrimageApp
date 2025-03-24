@@ -5,18 +5,19 @@ import androidx.compose.material.icons.filled.AccountCircle
 import androidx.compose.material.icons.filled.Home
 import androidx.compose.material.icons.filled.Star
 import androidx.compose.ui.unit.dp
-import com.example.pielgrzymkabielskozywiecka.core.domain.networking.responses.ModlitwyResponse
-import com.example.pielgrzymkabielskozywiecka.core.domain.networking.responses.SongsResponse
 import com.example.pielgrzymkabielskozywiecka.core.navigation.Screen
-import com.example.pielgrzymkabielskozywiecka.core.presentation.BottomBarUI
-import com.example.pielgrzymkabielskozywiecka.core.presentation.ZakladkiUI
+import com.example.pielgrzymkabielskozywiecka.core.presentation.UIModels.AnnouncementUI
+import com.example.pielgrzymkabielskozywiecka.core.presentation.UIModels.BottomBarUI
+import com.example.pielgrzymkabielskozywiecka.core.presentation.UIModels.PrayerUI
+import com.example.pielgrzymkabielskozywiecka.core.presentation.UIModels.SongUI
+import com.example.pielgrzymkabielskozywiecka.core.presentation.UIModels.ZakladkiUI
 
 object DataHolder {
     val overallBottomPadding = 100.dp
-    var areNetworkFunctionsLoading = false
 
-    var songs: List<SongsResponse> = emptyList()
-    var prayers: List<ModlitwyResponse> = emptyList()
+    var songs: List<SongUI> = emptyList()
+    var prayers: List<PrayerUI> = emptyList()
+    var announcement: AnnouncementUI = AnnouncementUI("","")
 
     val bottomBarButtons = listOf(
         BottomBarUI(

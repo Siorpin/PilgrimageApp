@@ -20,13 +20,13 @@ import androidx.compose.ui.draw.shadow
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.example.pielgrzymkabielskozywiecka.core.domain.networking.responses.SongsResponse
+import com.example.pielgrzymkabielskozywiecka.core.presentation.UIModels.SongUI
 import com.example.pielgrzymkabielskozywiecka.ui.theme.Poppins
 
 @Composable
 fun SongbookListItem(
     id: Int,
-    song: SongsResponse,
+    song: SongUI,
     onClick: () -> Unit,
     modifier: Modifier = Modifier
 ) {

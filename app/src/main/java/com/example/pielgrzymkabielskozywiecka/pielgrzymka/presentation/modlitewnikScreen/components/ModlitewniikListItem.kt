@@ -20,13 +20,13 @@ import androidx.compose.ui.draw.shadow
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.example.pielgrzymkabielskozywiecka.core.domain.networking.responses.ModlitwyResponse
+import com.example.pielgrzymkabielskozywiecka.core.presentation.UIModels.PrayerUI
 import com.example.pielgrzymkabielskozywiecka.ui.theme.Poppins
 
 @Composable
 fun ModlitewnikListItem(
     id: Int,
-    modlitwa: ModlitwyResponse,
+    modlitwa: PrayerUI,
     onClick: () -> Unit,
     modifier: Modifier = Modifier
 ) {

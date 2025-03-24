@@ -3,9 +3,7 @@ package com.example.pielgrzymkabielskozywiecka.core.domain.networking
 import com.example.pielgrzymkabielskozywiecka.core.domain.networking.responses.ModlitwyList
 import com.example.pielgrzymkabielskozywiecka.core.domain.networking.responses.OgloszeniaList
 import com.example.pielgrzymkabielskozywiecka.core.domain.networking.responses.SongsList
-import retrofit2.http.Body
 import retrofit2.http.GET
-import retrofit2.http.Headers
 import retrofit2.http.POST
 import retrofit2.http.Query
 

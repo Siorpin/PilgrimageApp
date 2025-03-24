@@ -1,4 +1,4 @@
-package com.example.pielgrzymkabielskozywiecka.core.presentation
+package com.example.pielgrzymkabielskozywiecka.core.presentation.UIModels
 
 import androidx.compose.ui.graphics.vector.ImageVector
 import com.example.pielgrzymkabielskozywiecka.core.navigation.Screen

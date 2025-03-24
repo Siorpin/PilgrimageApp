@@ -1,7 +1,6 @@
 package com.example.pielgrzymkabielskozywiecka.pielgrzymka.presentation.shared
 
 import androidx.compose.foundation.layout.fillMaxHeight
-import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults

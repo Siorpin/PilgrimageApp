@@ -10,21 +10,17 @@ import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.LaunchedEffect
-import androidx.compose.runtime.currentRecomposeScope
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.example.pielgrzymkabielskozywiecka.core.presentation.ZakladkiUI
+import com.example.pielgrzymkabielskozywiecka.core.presentation.UIModels.ZakladkiUI
 import com.example.pielgrzymkabielskozywiecka.ui.theme.Poppins
-import kotlinx.coroutines.delay
 
 @Composable
 fun ZakladkiListItem(

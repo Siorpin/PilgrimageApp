@@ -26,7 +26,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.input.pointer.pointerInput
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
-import com.example.pielgrzymkabielskozywiecka.core.presentation.BottomBarUI
+import com.example.pielgrzymkabielskozywiecka.core.presentation.UIModels.BottomBarUI
 import com.example.pielgrzymkabielskozywiecka.ui.theme.Poppins
 
 @Composable

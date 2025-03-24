@@ -18,8 +18,6 @@ import androidx.compose.ui.unit.dp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavHostController
-import com.example.pielgrzymkabielskozywiecka.pielgrzymka.presentation.modlitewnikScreen.ModlitewnikScreenViewModel
-import com.example.pielgrzymkabielskozywiecka.pielgrzymka.presentation.modlitewnikScreen.components.ModlitewnikListItem
 import com.example.pielgrzymkabielskozywiecka.pielgrzymka.presentation.shared.SearchBar
 import com.example.pielgrzymkabielskozywiecka.pielgrzymka.presentation.shared.SecondaryScreenTopBar
 import com.example.pielgrzymkabielskozywiecka.pielgrzymka.presentation.songbookScreen.components.SongbookListItem
