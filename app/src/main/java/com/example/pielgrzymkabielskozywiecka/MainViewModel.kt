@@ -42,6 +42,10 @@ class MainViewModel(context: Context): ViewModel() {
     )
 
     init {
+        updateData()
+    }
+
+    fun updateData() {
         viewModelScope.launch {
             var songs: List<SongUI>
             var prayers: List<PrayerUI>
