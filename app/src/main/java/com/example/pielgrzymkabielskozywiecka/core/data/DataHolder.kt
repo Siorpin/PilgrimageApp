@@ -19,6 +19,8 @@ object DataHolder {
     var prayers: List<PrayerUI> = emptyList()
     var announcement: AnnouncementUI = AnnouncementUI("","")
 
+    var refreshDataFunction: () -> Unit = {}
+
     val bottomBarButtons = listOf(
         BottomBarUI(
             name = "Dom",

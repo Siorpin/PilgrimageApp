@@ -17,10 +17,10 @@ class HomeScreenViewModel: ViewModel() {
     )
 
     init {
-        getOgloszenia()
+        getAnnouncements()
     }
 
-    private fun getOgloszenia() {
+    fun getAnnouncements() {
         val announcement = DataHolder.announcement
         _state.update { it.copy(ogloszeniaText = announcement.text, title = announcement.title) }
     }

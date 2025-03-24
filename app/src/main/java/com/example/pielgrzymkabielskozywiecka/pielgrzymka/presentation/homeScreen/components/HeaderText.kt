@@ -1,5 +1,7 @@
 package com.example.pielgrzymkabielskozywiecka.pielgrzymka.presentation.homeScreen.components
 
+import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Text
@@ -14,16 +16,21 @@ import com.example.pielgrzymkabielskozywiecka.ui.theme.Poppins
 @Composable
 fun HeaderText(
     text: String,
-    modifier: Modifier = Modifier
+    modifier: Modifier = Modifier,
+    content: @Composable () -> Unit = {}
 ) {
-    Text(
-        text = text,
-        fontFamily = Poppins,
-        fontWeight = FontWeight.Bold,
-        fontSize = 20.sp,
-        textAlign = TextAlign.Left,
+    Row(
+        horizontalArrangement = Arrangement.SpaceBetween,
         modifier = modifier
-            .fillMaxWidth()
-            .padding(6.dp)
-    )
+        .fillMaxWidth()
+        .padding(6.dp)) {
+        Text(
+            text = text,
+            fontFamily = Poppins,
+            fontWeight = FontWeight.Bold,
+            fontSize = 20.sp,
+            textAlign = TextAlign.Left
+        )
+        content()
+    }
 }

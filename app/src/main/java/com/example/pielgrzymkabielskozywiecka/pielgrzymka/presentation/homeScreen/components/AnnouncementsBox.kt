@@ -26,6 +26,7 @@ fun AnnouncementsBox(
     title: String,
     text: String,
     isLoading: Boolean,
+    refreshDataFunction: () -> Unit,
     modifier: Modifier = Modifier
 ) {
     Column(
@@ -33,7 +34,14 @@ fun AnnouncementsBox(
             .fillMaxWidth()
             .padding(20.dp)
     ) {
-        HeaderText("Ogłoszenia")
+        HeaderText(
+            text = "Ogłoszenia",
+            content = {
+                RefreshDataButton(
+                    onClick = { refreshDataFunction() }
+                )
+            }
+        )
         Card(
             colors = CardDefaults.cardColors(
                 containerColor = MaterialTheme.colorScheme.primary,

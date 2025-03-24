@@ -42,10 +42,12 @@ class MainViewModel(context: Context): ViewModel() {
     )
 
     init {
+        DataHolder.refreshDataFunction = { updateData() }
         updateData()
     }
 
     fun updateData() {
+        _isAppLoading.update { true }
         viewModelScope.launch {
             var songs: List<SongUI>
             var prayers: List<PrayerUI>
