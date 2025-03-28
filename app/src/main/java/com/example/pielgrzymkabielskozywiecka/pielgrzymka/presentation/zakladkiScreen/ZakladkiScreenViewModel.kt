@@ -5,6 +5,7 @@ import androidx.lifecycle.viewModelScope
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.stateIn
+import kotlinx.coroutines.flow.update
 
 class ZakladkiScreenViewModel: ViewModel() {
     private val _state = MutableStateFlow(ZakladkiScreenState())
@@ -13,4 +14,8 @@ class ZakladkiScreenViewModel: ViewModel() {
         started = SharingStarted.WhileSubscribed(5000),
         initialValue = ZakladkiScreenState()
     )
+
+    fun toggleClickEnabled() {
+        _state.update { it.copy(clickEnabled =  !it.clickEnabled) }
+    }
 }

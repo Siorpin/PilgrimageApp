@@ -18,6 +18,7 @@ import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalUriHandler
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
+import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavHostController
 import com.example.pielgrzymkabielskozywiecka.R
@@ -31,6 +32,7 @@ fun ZakladkiScreen(
     modifier: Modifier = Modifier
 ) {
     val viewModel: ZakladkiScreenViewModel = viewModel()
+    val state = viewModel.state.collectAsStateWithLifecycle()
     val handler = LocalUriHandler.current
 
     Box(
@@ -57,17 +59,25 @@ fun ZakladkiScreen(
             LazyColumn(
 
             ) {
-                items(viewModel.state.value.zakladki) {
+                items(state.value.zakladki) {
                     if (it.name == "Strona internetowa") {
                         ZakladkiListItem(
                             zakladkiUI = it,
-                            onClick = { handler.openUri("https://pielgrzymka.bielsko.pl/") }
+                            enabled = state.value.clickEnabled,
+                            onClick = {
+                                handler.openUri("https://pielgrzymka.bielsko.pl/")
+                                viewModel.toggleClickEnabled()
+                            }
                         )
                     }
                     else {
                         ZakladkiListItem(
                             zakladkiUI = it,
-                            onClick = { navController.navigate(it.destination.name) }
+                            enabled = state.value.clickEnabled,
+                            onClick = {
+                                navController.navigate(it.destination.name)
+                                viewModel.toggleClickEnabled()
+                            }
                         )
                     }
                 }
