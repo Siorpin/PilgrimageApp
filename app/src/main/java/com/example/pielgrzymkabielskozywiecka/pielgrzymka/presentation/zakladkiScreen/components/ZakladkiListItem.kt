@@ -25,13 +25,15 @@ import com.example.pielgrzymkabielskozywiecka.ui.theme.Poppins
 @Composable
 fun ZakladkiListItem(
     zakladkiUI: ZakladkiUI,
-    enabled: Boolean,
     onClick: () -> Unit,
     modifier: Modifier = Modifier
 ) {
+    var isButtonEnabled by remember { mutableStateOf(true) }
+
     Column(
         modifier = modifier
-            .clickable(enabled) {
+            .clickable(isButtonEnabled) {
+                isButtonEnabled = false
                 onClick()
             }
     ) {

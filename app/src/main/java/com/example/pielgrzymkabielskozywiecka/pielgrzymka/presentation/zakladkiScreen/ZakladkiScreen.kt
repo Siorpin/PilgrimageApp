@@ -12,6 +12,7 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.layout.ContentScale
@@ -24,6 +25,7 @@ import androidx.navigation.NavHostController
 import com.example.pielgrzymkabielskozywiecka.R
 import com.example.pielgrzymkabielskozywiecka.pielgrzymka.presentation.zakladkiScreen.components.ZakladkiHeader
 import com.example.pielgrzymkabielskozywiecka.pielgrzymka.presentation.zakladkiScreen.components.ZakladkiListItem
+import disableSplitMotionEvents
 
 @SuppressLint("QueryPermissionsNeeded")
 @Composable
@@ -32,7 +34,7 @@ fun ZakladkiScreen(
     modifier: Modifier = Modifier
 ) {
     val viewModel: ZakladkiScreenViewModel = viewModel()
-    val state = viewModel.state.collectAsStateWithLifecycle()
+    val state by viewModel.state.collectAsStateWithLifecycle()
     val handler = LocalUriHandler.current
 
     Box(
@@ -57,26 +59,23 @@ fun ZakladkiScreen(
             ZakladkiHeader()
             Spacer(modifier = Modifier.height(30.dp))
             LazyColumn(
-
+                modifier = Modifier
+                    .disableSplitMotionEvents()
             ) {
-                items(state.value.zakladki) {
+                items(state.zakladki) {
                     if (it.name == "Strona internetowa") {
                         ZakladkiListItem(
                             zakladkiUI = it,
-                            enabled = state.value.clickEnabled,
                             onClick = {
                                 handler.openUri("https://pielgrzymka.bielsko.pl/")
-                                viewModel.toggleClickEnabled()
                             }
                         )
                     }
                     else {
                         ZakladkiListItem(
                             zakladkiUI = it,
-                            enabled = state.value.clickEnabled,
                             onClick = {
                                 navController.navigate(it.destination.name)
-                                viewModel.toggleClickEnabled()
                             }
                         )
                     }
