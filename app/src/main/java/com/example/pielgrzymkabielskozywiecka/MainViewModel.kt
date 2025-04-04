@@ -2,6 +2,7 @@ package com.example.pielgrzymkabielskozywiecka
 
 import android.content.Context
 import android.util.Log
+import android.widget.Toast
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import androidx.room.Room
@@ -24,7 +25,9 @@ import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
+import okio.IOException
 import java.net.UnknownHostException
+import javax.net.ssl.SSLHandshakeException
 
 class MainViewModel(context: Context): ViewModel() {
     val database by lazy {
@@ -58,7 +61,32 @@ class MainViewModel(context: Context): ViewModel() {
                 prayers = updatePrayers()
                 announcement = updateAnnouncements()
             } catch (e: UnknownHostException) {
-                Log.d("error", e.toString())
+                songs = database.SongsDao().getSong().map { el -> el.toSongUI() }
+                prayers = database.PrayersDao().getPrayers().map { el -> el.toPrayerUI() }
+
+                val localAnnouncements = database.AnnouncementsDao().getAnnouncements()
+                announcement = if (localAnnouncements.isNotEmpty()) {
+                    localAnnouncements[0].toAnnouncementUI()
+                } else {
+                    AnnouncementUI(
+                        title = "Brak połączenia z internetem",
+                        text = "Połącz się z internetem, żeby móc sprawdzić najnowsze ogłoszenia!"
+                    )
+                }
+            } catch(e: SSLHandshakeException) {
+                songs = database.SongsDao().getSong().map { el -> el.toSongUI() }
+                prayers = database.PrayersDao().getPrayers().map { el -> el.toPrayerUI() }
+
+                val localAnnouncements = database.AnnouncementsDao().getAnnouncements()
+                announcement = if (localAnnouncements.isNotEmpty()) {
+                    localAnnouncements[0].toAnnouncementUI()
+                } else {
+                    AnnouncementUI(
+                        title = "Brak połączenia z internetem",
+                        text = "Połącz się z internetem, żeby móc sprawdzić najnowsze ogłoszenia!"
+                    )
+                }
+            } catch (e: IOException) {
                 songs = database.SongsDao().getSong().map { el -> el.toSongUI() }
                 prayers = database.PrayersDao().getPrayers().map { el -> el.toPrayerUI() }
 
