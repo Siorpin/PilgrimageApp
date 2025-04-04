@@ -7,6 +7,7 @@ import androidx.lifecycle.viewModelScope
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.stateIn
+import kotlinx.coroutines.flow.update
 
 
 class RosaryScreenViewModel: ViewModel() {
@@ -16,8 +17,22 @@ class RosaryScreenViewModel: ViewModel() {
         initialValue = RosaryScreenState(),
         started = SharingStarted.WhileSubscribed(5000)
     )
-    val date = Calendar.getInstance().get(Calendar.DAY_OF_WEEK)
     init {
-        Log.d("date", date.toString())
+        getCurrentDay()
+        setTodayMystery()
+    }
+
+    private fun getCurrentDay() {
+        val currentDay = Calendar.getInstance().get(Calendar.DAY_OF_WEEK)
+        _state.update { it.copy(currentDay = currentDay) }
+    }
+
+    private fun setTodayMystery() {
+        when(_state.value.currentDay) {
+            2, 7 -> {} // radosne
+            5 -> {} // swiatla
+            3, 6 -> {} // bolesne
+            1, 4 -> {} // chwalebne
+        }
     }
 }

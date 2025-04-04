@@ -3,7 +3,7 @@ package com.example.pielgrzymkabielskozywiecka.pielgrzymka.presentation.songbook
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.pielgrzymkabielskozywiecka.core.data.DataHolder
-import com.example.pielgrzymkabielskozywiecka.core.presentation.UIModels.SongUI
+import com.example.pielgrzymkabielskozywiecka.core.presentation.uiModels.SongUI
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.SharingStarted

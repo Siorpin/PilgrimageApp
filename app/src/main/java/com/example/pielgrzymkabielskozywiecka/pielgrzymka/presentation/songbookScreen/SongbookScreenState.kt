@@ -2,7 +2,7 @@ package com.example.pielgrzymkabielskozywiecka.pielgrzymka.presentation.songbook
 
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
-import com.example.pielgrzymkabielskozywiecka.core.presentation.UIModels.SongUI
+import com.example.pielgrzymkabielskozywiecka.core.presentation.uiModels.SongUI
 
 data class SongbookScreenState(
     val isLoading: Boolean = true,

@@ -1,4 +1,4 @@
-package com.example.pielgrzymkabielskozywiecka.core.presentation.UIModels
+package com.example.pielgrzymkabielskozywiecka.core.presentation.uiModels
 
 import com.example.pielgrzymkabielskozywiecka.core.navigation.Screen
 

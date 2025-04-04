@@ -6,11 +6,11 @@ import androidx.compose.material.icons.filled.Home
 import androidx.compose.material.icons.filled.Star
 import androidx.compose.ui.unit.dp
 import com.example.pielgrzymkabielskozywiecka.core.navigation.Screen
-import com.example.pielgrzymkabielskozywiecka.core.presentation.UIModels.AnnouncementUI
-import com.example.pielgrzymkabielskozywiecka.core.presentation.UIModels.BottomBarUI
-import com.example.pielgrzymkabielskozywiecka.core.presentation.UIModels.PrayerUI
-import com.example.pielgrzymkabielskozywiecka.core.presentation.UIModels.SongUI
-import com.example.pielgrzymkabielskozywiecka.core.presentation.UIModels.ZakladkiUI
+import com.example.pielgrzymkabielskozywiecka.core.presentation.uiModels.AnnouncementUI
+import com.example.pielgrzymkabielskozywiecka.core.presentation.uiModels.BottomBarUI
+import com.example.pielgrzymkabielskozywiecka.core.presentation.uiModels.PrayerUI
+import com.example.pielgrzymkabielskozywiecka.core.presentation.uiModels.SongUI
+import com.example.pielgrzymkabielskozywiecka.core.presentation.uiModels.ZakladkiUI
 
 object DataHolder {
     val overallBottomPadding = 100.dp

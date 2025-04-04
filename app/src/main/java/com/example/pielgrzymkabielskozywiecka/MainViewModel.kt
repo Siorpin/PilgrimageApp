@@ -2,7 +2,6 @@ package com.example.pielgrzymkabielskozywiecka
 
 import android.content.Context
 import android.util.Log
-import android.widget.Toast
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import androidx.room.Room
@@ -14,9 +13,9 @@ import com.example.pielgrzymkabielskozywiecka.core.data.database.tables.Songs
 import com.example.pielgrzymkabielskozywiecka.core.domain.networking.BuildApiResponse
 import com.example.pielgrzymkabielskozywiecka.core.domain.networking.responses.ModlitwyResponse
 import com.example.pielgrzymkabielskozywiecka.core.domain.networking.responses.SongsResponse
-import com.example.pielgrzymkabielskozywiecka.core.presentation.UIModels.AnnouncementUI
-import com.example.pielgrzymkabielskozywiecka.core.presentation.UIModels.PrayerUI
-import com.example.pielgrzymkabielskozywiecka.core.presentation.UIModels.SongUI
+import com.example.pielgrzymkabielskozywiecka.core.presentation.uiModels.AnnouncementUI
+import com.example.pielgrzymkabielskozywiecka.core.presentation.uiModels.PrayerUI
+import com.example.pielgrzymkabielskozywiecka.core.presentation.uiModels.SongUI
 import com.example.pielgrzymkabielskozywiecka.core.presentation.mappers.toAnnouncementUI
 import com.example.pielgrzymkabielskozywiecka.core.presentation.mappers.toPrayerUI
 import com.example.pielgrzymkabielskozywiecka.core.presentation.mappers.toSongUI
