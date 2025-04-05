@@ -29,10 +29,8 @@ fun TodayMysteryBox(
             fontFamily = Poppins,
             fontSize = 20.sp
         )
-        Card(
-            onClick = { TODO() }
-        ) {
-
-        }
+        MysteryBox(
+            mysteryUI
+        )
     }
 }
