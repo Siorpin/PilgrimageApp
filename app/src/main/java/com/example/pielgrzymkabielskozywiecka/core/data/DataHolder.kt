@@ -6,9 +6,11 @@ import androidx.compose.material.icons.filled.Home
 import androidx.compose.material.icons.filled.Star
 import androidx.compose.ui.unit.dp
 import com.example.pielgrzymkabielskozywiecka.core.navigation.Screen
+import com.example.pielgrzymkabielskozywiecka.core.presentation.enumClasses.Days
 import com.example.pielgrzymkabielskozywiecka.core.presentation.uiModels.AnnouncementUI
 import com.example.pielgrzymkabielskozywiecka.core.presentation.uiModels.BottomBarUI
 import com.example.pielgrzymkabielskozywiecka.core.presentation.uiModels.PrayerUI
+import com.example.pielgrzymkabielskozywiecka.core.presentation.uiModels.RosaryMysteryUI
 import com.example.pielgrzymkabielskozywiecka.core.presentation.uiModels.SongUI
 import com.example.pielgrzymkabielskozywiecka.core.presentation.uiModels.ZakladkiUI
 
@@ -63,5 +65,27 @@ object DataHolder {
         )
     )
 
+    val rosaryMysteries = listOf(
+        RosaryMysteryUI(
+            title = "Tajemnice radosne",
+            text = "",
+            days = listOf(Days.MONDAY, Days.SATURDAY)
+        ),
+        RosaryMysteryUI(
+            title = "Tajemnice światła",
+            text = "",
+            days = listOf(Days.THURSDAY)
+        ),
+        RosaryMysteryUI(
+            title = "Tajemnice bolesne",
+            text = "",
+            days = listOf(Days.TUESDAY, Days.FRIDAY)
+        ),
+        RosaryMysteryUI(
+            title = "Tajemnice chwalebne",
+            text = "",
+            days = listOf(Days.WEDNESDAY, Days.SUNDAY)
+        )
+    )
 
 }
