@@ -1,7 +1,6 @@
-package com.example.pielgrzymkabielskozywiecka.pielgrzymka.presentation.rosaryScreen
+package com.example.pielgrzymkabielskozywiecka.pielgrzymka.presentation.rosaryMysteriesScreen
 
 import android.icu.util.Calendar
-import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.pielgrzymkabielskozywiecka.core.presentation.enumClasses.Days
@@ -11,11 +10,11 @@ import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.flow.update
 
 
-class RosaryScreenViewModel: ViewModel() {
-    private val _state = MutableStateFlow(RosaryScreenState())
+class RosaryMysteriesScreenViewModel: ViewModel() {
+    private val _state = MutableStateFlow(RosaryMysteriesScreenState())
     val state = _state.stateIn(
         scope = viewModelScope,
-        initialValue = RosaryScreenState(),
+        initialValue = RosaryMysteriesScreenState(),
         started = SharingStarted.WhileSubscribed(5000)
     )
     init {

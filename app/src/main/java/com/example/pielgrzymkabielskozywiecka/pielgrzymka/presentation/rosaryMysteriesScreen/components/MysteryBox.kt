@@ -1,4 +1,4 @@
-package com.example.pielgrzymkabielskozywiecka.pielgrzymka.presentation.rosaryScreen.components
+package com.example.pielgrzymkabielskozywiecka.pielgrzymka.presentation.rosaryMysteriesScreen.components
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
