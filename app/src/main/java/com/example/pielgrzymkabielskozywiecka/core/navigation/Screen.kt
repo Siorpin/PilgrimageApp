@@ -10,5 +10,6 @@ enum class Screen {
     TAJEMNICE,
     AUTORZY,
     PRAYER,
-    TRACK
+    TRACK,
+    MYSTERY
 }

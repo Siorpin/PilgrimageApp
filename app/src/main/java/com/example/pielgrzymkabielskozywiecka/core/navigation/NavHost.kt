@@ -20,8 +20,9 @@ import com.example.pielgrzymkabielskozywiecka.pielgrzymka.presentation.authorsSc
 import com.example.pielgrzymkabielskozywiecka.pielgrzymka.presentation.duchowiScreen.DuchowiScreen
 import com.example.pielgrzymkabielskozywiecka.pielgrzymka.presentation.homeScreen.HomeScreen
 import com.example.pielgrzymkabielskozywiecka.pielgrzymka.presentation.modlitewnikScreen.ModlitewnikScreen
+import com.example.pielgrzymkabielskozywiecka.pielgrzymka.presentation.mysteryScreen.MysteryScreen
 import com.example.pielgrzymkabielskozywiecka.pielgrzymka.presentation.prayerScreen.PrayerScreen
-import com.example.pielgrzymkabielskozywiecka.pielgrzymka.presentation.rosaryScreen.RosaryScreen
+import com.example.pielgrzymkabielskozywiecka.pielgrzymka.presentation.rosaryMysteriesScreen.RosaryMysteriesScreen
 import com.example.pielgrzymkabielskozywiecka.pielgrzymka.presentation.songbookScreen.SongbookScreen
 import com.example.pielgrzymkabielskozywiecka.pielgrzymka.presentation.zakladkiScreen.ZakladkiScreen
 
@@ -112,10 +113,38 @@ fun AppNavigation(
         // mysteries of the rosary
         composable(
             route = Screen.TAJEMNICE.name,
+            enterTransition = {
+                val source = initialState.destination.route
+                if(source == Screen.ZAKLADKI.name) slideInHorizontally { it }
+                else EnterTransition.None
+            },
+            exitTransition = {
+                val destination = targetState.destination.route
+                Log.d("exit", destination.toString())
+                if (destination == Screen.ZAKLADKI.name) slideOutHorizontally { it }
+                else { ExitTransition.None }
+            }
+        ) {
+            RosaryMysteriesScreen(navController)
+        }
+
+        // Mystery
+        composable(
+            route = Screen.MYSTERY.name + "/{title}",
+            arguments = listOf(
+                navArgument("title"){type = NavType.StringType}
+            ),
             enterTransition = { slideInHorizontally { it } },
             exitTransition = { slideOutHorizontally { it } }
-        ) {
-            RosaryScreen(navController)
+        ) {  backStackEntry ->
+            val title = backStackEntry.arguments?.getString("title")
+
+            MysteryScreen(
+                mysteryUI = DataHolder.rosaryMysteries.find {
+                    it.title == title
+                },
+                navController = navController
+            )
         }
 
         // Prayer
