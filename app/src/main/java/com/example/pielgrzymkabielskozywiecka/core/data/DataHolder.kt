@@ -5,6 +5,7 @@ import androidx.compose.material.icons.filled.AccountCircle
 import androidx.compose.material.icons.filled.Home
 import androidx.compose.material.icons.filled.Star
 import androidx.compose.ui.unit.dp
+import com.example.pielgrzymkabielskozywiecka.R
 import com.example.pielgrzymkabielskozywiecka.core.navigation.Screen
 import com.example.pielgrzymkabielskozywiecka.core.presentation.enumClasses.Days
 import com.example.pielgrzymkabielskozywiecka.core.presentation.uiModels.AnnouncementUI
@@ -69,22 +70,26 @@ object DataHolder {
         RosaryMysteryUI(
             title = "Tajemnice radosne",
             text = "",
-            days = listOf(Days.MONDAY, Days.SATURDAY)
+            days = listOf(Days.MONDAY, Days.SATURDAY),
+            R.drawable.tajemnica_radosna_cropped
         ),
         RosaryMysteryUI(
             title = "Tajemnice światła",
             text = "",
-            days = listOf(Days.THURSDAY)
+            days = listOf(Days.THURSDAY),
+            R.drawable.tajemnica_swiatla_cropped
         ),
         RosaryMysteryUI(
             title = "Tajemnice bolesne",
             text = "",
-            days = listOf(Days.TUESDAY, Days.FRIDAY)
+            days = listOf(Days.TUESDAY, Days.FRIDAY),
+            R.drawable.tajemnica_bolesna_cropped
         ),
         RosaryMysteryUI(
             title = "Tajemnice chwalebne",
             text = "",
-            days = listOf(Days.WEDNESDAY, Days.SUNDAY)
+            days = listOf(Days.WEDNESDAY, Days.SUNDAY),
+            R.drawable.tajemnica_chwalebna_cropped
         )
     )
 
