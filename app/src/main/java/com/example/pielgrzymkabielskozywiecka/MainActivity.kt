@@ -19,6 +19,7 @@ import androidx.compose.foundation.layout.navigationBars
 import androidx.compose.foundation.layout.windowInsetsPadding
 import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.Scaffold
+import androidx.compose.material3.Text
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.LayoutDirection
@@ -30,6 +31,8 @@ import androidx.navigation.compose.rememberNavController
 import com.example.pielgrzymkabielskozywiecka.core.navigation.AppNavigation
 import com.example.pielgrzymkabielskozywiecka.core.navigation.Screen
 import com.example.pielgrzymkabielskozywiecka.pielgrzymka.domain.NotificationsManager
+import com.example.pielgrzymkabielskozywiecka.pielgrzymka.domain.textFormatter.TextFormatter
+import com.example.pielgrzymkabielskozywiecka.pielgrzymka.domain.textFormatter.formats.Bold
 import com.example.pielgrzymkabielskozywiecka.pielgrzymka.presentation.bottomBar.BottomBar
 import com.example.pielgrzymkabielskozywiecka.ui.theme.PielgrzymkaAppTheme
 
@@ -50,7 +53,6 @@ class MainActivity : ComponentActivity() {
         setContent {
             val viewModel: MainViewModel = viewModel(factory = MainViewmodelFactory(this))
             val navController = rememberNavController()
-
             val state = viewModel.isAppLoading.collectAsStateWithLifecycle()
 
             PielgrzymkaAppTheme {
@@ -80,6 +82,13 @@ class MainActivity : ComponentActivity() {
                             startDestination = Screen.HOME,
                             padding = padding
                         )
+//                        Box(
+//                            contentAlignment = Alignment.Center,
+//                            modifier = Modifier.fillMaxSize()
+//                        )
+//                        {
+//                            Text("Bardzo wazny tekst ~bteraz powinien być gruby~b, ~cteraz kursywa~c, ~c~b a teraz oba~c~b, ~ba teraz ~ccięcie~c~b")
+//                        }
                     }
                 }
             }
