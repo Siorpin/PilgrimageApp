@@ -10,7 +10,7 @@ class EmailHandler(
 ) {
     fun sendEmail(context: Context, subject: String, text: String) {
         try {
-            val intent = Intent(Intent.ACTION_SEND)
+            val intent = Intent(Intent.ACTION_SENDTO)
             intent.type = "vnd.android.cursor.item/email"
             intent.putExtra(Intent.EXTRA_EMAIL, arrayOf(receiver))
             intent.putExtra(Intent.EXTRA_SUBJECT, subject)
