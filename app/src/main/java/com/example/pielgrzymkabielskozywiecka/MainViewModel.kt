@@ -49,6 +49,8 @@ class MainViewModel(context: Context): ViewModel() {
         initialValue = AppState()
     )
 
+    private var toastMessage: String? = null
+
     init {
         DataHolder.refreshDataFunction = { updateData() }
         updateData()
@@ -66,7 +68,7 @@ class MainViewModel(context: Context): ViewModel() {
             DataHolder.songs = songs
             DataHolder.prayers = prayers
 
-            _state.update { it.copy(isAppLoading = false) }
+            _state.update { it.copy(isAppLoading = false, toastMessage = toastMessage) }
             DataHolder.isAppLoaded = true
         }
     }
@@ -85,7 +87,7 @@ class MainViewModel(context: Context): ViewModel() {
                     DataError.Network.UNKNOWN -> "Błąd połączenia z internetem!"
                     DataError.Network.UNKNOWN_HOST -> "Błąd pobierania danych!"
                 }
-                _state.update { it.copy(toastMessage = toastText) }
+                toastMessage = toastText
             }
             is Result.Success -> {
                 val localSongs = database.SongsDao().getSong().map { el ->
@@ -119,7 +121,7 @@ class MainViewModel(context: Context): ViewModel() {
                     DataError.Network.UNKNOWN -> "Błąd połączenia z internetem!"
                     DataError.Network.UNKNOWN_HOST -> "Błąd pobierania danych!"
                 }
-                _state.update { it.copy(toastMessage = toastText) }
+                toastMessage = toastText
             }
 
             is Result.Success -> {
@@ -157,7 +159,7 @@ class MainViewModel(context: Context): ViewModel() {
                     DataError.Network.UNKNOWN -> "Błąd połączenia z internetem!"
                     DataError.Network.UNKNOWN_HOST -> "Błąd pobierania danych"
                 }
-                _state.update { it.copy(toastMessage = toastText) }
+                toastMessage = toastText
             }
             is Result.Success -> {
                 val lastResponseItem = response.data.results[response.data.results.lastIndex]

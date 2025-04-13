@@ -56,7 +56,9 @@ class MainActivity : ComponentActivity() {
             val viewModel: MainViewModel = viewModel(factory = MainViewmodelFactory(this))
             val navController = rememberNavController()
             val state = viewModel.state.collectAsStateWithLifecycle()
-
+            if (state.value.toastMessage != null) {
+                Toast.makeText(this, state.value.toastMessage, Toast.LENGTH_SHORT).show()
+            }
             PielgrzymkaAppTheme {
                 Scaffold(
                     bottomBar = { BottomBar(navController = navController) },
