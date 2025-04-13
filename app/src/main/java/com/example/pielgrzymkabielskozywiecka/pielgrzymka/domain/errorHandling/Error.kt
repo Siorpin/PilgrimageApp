@@ -1,0 +1,3 @@
+package com.example.pielgrzymkabielskozywiecka.pielgrzymka.domain.errorHandling
+
+sealed interface Error

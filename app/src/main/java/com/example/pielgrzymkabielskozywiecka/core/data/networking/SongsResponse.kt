@@ -1,12 +1,12 @@
-package com.example.pielgrzymkabielskozywiecka.core.domain.networking.responses
+package com.example.pielgrzymkabielskozywiecka.core.data.networking
 
 import com.google.gson.annotations.SerializedName
 
-data class SongsResponse(
+class SongsResponse(
     @SerializedName("title") val title: String,
     @SerializedName("lyrics") val lyrics: String
-)
+): Response
 
 data class SongsList(
     @SerializedName("results") val songsList: List<SongsResponse>
-)
+): Response

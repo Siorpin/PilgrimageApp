@@ -19,13 +19,13 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.example.pielgrzymkabielskozywiecka.core.data.DataHolder
 import com.example.pielgrzymkabielskozywiecka.ui.theme.Poppins
 
 @Composable
 fun AnnouncementsBox(
     title: String,
     text: String,
-    isLoading: Boolean,
     refreshDataFunction: () -> Unit,
     modifier: Modifier = Modifier
 ) {
@@ -38,7 +38,10 @@ fun AnnouncementsBox(
             text = "Ogłoszenia",
             content = {
                 RefreshDataButton(
-                    onClick = { refreshDataFunction() }
+                    onClick = {
+                        DataHolder.isAppLoaded = false
+                        refreshDataFunction()
+                    }
                 )
             }
         )
@@ -54,47 +57,35 @@ fun AnnouncementsBox(
                 .fillMaxWidth()
                 .height(400.dp)
         ) {
-            if (isLoading) {
-                Box(
-                    contentAlignment = Alignment.Center,
+
+            Column(
+                verticalArrangement = Arrangement.spacedBy(16.dp),
+                modifier = Modifier
+                    .padding(
+                        vertical = 16.dp,
+                        horizontal = 8.dp
+                    )
+                    .fillMaxSize()
+            ) {
+                Text(
+                    text = title,
+                    fontSize = 22.sp,
+                    fontFamily = Poppins,
+                    textAlign = TextAlign.Center,
+                    fontWeight = FontWeight.Bold,
+                    color = MaterialTheme.colorScheme.onPrimary,
+                    modifier = Modifier
+                        .fillMaxWidth()
+                )
+                Text(
+                    text = text,
+                    fontSize = 16.sp,
+                    fontFamily = Poppins,
+                    textAlign = TextAlign.Center,
+                    color = MaterialTheme.colorScheme.onPrimary,
                     modifier = Modifier
                         .fillMaxSize()
-                ) {
-                    CircularProgressIndicator(
-                        color = MaterialTheme.colorScheme.background
-                    )
-                }
-            }
-            else {
-                Column(
-                    verticalArrangement = Arrangement.spacedBy(16.dp),
-                    modifier = Modifier
-                        .padding(
-                            vertical = 16.dp,
-                            horizontal = 8.dp
-                        )
-                        .fillMaxSize()
-                ) {
-                    Text(
-                        text = title,
-                        fontSize = 22.sp,
-                        fontFamily = Poppins,
-                        textAlign = TextAlign.Center,
-                        fontWeight = FontWeight.Bold,
-                        color = MaterialTheme.colorScheme.onPrimary,
-                        modifier = Modifier
-                            .fillMaxWidth()
-                    )
-                    Text(
-                        text = text,
-                        fontSize = 16.sp,
-                        fontFamily = Poppins,
-                        textAlign = TextAlign.Center,
-                        color = MaterialTheme.colorScheme.onPrimary,
-                        modifier = Modifier
-                            .fillMaxSize()
-                    )
-                }
+                )
             }
         }
     }

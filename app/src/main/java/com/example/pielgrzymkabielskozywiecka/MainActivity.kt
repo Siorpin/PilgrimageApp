@@ -4,6 +4,7 @@ import android.Manifest
 import android.app.Activity
 import android.content.pm.PackageManager
 import android.os.Bundle
+import android.widget.Toast
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
@@ -20,6 +21,7 @@ import androidx.compose.foundation.layout.windowInsetsPadding
 import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.LayoutDirection
@@ -53,7 +55,7 @@ class MainActivity : ComponentActivity() {
         setContent {
             val viewModel: MainViewModel = viewModel(factory = MainViewmodelFactory(this))
             val navController = rememberNavController()
-            val state = viewModel.isAppLoading.collectAsStateWithLifecycle()
+            val state = viewModel.state.collectAsStateWithLifecycle()
 
             PielgrzymkaAppTheme {
                 Scaffold(
@@ -69,7 +71,7 @@ class MainActivity : ComponentActivity() {
                         bottom = 0.dp
                     )
 
-                    if (state.value){
+                    if (state.value.isAppLoading){
                         Box(
                             contentAlignment = Alignment.Center,
                             modifier = Modifier.fillMaxSize()
@@ -82,13 +84,6 @@ class MainActivity : ComponentActivity() {
                             startDestination = Screen.HOME,
                             padding = padding
                         )
-//                        Box(
-//                            contentAlignment = Alignment.Center,
-//                            modifier = Modifier.fillMaxSize()
-//                        )
-//                        {
-//                            Text("Bardzo wazny tekst ~bteraz powinien być gruby~b, ~cteraz kursywa~c, ~c~b a teraz oba~c~b, ~ba teraz ~ccięcie~c~b")
-//                        }
                     }
                 }
             }

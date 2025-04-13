@@ -11,14 +11,18 @@ import com.example.pielgrzymkabielskozywiecka.core.data.database.tables.Announce
 import com.example.pielgrzymkabielskozywiecka.core.data.database.tables.Prayers
 import com.example.pielgrzymkabielskozywiecka.core.data.database.tables.Songs
 import com.example.pielgrzymkabielskozywiecka.core.domain.networking.BuildApiResponse
-import com.example.pielgrzymkabielskozywiecka.core.domain.networking.responses.ModlitwyResponse
-import com.example.pielgrzymkabielskozywiecka.core.domain.networking.responses.SongsResponse
+import com.example.pielgrzymkabielskozywiecka.core.data.networking.ModlitwyResponse
+import com.example.pielgrzymkabielskozywiecka.core.data.networking.SongsResponse
 import com.example.pielgrzymkabielskozywiecka.core.presentation.uiModels.AnnouncementUI
 import com.example.pielgrzymkabielskozywiecka.core.presentation.uiModels.PrayerUI
 import com.example.pielgrzymkabielskozywiecka.core.presentation.uiModels.SongUI
 import com.example.pielgrzymkabielskozywiecka.core.presentation.mappers.toAnnouncementUI
 import com.example.pielgrzymkabielskozywiecka.core.presentation.mappers.toPrayerUI
 import com.example.pielgrzymkabielskozywiecka.core.presentation.mappers.toSongUI
+import com.example.pielgrzymkabielskozywiecka.pielgrzymka.domain.dataSync.AnnouncementsRepository
+import com.example.pielgrzymkabielskozywiecka.pielgrzymka.domain.dataSync.PrayersRepository
+import com.example.pielgrzymkabielskozywiecka.pielgrzymka.domain.dataSync.SongsRepository
+import com.example.pielgrzymkabielskozywiecka.pielgrzymka.domain.errorHandling.DataError
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.stateIn
@@ -27,6 +31,8 @@ import kotlinx.coroutines.launch
 import okio.IOException
 import java.net.UnknownHostException
 import javax.net.ssl.SSLHandshakeException
+import com.example.pielgrzymkabielskozywiecka.pielgrzymka.domain.errorHandling.Result
+import retrofit2.HttpException
 
 class MainViewModel(context: Context): ViewModel() {
     val database by lazy {
@@ -36,11 +42,11 @@ class MainViewModel(context: Context): ViewModel() {
             name = "local_database.db"
         ).build()
     }
-    private val _isAppLoading = MutableStateFlow(true)
-    val isAppLoading = _isAppLoading.stateIn(
+    private val _state = MutableStateFlow(AppState())
+    val state = _state.stateIn(
         scope = viewModelScope,
         started = SharingStarted.WhileSubscribed(5000),
-        initialValue = true
+        initialValue = AppState()
     )
 
     init {
@@ -48,79 +54,53 @@ class MainViewModel(context: Context): ViewModel() {
         updateData()
     }
 
-    fun updateData() {
-        _isAppLoading.update { true }
+    private fun updateData() {
+        _state.update { it.copy(isAppLoading = true) }
         viewModelScope.launch {
-            var songs: List<SongUI>
-            var prayers: List<PrayerUI>
-            var announcement: AnnouncementUI
 
-            try {
-                songs = updateSongs()
-                prayers = updatePrayers()
-                announcement = updateAnnouncements()
-            } catch (e: UnknownHostException) {
-                songs = database.SongsDao().getSong().map { el -> el.toSongUI() }
-                prayers = database.PrayersDao().getPrayers().map { el -> el.toPrayerUI() }
-
-                val localAnnouncements = database.AnnouncementsDao().getAnnouncements()
-                announcement = if (localAnnouncements.isNotEmpty()) {
-                    localAnnouncements[0].toAnnouncementUI()
-                } else {
-                    AnnouncementUI(
-                        title = "Brak połączenia z internetem",
-                        text = "Połącz się z internetem, żeby móc sprawdzić najnowsze ogłoszenia!"
-                    )
-                }
-            } catch(e: SSLHandshakeException) {
-                songs = database.SongsDao().getSong().map { el -> el.toSongUI() }
-                prayers = database.PrayersDao().getPrayers().map { el -> el.toPrayerUI() }
-
-                val localAnnouncements = database.AnnouncementsDao().getAnnouncements()
-                announcement = if (localAnnouncements.isNotEmpty()) {
-                    localAnnouncements[0].toAnnouncementUI()
-                } else {
-                    AnnouncementUI(
-                        title = "Brak połączenia z internetem",
-                        text = "Połącz się z internetem, żeby móc sprawdzić najnowsze ogłoszenia!"
-                    )
-                }
-            } catch (e: IOException) {
-                songs = database.SongsDao().getSong().map { el -> el.toSongUI() }
-                prayers = database.PrayersDao().getPrayers().map { el -> el.toPrayerUI() }
-
-                val localAnnouncements = database.AnnouncementsDao().getAnnouncements()
-                announcement = if (localAnnouncements.isNotEmpty()) {
-                    localAnnouncements[0].toAnnouncementUI()
-                } else {
-                    AnnouncementUI(
-                        title = "Brak połączenia z internetem",
-                        text = "Połącz się z internetem, żeby móc sprawdzić najnowsze ogłoszenia!"
-                    )
-                }
-            }
+            val songs: List<SongUI> = updateSongs()
+            val prayers: List<PrayerUI> = updatePrayers()
+            val announcement: AnnouncementUI = updateAnnouncements()
 
             DataHolder.announcement = announcement
             DataHolder.songs = songs
             DataHolder.prayers = prayers
-            _isAppLoading.update { false }
-            Log.d("check", database.AnnouncementsDao().getAnnouncements().toString())
+
+            _state.update { it.copy(isAppLoading = false) }
+            DataHolder.isAppLoaded = true
         }
     }
 
     private suspend fun updateSongs(): List<SongUI> {
-        val response = BuildApiResponse.api.getSongs()
-        val localSongs = database.SongsDao().getSong().map { el ->
-            SongsResponse(el.title, el.lyrics)
-        }.toMutableList()
-        localSongs.forEach{ el ->
-            if(!response.songsList.contains(el)) {
-                deleteSong(Songs(0, el.title, el.lyrics))
+        val repository = SongsRepository()
+        val response = repository.getData()
+
+        when(response) {
+            is Result.Error -> {
+                val toastText = when(response.error){
+                    DataError.Network.REQUEST_TIMEOUT -> "Błąd połączenia z internetem!"
+                    DataError.Network.TOO_MANY_REQUESTS -> "Za dużo zapytań jednocześnie!"
+                    DataError.Network.NO_CONNECTION -> "Błąd połączenia z internetem!"
+                    DataError.Network.SERVER_ERROR -> "Wystąpił problem z serwerem, przepraszamy!"
+                    DataError.Network.UNKNOWN -> "Błąd połączenia z internetem!"
+                    DataError.Network.UNKNOWN_HOST -> "Błąd pobierania danych!"
+                }
+                _state.update { it.copy(toastMessage = toastText) }
             }
-        }
-        response.songsList.forEach{ el ->
-            if (!localSongs.contains(el)) {
-                addSong(Songs(0, el.title, el.lyrics))
+            is Result.Success -> {
+                val localSongs = database.SongsDao().getSong().map { el ->
+                    SongsResponse(el.title, el.lyrics)
+                }.toMutableList()
+                localSongs.forEach{ el ->
+                    if(!response.data.songsList.contains(el)) {
+                        deleteSong(Songs(0, el.title, el.lyrics))
+                    }
+                }
+                response.data.songsList.forEach{ el ->
+                    if (!localSongs.contains(el)) {
+                        addSong(Songs(0, el.title, el.lyrics))
+                    }
+                }
             }
         }
         val songsList = database.SongsDao().getSong().map { el -> el.toSongUI() }
@@ -128,45 +108,76 @@ class MainViewModel(context: Context): ViewModel() {
     }
 
     private suspend fun updatePrayers(): List<PrayerUI> {
+        val repository = PrayersRepository()
+        when(val response = repository.getData()) {
+            is Result.Error -> {
+                val toastText = when(response.error){
+                    DataError.Network.REQUEST_TIMEOUT -> "Błąd połączenia z internetem!"
+                    DataError.Network.TOO_MANY_REQUESTS -> "Za dużo zapytań jednocześnie!"
+                    DataError.Network.NO_CONNECTION -> "Błąd połączenia z internetem!"
+                    DataError.Network.SERVER_ERROR -> "Wystąpił problem z serwerem, przepraszamy!"
+                    DataError.Network.UNKNOWN -> "Błąd połączenia z internetem!"
+                    DataError.Network.UNKNOWN_HOST -> "Błąd pobierania danych!"
+                }
+                _state.update { it.copy(toastMessage = toastText) }
+            }
 
-        val response = BuildApiResponse.api.getPrayers()
-        val localPrayers = database.PrayersDao().getPrayers().map { el ->
-            ModlitwyResponse(el.title, el.lyrics)
-        }.toMutableList()
-        localPrayers.forEach{ el ->
-            if(!response.modlitwy.contains(el)) {
-                deletePrayer(Prayers(0, el.title, el.lyrics))
+            is Result.Success -> {
+                _state.update { it.copy(toastMessage = null) }
+                val localPrayers = database.PrayersDao().getPrayers().map { el ->
+                    ModlitwyResponse(el.title, el.lyrics)
+                }.toMutableList()
+                localPrayers.forEach{ el ->
+                    if(!response.data.modlitwy.contains(el)) {
+                        deletePrayer(Prayers(0, el.title, el.lyrics))
+                    }
+                }
+                response.data.modlitwy.forEach{ el ->
+                    if (!localPrayers.contains(el)) {
+                        addPrayer(Prayers(0, el.title, el.lyrics))
+                    }
+                }
             }
         }
-        response.modlitwy.forEach{ el ->
-            if (!localPrayers.contains(el)) {
-                addPrayer(Prayers(0, el.title, el.lyrics))
-            }
-        }
+
         val prayerList = database.PrayersDao().getPrayers().map { el -> el.toPrayerUI() }
         return prayerList
     }
 
     private suspend fun updateAnnouncements(): AnnouncementUI {
-        val response = BuildApiResponse.api.getOgloszenia(false)
-        val lastResponseItem = response.results[response.results.lastIndex]
-        val localAnnouncements = database.AnnouncementsDao().getAnnouncements()
+        val repository = AnnouncementsRepository()
 
-        if (localAnnouncements.isNotEmpty()) {
-            if (localAnnouncements[0].text != lastResponseItem.text ||
-                localAnnouncements[0].title != lastResponseItem.title) {
-                deleteAnnouncement()
-                addAnnouncement(Announcements(0, lastResponseItem.title, lastResponseItem.text))
+        when(val response = repository.getData()) {
+            is Result.Error -> {
+                val toastText = when(response.error){
+                    DataError.Network.REQUEST_TIMEOUT -> "Błąd połączenia z internetem!"
+                    DataError.Network.TOO_MANY_REQUESTS -> "Za dużo zapytań jednocześnie!"
+                    DataError.Network.NO_CONNECTION -> "Błąd połączenia z internetem!"
+                    DataError.Network.SERVER_ERROR -> "Wystąpił problem z serwerem, przepraszamy!"
+                    DataError.Network.UNKNOWN -> "Błąd połączenia z internetem!"
+                    DataError.Network.UNKNOWN_HOST -> "Błąd pobierania danych"
+                }
+                _state.update { it.copy(toastMessage = toastText) }
             }
-        } else {
-            addAnnouncement(Announcements(0, lastResponseItem.title, lastResponseItem.text))
-        }
+            is Result.Success -> {
+                val lastResponseItem = response.data.results[response.data.results.lastIndex]
+                val localAnnouncements = database.AnnouncementsDao().getAnnouncements()
 
+                if (localAnnouncements.isNotEmpty()) {
+                    if (localAnnouncements[0].text != lastResponseItem.text ||
+                        localAnnouncements[0].title != lastResponseItem.title) {
+                        deleteAnnouncement()
+                        addAnnouncement(Announcements(0, lastResponseItem.title, lastResponseItem.text))
+                    }
+                } else {
+                    addAnnouncement(Announcements(0, lastResponseItem.title, lastResponseItem.text))
+                }
+            }
+        }
         val announcement = database.AnnouncementsDao().getAnnouncements()
         if (announcement.isNotEmpty()) {
             return announcement[0].toAnnouncementUI()
         }
-
         return AnnouncementUI(
             title = "Brak połączenia z internetem",
             text = "Połącz się z internetem, żeby móc sprawdzić najnowsze ogłoszenia!"

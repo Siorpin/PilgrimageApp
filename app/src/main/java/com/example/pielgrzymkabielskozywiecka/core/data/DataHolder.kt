@@ -25,6 +25,8 @@ object DataHolder {
 
     var refreshDataFunction: () -> Unit = {}
 
+    var isAppLoaded = false
+
     val bottomBarButtons = listOf(
         BottomBarUI(
             name = "Dom",

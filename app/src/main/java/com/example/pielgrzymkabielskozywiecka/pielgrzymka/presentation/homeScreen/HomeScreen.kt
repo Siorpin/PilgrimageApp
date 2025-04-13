@@ -50,7 +50,6 @@ fun HomeScreen(
             AnnouncementsBox(
                 title = state.value.title,
                 text = state.value.ogloszeniaText,
-                isLoading = state.value.isOgloszenieLoading,
                 refreshDataFunction = { viewModel.getAnnouncements() }
             )
             OptionsRow(navController)
