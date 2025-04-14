@@ -1,6 +1,5 @@
 package com.example.pielgrzymkabielskozywiecka.core.presentation.uiModels
 
-import androidx.annotation.DrawableRes
 import androidx.annotation.StringRes
 import com.example.pielgrzymkabielskozywiecka.core.presentation.enumClasses.Days
 

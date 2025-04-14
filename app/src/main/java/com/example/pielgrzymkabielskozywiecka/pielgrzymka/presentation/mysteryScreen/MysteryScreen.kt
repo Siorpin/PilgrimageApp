@@ -1,8 +1,6 @@
 package com.example.pielgrzymkabielskozywiecka.pielgrzymka.presentation.mysteryScreen
 
-import androidx.compose.foundation.ScrollState
 import androidx.compose.foundation.background
-import androidx.compose.foundation.gestures.scrollable
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize

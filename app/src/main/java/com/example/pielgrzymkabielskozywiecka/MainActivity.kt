@@ -20,8 +20,6 @@ import androidx.compose.foundation.layout.navigationBars
 import androidx.compose.foundation.layout.windowInsetsPadding
 import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.Scaffold
-import androidx.compose.material3.Text
-import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.LayoutDirection
@@ -33,8 +31,6 @@ import androidx.navigation.compose.rememberNavController
 import com.example.pielgrzymkabielskozywiecka.core.navigation.AppNavigation
 import com.example.pielgrzymkabielskozywiecka.core.navigation.Screen
 import com.example.pielgrzymkabielskozywiecka.pielgrzymka.domain.NotificationsManager
-import com.example.pielgrzymkabielskozywiecka.pielgrzymka.domain.textFormatter.TextFormatter
-import com.example.pielgrzymkabielskozywiecka.pielgrzymka.domain.textFormatter.formats.Bold
 import com.example.pielgrzymkabielskozywiecka.pielgrzymka.presentation.bottomBar.BottomBar
 import com.example.pielgrzymkabielskozywiecka.ui.theme.PielgrzymkaAppTheme
 

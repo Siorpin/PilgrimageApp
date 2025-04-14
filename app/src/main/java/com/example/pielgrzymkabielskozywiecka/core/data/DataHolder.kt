@@ -4,7 +4,6 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.AccountCircle
 import androidx.compose.material.icons.filled.Home
 import androidx.compose.material.icons.filled.Star
-import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import com.example.pielgrzymkabielskozywiecka.R
 import com.example.pielgrzymkabielskozywiecka.core.navigation.Screen

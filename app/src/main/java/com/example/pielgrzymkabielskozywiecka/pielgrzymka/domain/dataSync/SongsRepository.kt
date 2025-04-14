@@ -1,6 +1,5 @@
 package com.example.pielgrzymkabielskozywiecka.pielgrzymka.domain.dataSync
 
-import com.example.pielgrzymkabielskozywiecka.core.data.networking.ModlitwyList
 import com.example.pielgrzymkabielskozywiecka.core.data.networking.SongsList
 import com.example.pielgrzymkabielskozywiecka.core.domain.networking.BuildApiResponse
 import com.example.pielgrzymkabielskozywiecka.pielgrzymka.domain.errorHandling.DataError

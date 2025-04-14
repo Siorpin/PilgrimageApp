@@ -1,7 +1,6 @@
 package com.example.pielgrzymkabielskozywiecka
 
 import android.content.Context
-import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import androidx.room.Room
@@ -10,29 +9,24 @@ import com.example.pielgrzymkabielskozywiecka.core.data.database.Database
 import com.example.pielgrzymkabielskozywiecka.core.data.database.tables.Announcements
 import com.example.pielgrzymkabielskozywiecka.core.data.database.tables.Prayers
 import com.example.pielgrzymkabielskozywiecka.core.data.database.tables.Songs
-import com.example.pielgrzymkabielskozywiecka.core.domain.networking.BuildApiResponse
 import com.example.pielgrzymkabielskozywiecka.core.data.networking.ModlitwyResponse
 import com.example.pielgrzymkabielskozywiecka.core.data.networking.SongsResponse
-import com.example.pielgrzymkabielskozywiecka.core.presentation.uiModels.AnnouncementUI
-import com.example.pielgrzymkabielskozywiecka.core.presentation.uiModels.PrayerUI
-import com.example.pielgrzymkabielskozywiecka.core.presentation.uiModels.SongUI
 import com.example.pielgrzymkabielskozywiecka.core.presentation.mappers.toAnnouncementUI
 import com.example.pielgrzymkabielskozywiecka.core.presentation.mappers.toPrayerUI
 import com.example.pielgrzymkabielskozywiecka.core.presentation.mappers.toSongUI
+import com.example.pielgrzymkabielskozywiecka.core.presentation.uiModels.AnnouncementUI
+import com.example.pielgrzymkabielskozywiecka.core.presentation.uiModels.PrayerUI
+import com.example.pielgrzymkabielskozywiecka.core.presentation.uiModels.SongUI
 import com.example.pielgrzymkabielskozywiecka.pielgrzymka.domain.dataSync.AnnouncementsRepository
 import com.example.pielgrzymkabielskozywiecka.pielgrzymka.domain.dataSync.PrayersRepository
 import com.example.pielgrzymkabielskozywiecka.pielgrzymka.domain.dataSync.SongsRepository
 import com.example.pielgrzymkabielskozywiecka.pielgrzymka.domain.errorHandling.DataError
+import com.example.pielgrzymkabielskozywiecka.pielgrzymka.domain.errorHandling.Result
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
-import okio.IOException
-import java.net.UnknownHostException
-import javax.net.ssl.SSLHandshakeException
-import com.example.pielgrzymkabielskozywiecka.pielgrzymka.domain.errorHandling.Result
-import retrofit2.HttpException
 
 class MainViewModel(context: Context): ViewModel() {
     val database by lazy {
@@ -75,9 +69,7 @@ class MainViewModel(context: Context): ViewModel() {
 
     private suspend fun updateSongs(): List<SongUI> {
         val repository = SongsRepository()
-        val response = repository.getData()
-
-        when(response) {
+        when(val response = repository.getData()) {
             is Result.Error -> {
                 val toastText = when(response.error){
                     DataError.Network.REQUEST_TIMEOUT -> "Błąd połączenia z internetem!"
@@ -103,6 +95,7 @@ class MainViewModel(context: Context): ViewModel() {
                         addSong(Songs(0, el.title, el.lyrics))
                     }
                 }
+                toastMessage = null
             }
         }
         val songsList = database.SongsDao().getSong().map { el -> el.toSongUI() }
@@ -139,6 +132,7 @@ class MainViewModel(context: Context): ViewModel() {
                         addPrayer(Prayers(0, el.title, el.lyrics))
                     }
                 }
+                toastMessage = null
             }
         }
 
@@ -174,6 +168,7 @@ class MainViewModel(context: Context): ViewModel() {
                 } else {
                     addAnnouncement(Announcements(0, lastResponseItem.title, lastResponseItem.text))
                 }
+                toastMessage = null
             }
         }
         val announcement = database.AnnouncementsDao().getAnnouncements()
