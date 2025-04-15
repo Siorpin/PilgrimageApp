@@ -35,3 +35,6 @@
     <li><b>Email sender, social media/website redirect - </b>Easy way to find more about pilgrimage!<b> - Android Intents</b></li>
     <li><b>And a lot of more</b></li>
 </ul>
+
+
+<p>Follow me for more modern Android apps :D</p>
