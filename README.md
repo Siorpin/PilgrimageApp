@@ -5,11 +5,9 @@
 ---
 
 Made with:
-    
-    <i class="devicon-android-plain colored"></i>
-    <i class="devicon-firebase-plain colored"></i>
-    <i class="devicon-jetpackcompose-plain-wordmark"></i>
-          
-          
-          
 
+<p>
+  <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/kotlin/kotlin-original.svg" width="40" height="40"/>
+  <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/android/android-original.svg" width="40" height="40"/>
+  <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/git/git-original.svg" width="40" height="40"/>
+</p>
