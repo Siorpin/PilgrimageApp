@@ -4,5 +4,12 @@
 
 ---
 
-📱 Aplikacja pielgrzymkowa z Kotlin + Jetpack Compose  
-✝️ Wspiera pielgrzymkę Bielsko-Żywiecką
+Made with:
+    
+    <i class="devicon-android-plain colored"></i>
+    <i class="devicon-firebase-plain colored"></i>
+    <i class="devicon-jetpackcompose-plain-wordmark"></i>
+          
+          
+          
+
