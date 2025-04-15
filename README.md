@@ -28,10 +28,10 @@
     Main goal of this app is to be lightweight, straightforward and useful - that's why it has all crucial features, while still being small. List of features:
 </p>
 <ul>
-    <li><h4>Announcements system - </h4>Everytime when admin posts a new announcement, you will get push notification from Firebase<h4> - Retrofit, Google Firebase</h4></li>
-    <li><h4>Remote database - </h4>You don't need to update your app everytime a new prayer or song is added<h4> - Retrofit, Cloudflare workers</h4></li>
-    <li><h4>Local storage - </h4>You might think "I need internet connection everytime I want to pray". Nothing could be further from the truth! You only need to connect once, and all data will be stored on your phone!<h4> - Room Database</h4></li>
-    <li><h4>Remote-local sync - </h4>Everytime you use app with an internet connection, app will compare your local data to data in cloud. This way you won't miss any new songs!<h4> - Retrofit</h4></li>
-    <li><h4>Email sender, social media/website redirect - </h4>Easy way to find more about pilgrimage!<h4> - Android Intents</h4></li>
-    <li><h4>And a lot of more</h4></li>
+    <li><b>Announcements system - </b>Everytime when admin posts a new announcement, you will get push notification from Firebase<b> - Retrofit, Google Firebase</b></li>
+    <li><b>Remote database - </b>You don't need to update your app everytime a new prayer or song is added<b> - Retrofit, Cloudflare workers</b></li>
+    <li><b>Local storage - </b>You might think "I need internet connection everytime I want to pray". Nothing could be further from the truth! You only need to connect once, and all data will be stored on your phone!<b> - Room Database</b></li>
+    <li><b>Remote-local sync - </b>Everytime you use app with an internet connection, app will compare your local data to data in cloud. This way you won't miss any new songs!<b> - Retrofit</b></li>
+    <li><b>Email sender, social media/website redirect - </b>Easy way to find more about pilgrimage!<b> - Android Intents</b></li>
+    <li><b>And a lot of more</b></li>
 </ul>
