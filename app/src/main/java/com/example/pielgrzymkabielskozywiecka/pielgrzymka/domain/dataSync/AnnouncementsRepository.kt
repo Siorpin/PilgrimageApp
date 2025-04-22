@@ -26,5 +26,4 @@ class AnnouncementsRepository: DataRepository {
             Result.Error(DataError.Network.UNKNOWN_HOST)
         }
     }
-
 }

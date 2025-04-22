@@ -72,7 +72,7 @@ class MainViewModel(context: Context): ViewModel() {
         when(val response = repository.getData()) {
             is Result.Error -> {
                 val toastText = when(response.error){
-                    DataError.Network.REQUEST_TIMEOUT -> "Błąd połączenia z internetem!"
+                    DataError.Network.REQUEST_TIMEOUT -> "Brak połączenia z internetem!"
                     DataError.Network.TOO_MANY_REQUESTS -> "Za dużo zapytań jednocześnie!"
                     DataError.Network.NO_CONNECTION -> "Błąd połączenia z internetem!"
                     DataError.Network.SERVER_ERROR -> "Wystąpił problem z serwerem, przepraszamy!"

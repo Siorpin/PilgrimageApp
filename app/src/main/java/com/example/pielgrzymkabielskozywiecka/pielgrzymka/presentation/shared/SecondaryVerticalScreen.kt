@@ -12,7 +12,8 @@ import androidx.navigation.NavHostController
 fun SecondaryVerticalScreen(
     name: String,
     navController: NavHostController,
-    modifier: Modifier = Modifier
+    modifier: Modifier = Modifier,
+    content: @Composable () -> Unit
 ) {
     Column(
         modifier = modifier
@@ -20,5 +21,6 @@ fun SecondaryVerticalScreen(
             .background(MaterialTheme.colorScheme.background)
     ) {
         SecondaryScreenTopBar(name, navController)
+        content()
     }
 }

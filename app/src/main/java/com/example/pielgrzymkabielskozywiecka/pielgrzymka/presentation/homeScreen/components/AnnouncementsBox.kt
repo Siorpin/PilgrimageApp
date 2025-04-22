@@ -36,7 +36,6 @@ fun AnnouncementsBox(
             content = {
                 RefreshDataButton(
                     onClick = {
-                        DataHolder.isAppLoaded = false
                         refreshDataFunction()
                     }
                 )

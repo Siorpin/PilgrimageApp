@@ -12,10 +12,12 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavHostController
 import com.example.pielgrzymkabielskozywiecka.core.navigation.Screen
+import com.example.pielgrzymkabielskozywiecka.pielgrzymka.presentation.homeScreen.HomeScreenViewModel
 import com.example.pielgrzymkabielskozywiecka.pielgrzymka.presentation.shared.OptionButton
 
 @Composable
 fun OptionsRow(
+    viewModel: HomeScreenViewModel,
     navController: NavHostController,
     modifier: Modifier = Modifier
 ) {
@@ -41,7 +43,7 @@ fun OptionsRow(
             OptionButton(
                 buttonText = "Media społecznościowe",
                 color = MaterialTheme.colorScheme.secondary,
-                onClick = {  },
+                onClick = { viewModel.togglePopUp() },
                 modifier = Modifier
                     .weight(1f)
             )

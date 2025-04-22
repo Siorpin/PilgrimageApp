@@ -28,7 +28,6 @@ fun RefreshDataButton(
                 shape = CircleShape
             )
             .clickable {
-                DataHolder.refreshDataFunction()
                 onClick()
             }
             .padding(2.dp)
