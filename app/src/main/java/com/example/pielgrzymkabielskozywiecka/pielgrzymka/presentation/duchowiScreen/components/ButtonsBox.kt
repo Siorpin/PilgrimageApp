@@ -11,7 +11,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.unit.dp
-import com.example.pielgrzymkabielskozywiecka.pielgrzymka.domain.emailHandler.EmailHandler
+import com.example.pielgrzymkabielskozywiecka.pielgrzymka.domain.activityHandler.EmailHandler
 import com.example.pielgrzymkabielskozywiecka.pielgrzymka.presentation.shared.OptionButton
 
 @Composable

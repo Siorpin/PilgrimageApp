@@ -1,8 +1,6 @@
-package com.example.pielgrzymkabielskozywiecka.pielgrzymka.domain.emailHandler
+package com.example.pielgrzymkabielskozywiecka.pielgrzymka.domain.activityHandler
 
-import android.content.ActivityNotFoundException
 import android.content.Context
-import android.content.Intent
 import android.widget.Toast
 import com.example.pielgrzymkabielskozywiecka.pielgrzymka.domain.errorHandling.ActivityError
 import com.example.pielgrzymkabielskozywiecka.pielgrzymka.domain.errorHandling.Result

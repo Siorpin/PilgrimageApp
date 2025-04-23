@@ -1,4 +1,4 @@
-package com.example.pielgrzymkabielskozywiecka.pielgrzymka.domain.emailHandler
+package com.example.pielgrzymkabielskozywiecka.pielgrzymka.domain.activityHandler
 
 import android.content.Context
 import com.example.pielgrzymkabielskozywiecka.pielgrzymka.domain.errorHandling.ActivityError

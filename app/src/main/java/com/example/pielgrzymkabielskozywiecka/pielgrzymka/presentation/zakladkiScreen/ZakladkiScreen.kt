@@ -1,6 +1,7 @@
 package com.example.pielgrzymkabielskozywiecka.pielgrzymka.presentation.zakladkiScreen
 
 import android.annotation.SuppressLint
+import android.widget.Toast
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
@@ -16,6 +17,7 @@ import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.LocalUriHandler
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
@@ -23,6 +25,9 @@ import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavHostController
 import com.example.pielgrzymkabielskozywiecka.R
+import com.example.pielgrzymkabielskozywiecka.pielgrzymka.domain.activityHandler.WWWActivityStarter
+import com.example.pielgrzymkabielskozywiecka.pielgrzymka.domain.errorHandling.ActivityError
+import com.example.pielgrzymkabielskozywiecka.pielgrzymka.domain.errorHandling.Result
 import com.example.pielgrzymkabielskozywiecka.pielgrzymka.presentation.zakladkiScreen.components.ZakladkiHeader
 import com.example.pielgrzymkabielskozywiecka.pielgrzymka.presentation.zakladkiScreen.components.ZakladkiListItem
 import disableSplitMotionEvents
@@ -36,6 +41,9 @@ fun ZakladkiScreen(
     val viewModel: ZakladkiScreenViewModel = viewModel()
     val state by viewModel.state.collectAsStateWithLifecycle()
     val handler = LocalUriHandler.current
+    val uri = "https://pielgrzymka.bielsko.pl/"
+    val wwwStarter = WWWActivityStarter(handler, uri)
+    val context = LocalContext.current
 
     Box(
         modifier = modifier
@@ -67,7 +75,16 @@ fun ZakladkiScreen(
                         ZakladkiListItem(
                             zakladkiUI = it,
                             onClick = {
-                                handler.openUri("https://pielgrzymka.bielsko.pl/")
+                                val result = wwwStarter.startActivity(context)
+
+                                if (result is Result.Error) {
+                                    val toastMessage = when(result.error) {
+                                        ActivityError.Execution.ACTIVITY_NOT_FOUND -> "Nie znaleziono przeglądarki!"
+                                        ActivityError.Execution.UNKNOWN -> "Wystąpił nieznany błąd!"
+                                    }
+
+                                    Toast.makeText(context, toastMessage, Toast.LENGTH_SHORT).show()
+                                }
                             }
                         )
                     }
