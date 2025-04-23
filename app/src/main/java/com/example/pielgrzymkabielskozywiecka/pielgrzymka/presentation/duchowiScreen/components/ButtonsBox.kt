@@ -11,7 +11,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.unit.dp
-import com.example.pielgrzymkabielskozywiecka.pielgrzymka.domain.EmailHandler
+import com.example.pielgrzymkabielskozywiecka.pielgrzymka.domain.emailHandler.EmailHandler
 import com.example.pielgrzymkabielskozywiecka.pielgrzymka.presentation.shared.OptionButton
 
 @Composable
@@ -27,7 +27,11 @@ fun ButtonsBox(
             .padding(6.dp)
     ) {
         val context = LocalContext.current
-        val emailHandler = EmailHandler("kubasierpien05@gmail.com")
+        val emailHandler = EmailHandler(
+            subject = "Intencje",
+            text = "Proszę, pomódlcie się na Jasnej górze w intencji...\n\n",
+            receiver = "kubasierpien05@gmail.com"
+        )
 
         OptionButton(
             buttonText = "Msze online",
@@ -41,9 +45,7 @@ fun ButtonsBox(
             color = Color(0xFFC4C5FF),
             onClick = {
                 emailHandler.sendEmail(
-                    context = context,
-                    subject = "test",
-                    text = "Przykładowy tekst! Tutaj trzeba coś napisać bla bla bla\n\n"
+                    context = context
                 )
             },
             modifier = Modifier
