@@ -10,7 +10,7 @@ import java.io.IOException
 import java.net.UnknownHostException
 
 class TrackRepository: DataRepository {
-    override suspend fun getData(): Result<TrackResponse, DataError> {
+    override suspend fun getData(): Result<TrackResponse, DataError.Network> {
            return try {
                val response = BuildApiResponse.api.getTrack()
                Result.Success(response)
