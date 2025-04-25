@@ -2,8 +2,6 @@ package com.example.pielgrzymkabielskozywiecka.pielgrzymka.domain.activityHandle
 
 import android.content.ActivityNotFoundException
 import android.content.Context
-import androidx.compose.runtime.ReusableComposeNode
-import androidx.compose.ui.platform.LocalUriHandler
 import androidx.compose.ui.platform.UriHandler
 import com.example.pielgrzymkabielskozywiecka.pielgrzymka.domain.errorHandling.ActivityError
 import com.example.pielgrzymkabielskozywiecka.pielgrzymka.domain.errorHandling.Result

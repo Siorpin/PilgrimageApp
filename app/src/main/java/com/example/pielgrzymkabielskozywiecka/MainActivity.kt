@@ -1,7 +1,6 @@
 package com.example.pielgrzymkabielskozywiecka
 
 import android.Manifest
-import android.app.Activity
 import android.content.pm.PackageManager
 import android.os.Bundle
 import android.widget.Toast
@@ -46,7 +45,7 @@ class MainActivity : ComponentActivity() {
             ActivityResultContracts.RequestPermission()
         ) {}
         notificationsManager = NotificationsManager()
-        checkNotificationPermission(this, requestPermissionLauncher)
+        checkNotificationPermission(requestPermissionLauncher)
 
         setContent {
             val viewModel: MainViewModel = viewModel(factory = MainViewmodelFactory(this))
@@ -80,6 +79,7 @@ class MainActivity : ComponentActivity() {
                         AppNavigation(
                             navController = navController,
                             startDestination = Screen.HOME,
+                            toggleNotifications = { viewModel.toggleNotificationsEnabled() },
                             padding = padding
                         )
                     }
@@ -88,7 +88,7 @@ class MainActivity : ComponentActivity() {
         }
     }
 
-    private fun checkNotificationPermission(activity: Activity, launcher: ActivityResultLauncher<String>) {
+    private fun checkNotificationPermission(launcher: ActivityResultLauncher<String>) {
         if (ContextCompat.checkSelfPermission(
                 this, Manifest.permission.POST_NOTIFICATIONS
             ) != PackageManager.PERMISSION_GRANTED

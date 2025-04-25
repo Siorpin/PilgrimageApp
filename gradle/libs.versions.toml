@@ -18,6 +18,7 @@ bom = "33.10.0"
 firebaseMessagingKtx = "24.1.0"
 room = "2.6.1"
 ksp = "2.0.0-1.0.24"
+dataStore = "1.0.0"
 
 [libraries]
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
@@ -47,6 +48,7 @@ firebase-messaging-ktx = { group = "com.google.firebase", name = "firebase-messa
 room-runtime = { module = "androidx.room:room-runtime", version.ref = "room" }
 room-ktx = { module = "androidx.room:room-ktx", version.ref = "room" }
 room-ksp = { module = "androidx.room:room-compiler", version.ref = "room" }
+datastore = { module = "androidx.datastore:datastore-preferences", version.ref = "dataStore"}
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }

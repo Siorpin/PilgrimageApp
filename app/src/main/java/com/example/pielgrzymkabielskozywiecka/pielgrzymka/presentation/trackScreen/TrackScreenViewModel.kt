@@ -1,12 +1,10 @@
 package com.example.pielgrzymkabielskozywiecka.pielgrzymka.presentation.trackScreen
 
-import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.example.pielgrzymkabielskozywiecka.core.presentation.mappers.toTrackUI
 import com.example.pielgrzymkabielskozywiecka.pielgrzymka.domain.dataSync.TrackRepository
 import com.example.pielgrzymkabielskozywiecka.pielgrzymka.domain.errorHandling.DataError
-import com.example.pielgrzymkabielskozywiecka.core.data.networking.TrackResponse
-import com.example.pielgrzymkabielskozywiecka.core.presentation.mappers.toTrackUI
 import com.example.pielgrzymkabielskozywiecka.pielgrzymka.domain.errorHandling.Result
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.SharingStarted

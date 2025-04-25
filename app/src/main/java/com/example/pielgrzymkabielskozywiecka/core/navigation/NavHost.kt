@@ -15,7 +15,6 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.navArgument
 import com.example.pielgrzymkabielskozywiecka.core.data.DataHolder
-import com.example.pielgrzymkabielskozywiecka.pielgrzymka.presentation.trackScreen.TrackScreen
 import com.example.pielgrzymkabielskozywiecka.pielgrzymka.presentation.authorsScreen.AuthorsScreen
 import com.example.pielgrzymkabielskozywiecka.pielgrzymka.presentation.duchowiScreen.DuchowiScreen
 import com.example.pielgrzymkabielskozywiecka.pielgrzymka.presentation.homeScreen.HomeScreen
@@ -24,6 +23,7 @@ import com.example.pielgrzymkabielskozywiecka.pielgrzymka.presentation.mysterySc
 import com.example.pielgrzymkabielskozywiecka.pielgrzymka.presentation.prayerScreen.PrayerScreen
 import com.example.pielgrzymkabielskozywiecka.pielgrzymka.presentation.rosaryMysteriesScreen.RosaryMysteriesScreen
 import com.example.pielgrzymkabielskozywiecka.pielgrzymka.presentation.songbookScreen.SongbookScreen
+import com.example.pielgrzymkabielskozywiecka.pielgrzymka.presentation.trackScreen.TrackScreen
 import com.example.pielgrzymkabielskozywiecka.pielgrzymka.presentation.zakladkiScreen.ZakladkiScreen
 
 @Composable

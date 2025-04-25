@@ -28,7 +28,7 @@ fun OptionsRow(
     ) {
         HeaderText("Warto zobaczyć")
         Row(
-            horizontalArrangement = Arrangement.spacedBy(5.dp),
+            horizontalArrangement = Arrangement.spacedBy(10.dp),
             modifier = Modifier
                 .height(80.dp)
                 .fillMaxWidth()
