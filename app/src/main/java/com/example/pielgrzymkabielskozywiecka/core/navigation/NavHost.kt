@@ -18,6 +18,7 @@ import com.example.pielgrzymkabielskozywiecka.core.data.DataHolder
 import com.example.pielgrzymkabielskozywiecka.pielgrzymka.presentation.authorsScreen.AuthorsScreen
 import com.example.pielgrzymkabielskozywiecka.pielgrzymka.presentation.duchowiScreen.DuchowiScreen
 import com.example.pielgrzymkabielskozywiecka.pielgrzymka.presentation.homeScreen.HomeScreen
+import com.example.pielgrzymkabielskozywiecka.pielgrzymka.presentation.howToHelpScreen.HowToHelpScreen
 import com.example.pielgrzymkabielskozywiecka.pielgrzymka.presentation.modlitewnikScreen.ModlitewnikScreen
 import com.example.pielgrzymkabielskozywiecka.pielgrzymka.presentation.mysteryScreen.MysteryScreen
 import com.example.pielgrzymkabielskozywiecka.pielgrzymka.presentation.prayerScreen.PrayerScreen
@@ -174,6 +175,15 @@ fun AppNavigation(
             exitTransition = { slideOutHorizontally { it } }
         ) {
             TrackScreen(navController)
+        }
+
+        // How to help
+        composable(
+            route = Screen.HOW_TO_HELP.name,
+            enterTransition = { slideInHorizontally { it } },
+            exitTransition = { slideOutHorizontally { it } }
+        ) {
+            HowToHelpScreen(navController)
         }
     }
 }

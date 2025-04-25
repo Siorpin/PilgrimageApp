@@ -36,6 +36,6 @@ fun DuchowiScreen(
         Spacer(modifier = Modifier.height(40.dp))
         DuchowiText(text = stringResource(R.string.duchowi_text))
         Spacer(modifier = Modifier.height(40.dp))
-        ButtonsBox()
+        ButtonsBox(navController)
     }
 }

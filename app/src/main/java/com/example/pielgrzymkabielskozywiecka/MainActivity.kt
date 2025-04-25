@@ -79,7 +79,6 @@ class MainActivity : ComponentActivity() {
                         AppNavigation(
                             navController = navController,
                             startDestination = Screen.HOME,
-                            toggleNotifications = { viewModel.toggleNotificationsEnabled() },
                             padding = padding
                         )
                     }

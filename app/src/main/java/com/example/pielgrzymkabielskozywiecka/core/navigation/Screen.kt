@@ -11,5 +11,6 @@ enum class Screen {
     AUTORZY,
     PRAYER,
     TRACK,
-    MYSTERY
+    MYSTERY,
+    HOW_TO_HELP
 }

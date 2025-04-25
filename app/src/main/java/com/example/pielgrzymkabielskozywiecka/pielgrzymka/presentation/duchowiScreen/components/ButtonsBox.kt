@@ -11,11 +11,14 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.unit.dp
+import androidx.navigation.NavHostController
+import com.example.pielgrzymkabielskozywiecka.core.navigation.Screen
 import com.example.pielgrzymkabielskozywiecka.pielgrzymka.domain.activityHandler.EmailHandler
 import com.example.pielgrzymkabielskozywiecka.pielgrzymka.presentation.shared.OptionButton
 
 @Composable
 fun ButtonsBox(
+    navHostController: NavHostController,
     modifier: Modifier = Modifier
 ) {
     Row(
@@ -34,9 +37,9 @@ fun ButtonsBox(
         )
 
         OptionButton(
-            buttonText = "Msze online",
+            buttonText = "Jak pomóc",
             color = Color(0xFFA6AAF3),
-            onClick = { },
+            onClick = { navHostController.navigate(Screen.HOW_TO_HELP.name) },
             modifier = Modifier
                 .weight(1f)
         )
