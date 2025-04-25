@@ -7,6 +7,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
+import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavHostController
 import com.example.pielgrzymkabielskozywiecka.pielgrzymka.presentation.shared.SecondaryVerticalScreen
 import com.example.pielgrzymkabielskozywiecka.pielgrzymka.presentation.trackScreen.components.ErrorScreen
@@ -17,7 +18,7 @@ fun TrackScreen(
     navController: NavHostController,
     modifier: Modifier = Modifier
 ) {
-    val viewModel = TrackScreenViewModel()
+    val viewModel: TrackScreenViewModel = viewModel()
     val state = viewModel.state.collectAsStateWithLifecycle()
 
     SecondaryVerticalScreen(

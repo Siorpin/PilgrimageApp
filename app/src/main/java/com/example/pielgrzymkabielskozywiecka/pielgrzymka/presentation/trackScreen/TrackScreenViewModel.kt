@@ -1,5 +1,6 @@
 package com.example.pielgrzymkabielskozywiecka.pielgrzymka.presentation.trackScreen
 
+import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.pielgrzymkabielskozywiecka.core.presentation.mappers.toTrackUI
@@ -27,6 +28,7 @@ class TrackScreenViewModel: ViewModel() {
     }
 
     fun refreshData() {
+        Log.d("refreshing...", "refreshing...")
         _state.update { it.copy(isLoading = true) }
         viewModelScope.launch {
             when(val response = repository.getData()) {
