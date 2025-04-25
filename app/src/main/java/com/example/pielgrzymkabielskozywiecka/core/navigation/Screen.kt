@@ -10,6 +10,7 @@ enum class Screen {
     TAJEMNICE,
     AUTORZY,
     PRAYER,
+    SONG,
     TRACK,
     MYSTERY,
     HOW_TO_HELP

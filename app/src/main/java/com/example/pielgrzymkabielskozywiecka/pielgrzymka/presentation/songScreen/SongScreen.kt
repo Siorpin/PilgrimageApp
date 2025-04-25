@@ -1,4 +1,4 @@
-package com.example.pielgrzymkabielskozywiecka.pielgrzymka.presentation.prayerScreen
+package com.example.pielgrzymkabielskozywiecka.pielgrzymka.presentation.songScreen
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Column
@@ -8,8 +8,6 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.res.stringResource
-import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavHostController
@@ -17,7 +15,7 @@ import com.example.pielgrzymkabielskozywiecka.pielgrzymka.presentation.shared.Se
 import com.example.pielgrzymkabielskozywiecka.ui.theme.Poppins
 
 @Composable
-fun PrayerScreen(
+fun SongScreen(
     title: String?,
     lyrics: String?,
     navController: NavHostController,

@@ -18,6 +18,7 @@ import androidx.compose.ui.unit.dp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavHostController
+import com.example.pielgrzymkabielskozywiecka.core.navigation.Screen
 import com.example.pielgrzymkabielskozywiecka.pielgrzymka.presentation.shared.SearchBar
 import com.example.pielgrzymkabielskozywiecka.pielgrzymka.presentation.shared.SecondaryScreenTopBar
 import com.example.pielgrzymkabielskozywiecka.pielgrzymka.presentation.songbookScreen.components.SongbookListItem
@@ -66,7 +67,7 @@ fun SongbookScreen(
                     SongbookListItem(
                         id = id++,
                         song = song,
-                        onClick = {}
+                        onClick = { navController.navigate(Screen.SONG.name + "/${song.title}/${song.lyrics}") }
                     )
                 }
             }

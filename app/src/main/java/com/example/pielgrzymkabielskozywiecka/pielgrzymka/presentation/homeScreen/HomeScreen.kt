@@ -19,6 +19,7 @@ import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavHostController
 import com.example.pielgrzymkabielskozywiecka.pielgrzymka.presentation.homeScreen.components.AnnouncementsBox
 import com.example.pielgrzymkabielskozywiecka.pielgrzymka.presentation.homeScreen.components.HelloSegment
+import com.example.pielgrzymkabielskozywiecka.pielgrzymka.presentation.homeScreen.components.MediaPopUpContent
 import com.example.pielgrzymkabielskozywiecka.pielgrzymka.presentation.homeScreen.components.OptionsRow
 import com.example.pielgrzymkabielskozywiecka.pielgrzymka.presentation.shared.PopUp
 
@@ -60,7 +61,7 @@ fun HomeScreen(
             activated = state.value.popUpVisible,
             onBackgroundTap = { viewModel.togglePopUp() }
         ) {
-            Text("no elo elo")
+            MediaPopUpContent()
         }
     }
 }

@@ -23,6 +23,7 @@ import com.example.pielgrzymkabielskozywiecka.pielgrzymka.presentation.modlitewn
 import com.example.pielgrzymkabielskozywiecka.pielgrzymka.presentation.mysteryScreen.MysteryScreen
 import com.example.pielgrzymkabielskozywiecka.pielgrzymka.presentation.prayerScreen.PrayerScreen
 import com.example.pielgrzymkabielskozywiecka.pielgrzymka.presentation.rosaryMysteriesScreen.RosaryMysteriesScreen
+import com.example.pielgrzymkabielskozywiecka.pielgrzymka.presentation.songScreen.SongScreen
 import com.example.pielgrzymkabielskozywiecka.pielgrzymka.presentation.songbookScreen.SongbookScreen
 import com.example.pielgrzymkabielskozywiecka.pielgrzymka.presentation.trackScreen.TrackScreen
 import com.example.pielgrzymkabielskozywiecka.pielgrzymka.presentation.zakladkiScreen.ZakladkiScreen
@@ -94,7 +95,6 @@ fun AppNavigation(
             },
             exitTransition = {
                 val destination = targetState.destination.route
-                Log.d("exit", destination.toString())
                 if (destination == Screen.ZAKLADKI.name) slideOutHorizontally { it }
                 else { ExitTransition.None }
             }
@@ -105,8 +105,16 @@ fun AppNavigation(
         // Songbook
         composable(
             route = Screen.SPIEWNIK.name,
-            enterTransition = { slideInHorizontally { it } },
-            exitTransition = { slideOutHorizontally { it } }
+            enterTransition = {
+                val source = initialState.destination.route
+                if(source == Screen.ZAKLADKI.name) slideInHorizontally { it }
+                else EnterTransition.None
+            },
+            exitTransition = {
+                val destination = targetState.destination.route
+                if (destination == Screen.ZAKLADKI.name) slideOutHorizontally { it }
+                else { ExitTransition.None }
+            }
         ) {
             SongbookScreen(navController)
         }
@@ -162,6 +170,26 @@ fun AppNavigation(
             val lyrics = backStackEntry.arguments?.getString("lyrics")
 
             PrayerScreen(
+                title = title,
+                lyrics = lyrics,
+                navController = navController
+            )
+        }
+
+        // Song
+        composable(
+            route = Screen.SONG.name + "/{title}/{lyrics}",
+            arguments = listOf(
+                navArgument("title"){type = NavType.StringType},
+                navArgument("lyrics"){type = NavType.StringType}
+            ),
+            enterTransition = { slideInHorizontally { it } },
+            exitTransition = { slideOutHorizontally { it } }
+        ) {  backStackEntry ->
+            val title = backStackEntry.arguments?.getString("title")
+            val lyrics = backStackEntry.arguments?.getString("lyrics")
+
+            SongScreen(
                 title = title,
                 lyrics = lyrics,
                 navController = navController
