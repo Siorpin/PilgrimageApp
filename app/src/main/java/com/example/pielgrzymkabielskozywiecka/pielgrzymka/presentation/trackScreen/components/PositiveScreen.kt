@@ -13,9 +13,11 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.example.pielgrzymkabielskozywiecka.R
 import com.example.pielgrzymkabielskozywiecka.core.data.DataHolder
 import com.example.pielgrzymkabielskozywiecka.core.presentation.uiModels.TrackUI
 import com.example.pielgrzymkabielskozywiecka.ui.theme.Poppins
@@ -37,7 +39,7 @@ fun PositiveScreen(
             )
         ) {
             Text(
-                text = "Pielgrzymka nie jest łatwa... W trakcie tej duchowej drogi należy nie zapominać o modlitwie i bliskości z Panem Bogiem. Warto też zdawać sobie sprawę z tego, jak daleko zaszliśmy",
+                text = stringResource(R.string.track_screen_text),
                 lineHeight = 24.sp,
                 fontSize = 22.sp,
                 fontFamily = Poppins,
