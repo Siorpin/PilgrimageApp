@@ -41,7 +41,7 @@ fun OptionsRow(
                     .weight(1f)
             )
             OptionButton(
-                buttonText = "Media społecznościowe",
+                buttonText = "Nasze media",
                 color = MaterialTheme.colorScheme.secondary,
                 onClick = { viewModel.togglePopUp() },
                 modifier = Modifier
