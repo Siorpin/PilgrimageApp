@@ -1,6 +1,6 @@
 # PielgrzymkaApp
 
-[![Status](https://img.shields.io/badge/status-During%20creation-orange)]()
+[![Status](https://img.shields.io/badge/status-In%20production-green)]()
 [![Official](https://img.shields.io/badge/Official-green)]()
 
 ---
