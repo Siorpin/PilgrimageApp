@@ -13,5 +13,6 @@ enum class Screen {
     SONG,
     TRACK,
     MYSTERY,
-    HOW_TO_HELP
+    CONFERENCES,
+    SINGLE_CONFERENCE
 }

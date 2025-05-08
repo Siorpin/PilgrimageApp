@@ -4,12 +4,10 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.pielgrzymkabielskozywiecka.core.data.DataHolder
 import com.example.pielgrzymkabielskozywiecka.core.presentation.uiModels.PrayerUI
-import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.flow.update
-import kotlinx.coroutines.launch
 
 class ModlitewnikScreenViewModel: ViewModel() {
     private val _state = MutableStateFlow(ModlitewnikScreenState())
@@ -43,6 +41,6 @@ class ModlitewnikScreenViewModel: ViewModel() {
     }
 
     private fun getModlitwy() {
-        _state.update { it.copy(isLoading = false, prayers = DataHolder.prayers, visiblePrayers = DataHolder.prayers) }
+        _state.update { it.copy(prayers = DataHolder.prayers, visiblePrayers = DataHolder.prayers) }
     }
 }

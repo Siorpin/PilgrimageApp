@@ -16,13 +16,14 @@ import androidx.navigation.compose.composable
 import androidx.navigation.navArgument
 import com.example.pielgrzymkabielskozywiecka.core.data.DataHolder
 import com.example.pielgrzymkabielskozywiecka.pielgrzymka.presentation.authorsScreen.AuthorsScreen
+import com.example.pielgrzymkabielskozywiecka.pielgrzymka.presentation.conferencesScreen.ConferencesScreen
 import com.example.pielgrzymkabielskozywiecka.pielgrzymka.presentation.duchowiScreen.DuchowiScreen
 import com.example.pielgrzymkabielskozywiecka.pielgrzymka.presentation.homeScreen.HomeScreen
-import com.example.pielgrzymkabielskozywiecka.pielgrzymka.presentation.howToHelpScreen.HowToHelpScreen
 import com.example.pielgrzymkabielskozywiecka.pielgrzymka.presentation.modlitewnikScreen.ModlitewnikScreen
 import com.example.pielgrzymkabielskozywiecka.pielgrzymka.presentation.mysteryScreen.MysteryScreen
 import com.example.pielgrzymkabielskozywiecka.pielgrzymka.presentation.prayerScreen.PrayerScreen
 import com.example.pielgrzymkabielskozywiecka.pielgrzymka.presentation.rosaryMysteriesScreen.RosaryMysteriesScreen
+import com.example.pielgrzymkabielskozywiecka.pielgrzymka.presentation.singleConferenceScreen.SingleConferenceScreen
 import com.example.pielgrzymkabielskozywiecka.pielgrzymka.presentation.songScreen.SongScreen
 import com.example.pielgrzymkabielskozywiecka.pielgrzymka.presentation.songbookScreen.SongbookScreen
 import com.example.pielgrzymkabielskozywiecka.pielgrzymka.presentation.trackScreen.TrackScreen
@@ -196,6 +197,26 @@ fun AppNavigation(
             )
         }
 
+        // SingleConference
+        composable(
+            route = Screen.SINGLE_CONFERENCE.name + "/{title}/{text}",
+            arguments = listOf(
+                navArgument("title"){type = NavType.StringType},
+                navArgument("text"){type = NavType.StringType}
+            ),
+            enterTransition = { slideInHorizontally { it } },
+            exitTransition = { slideOutHorizontally { it } }
+        ) {  backStackEntry ->
+            val title = backStackEntry.arguments?.getString("title")
+            val text = backStackEntry.arguments?.getString("text")
+
+            SingleConferenceScreen(
+                title = title,
+                text = text,
+                navController = navController
+            )
+        }
+
         // Track
         composable(
             route = Screen.TRACK.name,
@@ -205,13 +226,21 @@ fun AppNavigation(
             TrackScreen(navController)
         }
 
-        // How to help
+        // Conferences
         composable(
-            route = Screen.HOW_TO_HELP.name,
-            enterTransition = { slideInHorizontally { it } },
-            exitTransition = { slideOutHorizontally { it } }
+            route = Screen.CONFERENCES.name,
+            enterTransition = {
+                val source = initialState.destination.route
+                if(source == Screen.DUCHOWI.name) slideInHorizontally { it }
+                else EnterTransition.None
+            },
+            exitTransition = {
+                val destination = targetState.destination.route
+                if (destination == Screen.DUCHOWI.name) slideOutHorizontally { it }
+                else { ExitTransition.None }
+            }
         ) {
-            HowToHelpScreen(navController)
+            ConferencesScreen(navController)
         }
     }
 }

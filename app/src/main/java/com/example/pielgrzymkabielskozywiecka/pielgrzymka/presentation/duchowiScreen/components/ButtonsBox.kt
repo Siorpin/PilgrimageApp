@@ -37,9 +37,9 @@ fun ButtonsBox(
         )
 
         OptionButton(
-            buttonText = "Jak pomóc",
+            buttonText = "Konferencje",
             color = Color(0xFFA6AAF3),
-            onClick = { navHostController.navigate(Screen.HOW_TO_HELP.name) },
+            onClick = { navHostController.navigate(Screen.CONFERENCES.name) },
             modifier = Modifier
                 .weight(1f)
         )

@@ -1,7 +1,6 @@
 package com.example.pielgrzymkabielskozywiecka
 
 import android.content.Context
-import androidx.compose.ui.unit.Constraints
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import androidx.room.Room
@@ -62,11 +61,13 @@ class MainViewModel(context: Context): ViewModel() {
 
             val songs: List<SongUI> = updateSongs()
             val prayers: List<PrayerUI> = updatePrayers()
+            val conferences: List<ConferencesUI> = updateConferences()
             val announcement: AnnouncementUI = updateAnnouncements()
 
             DataHolder.announcement = announcement
             DataHolder.songs = songs
             DataHolder.prayers = prayers
+            DataHolder.conferences = conferences
 
             _state.update { it.copy(isAppLoading = false, toastMessage = toastMessage) }
             DataHolder.isAppLoaded = true

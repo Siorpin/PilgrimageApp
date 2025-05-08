@@ -10,6 +10,7 @@ import com.example.pielgrzymkabielskozywiecka.core.navigation.Screen
 import com.example.pielgrzymkabielskozywiecka.core.presentation.enumClasses.Days
 import com.example.pielgrzymkabielskozywiecka.core.presentation.uiModels.AnnouncementUI
 import com.example.pielgrzymkabielskozywiecka.core.presentation.uiModels.BottomBarUI
+import com.example.pielgrzymkabielskozywiecka.core.presentation.uiModels.ConferencesUI
 import com.example.pielgrzymkabielskozywiecka.core.presentation.uiModels.PrayerUI
 import com.example.pielgrzymkabielskozywiecka.core.presentation.uiModels.RosaryMysteryUI
 import com.example.pielgrzymkabielskozywiecka.core.presentation.uiModels.SongUI
@@ -20,6 +21,7 @@ object DataHolder {
 
     var songs: List<SongUI> = emptyList()
     var prayers: List<PrayerUI> = emptyList()
+    var conferences: List<ConferencesUI> = emptyList()
     var announcement: AnnouncementUI = AnnouncementUI("","")
 
     var refreshDataFunction: () -> Unit = {}

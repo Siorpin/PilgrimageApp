@@ -1,4 +1,4 @@
-package com.example.pielgrzymkabielskozywiecka.pielgrzymka.presentation.prayerScreen
+package com.example.pielgrzymkabielskozywiecka.pielgrzymka.presentation.singleConferenceScreen
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Column
@@ -15,9 +15,9 @@ import com.example.pielgrzymkabielskozywiecka.pielgrzymka.presentation.shared.Se
 import com.example.pielgrzymkabielskozywiecka.ui.theme.Poppins
 
 @Composable
-fun PrayerScreen(
+fun SingleConferenceScreen(
     title: String?,
-    lyrics: String?,
+    text: String?,
     navController: NavHostController,
     modifier: Modifier = Modifier
 ) {
@@ -26,13 +26,13 @@ fun PrayerScreen(
             .fillMaxSize()
             .background(MaterialTheme.colorScheme.background)
     ) {
-        if (title != null && lyrics != null) {
+        if (title != null && text != null) {
             SecondaryScreenTopBar(
                 name = title,
                 navController = navController
             )
             Text(
-                text = lyrics,
+                text = text,
                 fontFamily = Poppins,
                 fontSize = 18.sp,
                 modifier = Modifier
