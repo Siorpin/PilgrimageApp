@@ -35,7 +35,6 @@ fun ModlitewnikScreen(
         modifier = modifier
             .fillMaxSize()
             .background(MaterialTheme.colorScheme.background)
-            .padding(bottom = state.contentBottomPadding)
     ) {
         SecondaryScreenTopBar(
             name = "Modlitewnik",
@@ -62,10 +61,8 @@ fun ModlitewnikScreen(
             LazyColumn(
                 verticalArrangement = Arrangement.spacedBy(3.dp)
             ) {
-                var id = 1
                 items(state.visiblePrayers) { prayer ->
                     ModlitewnikListItem(
-                        id = id++,
                         modlitwa = prayer,
                         onClick = {
                             navController.navigate(Screen.PRAYER.name + "/${prayer.title}/${prayer.lyrics}")

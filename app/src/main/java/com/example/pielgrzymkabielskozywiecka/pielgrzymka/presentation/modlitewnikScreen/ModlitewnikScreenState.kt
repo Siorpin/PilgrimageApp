@@ -6,7 +6,6 @@ import com.example.pielgrzymkabielskozywiecka.core.presentation.uiModels.PrayerU
 
 data class ModlitewnikScreenState(
     val isLoading: Boolean = true,
-    val contentBottomPadding: Dp = 0.dp,
     val searchedText: String = "",
     val prayers: List<PrayerUI> = emptyList(),
     val visiblePrayers: List<PrayerUI> = emptyList()

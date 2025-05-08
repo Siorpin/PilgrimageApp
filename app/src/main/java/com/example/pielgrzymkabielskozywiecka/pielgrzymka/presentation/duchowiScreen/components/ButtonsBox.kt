@@ -31,8 +31,8 @@ fun ButtonsBox(
     ) {
         val context = LocalContext.current
         val emailHandler = EmailHandler(
-            subject = "Intencje",
-            text = "Proszę, pomódlcie się na Jasnej górze w intencji...\n\n",
+            subject = "Intencje na pielgrzymkę na Jasną Górę",
+            text = "Szczęść Boże. Piszę z prośbą o modlitwę na pielgrzymce w intencji:\n\n",
             receiver = "kubasierpien05@gmail.com"
         )
 

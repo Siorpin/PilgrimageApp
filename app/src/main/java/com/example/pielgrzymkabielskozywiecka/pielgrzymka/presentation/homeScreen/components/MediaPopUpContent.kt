@@ -46,10 +46,10 @@ fun MediaPopUpContent(
         Text(
             text = "Nasze media społecznościowe",
             fontFamily = Poppins,
-            fontSize = 20.sp,
+            fontSize = 28.sp,
             fontWeight = FontWeight.Bold,
             textAlign = TextAlign.Center,
-            modifier = Modifier.padding(top = 20.dp)
+            modifier = Modifier.padding(top = 40.dp, bottom = 30.dp, start = 30.dp, end = 30.dp)
         )
         Box(
             contentAlignment = Alignment.Center,

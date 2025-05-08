@@ -25,7 +25,6 @@ import com.example.pielgrzymkabielskozywiecka.ui.theme.Poppins
 
 @Composable
 fun SongbookListItem(
-    id: Int,
     song: SongUI,
     onClick: () -> Unit,
     modifier: Modifier = Modifier
@@ -50,7 +49,7 @@ fun SongbookListItem(
             .padding(horizontal = 20.dp)
     ) {
         Text(
-            text = "${id}.",
+            text = "${song.id}.",
             fontFamily = Poppins,
             fontWeight = FontWeight.Bold,
             fontSize = 24.sp

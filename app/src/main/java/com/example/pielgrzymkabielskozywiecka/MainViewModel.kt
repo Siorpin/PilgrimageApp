@@ -98,7 +98,9 @@ class MainViewModel(context: Context): ViewModel() {
                 toastMessage = null
             }
         }
-        val songsList = database.SongsDao().getSong().map { el -> el.toSongUI() }
+
+        var index = 1
+        val songsList = database.SongsDao().getSong().map { el -> el.toSongUI(index++) }
         return songsList
     }
 
@@ -135,8 +137,8 @@ class MainViewModel(context: Context): ViewModel() {
                 toastMessage = null
             }
         }
-
-        val prayerList = database.PrayersDao().getPrayers().map { el -> el.toPrayerUI() }
+        var index = 1
+        val prayerList = database.PrayersDao().getPrayers().map { el -> el.toPrayerUI(index++) }
         return prayerList
     }
 

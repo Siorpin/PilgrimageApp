@@ -21,7 +21,6 @@ class SongbookScreenViewModel: ViewModel() {
 
     init {
         getSongs()
-        delayPadding()
     }
 
     fun updateText(text: String) {
@@ -45,12 +44,5 @@ class SongbookScreenViewModel: ViewModel() {
 
     private fun getSongs() {
         _state.update { it.copy(isLoading = false, songs = DataHolder.songs, visibleSongs = DataHolder.songs) }
-    }
-
-    private fun delayPadding() {
-        viewModelScope.launch {
-            delay(1000)
-            _state.update { it.copy(contentBottomPadding = DataHolder.overallBottomPadding) }
-        }
     }
 }

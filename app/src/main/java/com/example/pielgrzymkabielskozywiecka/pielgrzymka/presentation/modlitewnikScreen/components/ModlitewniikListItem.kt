@@ -25,7 +25,6 @@ import com.example.pielgrzymkabielskozywiecka.ui.theme.Poppins
 
 @Composable
 fun ModlitewnikListItem(
-    id: Int,
     modlitwa: PrayerUI,
     onClick: () -> Unit,
     modifier: Modifier = Modifier
@@ -50,7 +49,7 @@ fun ModlitewnikListItem(
             .padding(horizontal = 20.dp)
     ) {
         Text(
-            text = "${id}.",
+            text = "${modlitwa.id}.",
             fontFamily = Poppins,
             fontWeight = FontWeight.Bold,
             fontSize = 24.sp

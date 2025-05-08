@@ -21,7 +21,6 @@ class ModlitewnikScreenViewModel: ViewModel() {
 
     init {
         getModlitwy()
-        delayPadding()
     }
 
     fun updateText(text: String) {
@@ -45,12 +44,5 @@ class ModlitewnikScreenViewModel: ViewModel() {
 
     private fun getModlitwy() {
         _state.update { it.copy(isLoading = false, prayers = DataHolder.prayers, visiblePrayers = DataHolder.prayers) }
-    }
-
-    private fun delayPadding() {
-        viewModelScope.launch {
-            delay(1000)
-            _state.update { it.copy(contentBottomPadding = DataHolder.overallBottomPadding) }
-        }
     }
 }

@@ -35,7 +35,6 @@ fun SongbookScreen(
         modifier = modifier
             .fillMaxSize()
             .background(MaterialTheme.colorScheme.background)
-            .padding(bottom = state.contentBottomPadding)
     ) {
         SecondaryScreenTopBar(
             name = "Śpiewnik",
@@ -62,10 +61,8 @@ fun SongbookScreen(
             LazyColumn(
                 verticalArrangement = Arrangement.spacedBy(3.dp)
             ) {
-                var id = 1
                 items(state.visibleSongs) { song ->
                     SongbookListItem(
-                        id = id++,
                         song = song,
                         onClick = { navController.navigate(Screen.SONG.name + "/${song.title}/${song.lyrics}") }
                     )
