@@ -1,5 +1,6 @@
 package com.example.pielgrzymkabielskozywiecka.core.domain.networking
 
+import com.example.pielgrzymkabielskozywiecka.core.data.networking.ConferencesList
 import com.example.pielgrzymkabielskozywiecka.core.data.networking.ModlitwyList
 import com.example.pielgrzymkabielskozywiecka.core.data.networking.OgloszeniaList
 import com.example.pielgrzymkabielskozywiecka.core.data.networking.SongsList
@@ -18,9 +19,12 @@ interface Api {
     @GET("/piosenki")
     suspend fun getSongs(): SongsList
 
-    @GET("/get-track-percentage")
-    suspend fun getTrack(): TrackResponse
+    @GET("/konferencje")
+    suspend fun getConferences(): ConferencesList
 
     @POST("/register-fcm-token")
     suspend fun sendToken(@Query("token") token: String)
+
+    @GET("/get-track-percentage")
+    suspend fun getTrack(): TrackResponse
 }

@@ -1,23 +1,29 @@
 package com.example.pielgrzymkabielskozywiecka
 
 import android.content.Context
+import androidx.compose.ui.unit.Constraints
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import androidx.room.Room
 import com.example.pielgrzymkabielskozywiecka.core.data.DataHolder
 import com.example.pielgrzymkabielskozywiecka.core.data.database.Database
 import com.example.pielgrzymkabielskozywiecka.core.data.database.tables.Announcements
+import com.example.pielgrzymkabielskozywiecka.core.data.database.tables.Conferences
 import com.example.pielgrzymkabielskozywiecka.core.data.database.tables.Prayers
 import com.example.pielgrzymkabielskozywiecka.core.data.database.tables.Songs
+import com.example.pielgrzymkabielskozywiecka.core.data.networking.ConferencesResponse
 import com.example.pielgrzymkabielskozywiecka.core.data.networking.ModlitwyResponse
 import com.example.pielgrzymkabielskozywiecka.core.data.networking.SongsResponse
 import com.example.pielgrzymkabielskozywiecka.core.presentation.mappers.toAnnouncementUI
+import com.example.pielgrzymkabielskozywiecka.core.presentation.mappers.toConferencesUI
 import com.example.pielgrzymkabielskozywiecka.core.presentation.mappers.toPrayerUI
 import com.example.pielgrzymkabielskozywiecka.core.presentation.mappers.toSongUI
 import com.example.pielgrzymkabielskozywiecka.core.presentation.uiModels.AnnouncementUI
+import com.example.pielgrzymkabielskozywiecka.core.presentation.uiModels.ConferencesUI
 import com.example.pielgrzymkabielskozywiecka.core.presentation.uiModels.PrayerUI
 import com.example.pielgrzymkabielskozywiecka.core.presentation.uiModels.SongUI
 import com.example.pielgrzymkabielskozywiecka.pielgrzymka.domain.dataSync.AnnouncementsRepository
+import com.example.pielgrzymkabielskozywiecka.pielgrzymka.domain.dataSync.ConferencesRepository
 import com.example.pielgrzymkabielskozywiecka.pielgrzymka.domain.dataSync.PrayersRepository
 import com.example.pielgrzymkabielskozywiecka.pielgrzymka.domain.dataSync.SongsRepository
 import com.example.pielgrzymkabielskozywiecka.pielgrzymka.domain.errorHandling.DataError
@@ -142,6 +148,45 @@ class MainViewModel(context: Context): ViewModel() {
         return prayerList
     }
 
+    private suspend fun updateConferences(): List<ConferencesUI> {
+        val repository = ConferencesRepository()
+        when(val response = repository.getData()) {
+            is Result.Error -> {
+                val toastText = when(response.error){
+                    DataError.Network.REQUEST_TIMEOUT -> "Błąd połączenia z internetem!"
+                    DataError.Network.TOO_MANY_REQUESTS -> "Za dużo zapytań jednocześnie!"
+                    DataError.Network.NO_CONNECTION -> "Błąd połączenia z internetem!"
+                    DataError.Network.SERVER_ERROR -> "Wystąpił problem z serwerem, przepraszamy!"
+                    DataError.Network.UNKNOWN -> "Błąd połączenia z internetem!"
+                    DataError.Network.UNKNOWN_HOST -> "Błąd pobierania danych!"
+                }
+                toastMessage = toastText
+            }
+
+            is Result.Success -> {
+                _state.update { it.copy(toastMessage = null) }
+                val localConferences = database.ConferencesDao().getConference().map { el ->
+                    ConferencesResponse(el.title, el.text)
+                }.toMutableList()
+                localConferences.forEach{ el ->
+                    if(!response.data.conferences.contains(el)) {
+                        deleteConference(Conferences(0, el.title, el.text))
+                    }
+                }
+                response.data.conferences.forEach{ el ->
+                    if (!localConferences.contains(el)) {
+                        adConference(Conferences(0, el.title, el.text))
+                    }
+                }
+                toastMessage = null
+            }
+        }
+        var index = 1
+        val conferencesList = database.ConferencesDao().getConference().map { el -> el.toConferencesUI(index++) }
+        return conferencesList
+    }
+
+
     private suspend fun updateAnnouncements(): AnnouncementUI {
         val repository = AnnouncementsRepository()
 
@@ -189,6 +234,14 @@ class MainViewModel(context: Context): ViewModel() {
 
     private suspend fun deletePrayer(prayer: Prayers) {
         database.PrayersDao().deletePrayers(prayer.title, prayer.lyrics)
+    }
+
+    private suspend fun adConference(conference: Conferences) {
+        database.ConferencesDao().insertConference(conference)
+    }
+
+    private suspend fun deleteConference(conference: Conferences) {
+        database.ConferencesDao().deleteConference(conference.title, conference.text)
     }
 
     private suspend fun addSong(song: Songs) {
