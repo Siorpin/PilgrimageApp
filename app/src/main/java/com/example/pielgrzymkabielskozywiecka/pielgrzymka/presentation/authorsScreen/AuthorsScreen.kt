@@ -25,7 +25,7 @@ fun AuthorsScreen(
             navController = navController
         )
         AuthorsText(
-            text = "Aplikację stworzył Kuba Sierpień\nBłędy w działaniu aplikacji oraz kontakt możliwy jest pod tym adresem: ksierpien.contact@gmail.com"
+            text = "Aplikację stworzył Kuba Sierpień\n\nZa zredagowanie tekstów w aplikacji odpowiada Wiktoria Balcy\n\nBłędy w działaniu aplikacji oraz kontakt możliwy jest pod tym adresem: ksierpien.contact@gmail.com"
         )
     }
 }
