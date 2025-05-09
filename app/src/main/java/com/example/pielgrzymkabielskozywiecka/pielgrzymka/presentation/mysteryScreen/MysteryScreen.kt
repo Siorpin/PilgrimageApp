@@ -45,7 +45,8 @@ fun MysteryScreen(
                 Text(
                     text = stringResource(mysteryUI.text),
                     fontFamily = Poppins,
-                    fontSize = 18.sp,
+                    fontSize = 24.sp,
+                    lineHeight = 28.sp,
                     fontWeight = FontWeight.Light
                 )
             }

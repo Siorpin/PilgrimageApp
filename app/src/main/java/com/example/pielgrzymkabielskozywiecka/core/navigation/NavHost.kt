@@ -179,20 +179,18 @@ fun AppNavigation(
 
         // Song
         composable(
-            route = Screen.SONG.name + "/{title}/{lyrics}",
+            route = Screen.SONG.name + "/{id}",
             arguments = listOf(
-                navArgument("title"){type = NavType.StringType},
-                navArgument("lyrics"){type = NavType.StringType}
+                navArgument("id"){type = NavType.IntType}
             ),
             enterTransition = { slideInHorizontally { it } },
             exitTransition = { slideOutHorizontally { it } }
         ) {  backStackEntry ->
-            val title = backStackEntry.arguments?.getString("title")
-            val lyrics = backStackEntry.arguments?.getString("lyrics")
+            val id = backStackEntry.arguments?.getInt("id")
+            val song = DataHolder.songs[id]
 
             SongScreen(
-                title = title,
-                lyrics = lyrics,
+                song = song,
                 navController = navController
             )
         }

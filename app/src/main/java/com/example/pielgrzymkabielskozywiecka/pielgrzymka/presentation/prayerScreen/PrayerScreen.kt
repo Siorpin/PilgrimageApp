@@ -34,7 +34,8 @@ fun PrayerScreen(
             Text(
                 text = lyrics,
                 fontFamily = Poppins,
-                fontSize = 18.sp,
+                fontSize = 24.sp,
+                lineHeight = 28.sp,
                 modifier = Modifier
                     .padding(20.dp)
             )

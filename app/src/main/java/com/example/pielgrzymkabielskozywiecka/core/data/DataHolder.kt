@@ -19,9 +19,9 @@ import com.example.pielgrzymkabielskozywiecka.core.presentation.uiModels.Zakladk
 object DataHolder {
     val overallBottomPadding = 100.dp
 
-    var songs: List<SongUI> = emptyList()
-    var prayers: List<PrayerUI> = emptyList()
-    var conferences: List<ConferencesUI> = emptyList()
+    lateinit var songs: HashMap<Int, SongUI>
+    lateinit var prayers: List<PrayerUI>
+    lateinit var conferences: List<ConferencesUI>
     var announcement: AnnouncementUI = AnnouncementUI("","")
 
     var refreshDataFunction: () -> Unit = {}

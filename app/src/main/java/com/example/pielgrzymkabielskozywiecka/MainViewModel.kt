@@ -1,6 +1,7 @@
 package com.example.pielgrzymkabielskozywiecka
 
 import android.content.Context
+import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import androidx.room.Room
@@ -59,7 +60,7 @@ class MainViewModel(context: Context): ViewModel() {
         _state.update { it.copy(isAppLoading = true) }
         viewModelScope.launch {
 
-            val songs: List<SongUI> = updateSongs()
+            val songs: HashMap<Int, SongUI> = updateSongs()
             val prayers: List<PrayerUI> = updatePrayers()
             val conferences: List<ConferencesUI> = updateConferences()
             val announcement: AnnouncementUI = updateAnnouncements()
@@ -74,7 +75,7 @@ class MainViewModel(context: Context): ViewModel() {
         }
     }
 
-    private suspend fun updateSongs(): List<SongUI> {
+    private suspend fun updateSongs(): HashMap<Int, SongUI> {
         val repository = SongsRepository()
         when(val response = repository.getData()) {
             is Result.Error -> {
@@ -106,9 +107,18 @@ class MainViewModel(context: Context): ViewModel() {
             }
         }
 
-        var index = 1
-        val songsList = database.SongsDao().getSong().map { el -> el.toSongUI(index++) }
-        return songsList
+        val songsMap = hashMapOf<Int, SongUI>()
+        var index = 0
+        database.SongsDao().getSong().forEach { el ->
+            index = when(index) {
+                5 -> 21
+                51 -> 101
+                270 -> 301
+                else -> index + 1
+            }
+            songsMap.put(index, el.toSongUI())
+        }
+        return songsMap
     }
 
     private suspend fun updatePrayers(): List<PrayerUI> {

@@ -1,5 +1,6 @@
 package com.example.pielgrzymkabielskozywiecka.pielgrzymka.presentation.songbookScreen
 
+import android.util.Log
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
@@ -18,6 +19,7 @@ import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavHostController
 import com.example.pielgrzymkabielskozywiecka.core.navigation.Screen
+import com.example.pielgrzymkabielskozywiecka.core.presentation.uiModels.SongUI
 import com.example.pielgrzymkabielskozywiecka.pielgrzymka.presentation.shared.SearchBar
 import com.example.pielgrzymkabielskozywiecka.pielgrzymka.presentation.shared.SecondaryScreenTopBar
 import com.example.pielgrzymkabielskozywiecka.pielgrzymka.presentation.songbookScreen.components.SongbookListItem
@@ -60,10 +62,12 @@ fun SongbookScreen(
             LazyColumn(
                 verticalArrangement = Arrangement.spacedBy(3.dp)
             ) {
-                items(state.visibleSongs) { song ->
+                val keysList = state.songs.keys.toList()
+                items(keysList.size) { id ->
+                    val key = keysList[id]
                     SongbookListItem(
-                        song = song,
-                        onClick = { navController.navigate(Screen.SONG.name + "/${song.title}/${song.lyrics}") }
+                        song = key to state.songs.getOrDefault(key, SongUI("","")),
+                        onClick = { navController.navigate(Screen.SONG.name + "/${key}") }
                     )
                 }
             }

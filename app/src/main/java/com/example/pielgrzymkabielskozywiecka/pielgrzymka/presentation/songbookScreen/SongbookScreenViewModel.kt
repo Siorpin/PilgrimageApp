@@ -1,5 +1,6 @@
 package com.example.pielgrzymkabielskozywiecka.pielgrzymka.presentation.songbookScreen
 
+import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.pielgrzymkabielskozywiecka.core.data.DataHolder
@@ -26,17 +27,17 @@ class SongbookScreenViewModel: ViewModel() {
     }
 
     fun search(text: String) {
-        val tempList: MutableList<SongUI> = mutableListOf()
+        val tempList: HashMap<Int, SongUI> = hashMapOf()
 
         _state.value.songs.forEach{ song ->
             if (
-                song.title.lowercase().contains(text.lowercase()) ||
-                song.lyrics.lowercase().contains(text.lowercase())
+                song.value.title.lowercase().contains(text.lowercase()) ||
+                song.value.lyrics.lowercase().contains(text.lowercase()) ||
+                song.key.toString() == text
                 ) {
-                tempList.add(song)
+                tempList.put(song.key, song.value)
             }
         }
-
         _state.update { it.copy(visibleSongs = tempList) }
     }
 

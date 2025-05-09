@@ -11,13 +11,13 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavHostController
+import com.example.pielgrzymkabielskozywiecka.core.presentation.uiModels.SongUI
 import com.example.pielgrzymkabielskozywiecka.pielgrzymka.presentation.shared.SecondaryScreenTopBar
 import com.example.pielgrzymkabielskozywiecka.ui.theme.Poppins
 
 @Composable
 fun SongScreen(
-    title: String?,
-    lyrics: String?,
+    song: SongUI?,
     navController: NavHostController,
     modifier: Modifier = Modifier
 ) {
@@ -26,15 +26,16 @@ fun SongScreen(
             .fillMaxSize()
             .background(MaterialTheme.colorScheme.background)
     ) {
-        if (title != null && lyrics != null) {
+        if (song != null) {
             SecondaryScreenTopBar(
-                name = title,
+                name = song.title,
                 navController = navController
             )
             Text(
-                text = lyrics,
+                text = song.lyrics,
                 fontFamily = Poppins,
-                fontSize = 18.sp,
+                fontSize = 24.sp,
+                lineHeight = 28.sp,
                 modifier = Modifier
                     .padding(20.dp)
             )
