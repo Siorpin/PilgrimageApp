@@ -34,7 +34,7 @@ import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
 
-class MainViewModel(context: Context): ViewModel() {
+    class MainViewModel(context: Context): ViewModel() {
     val database by lazy {
         Room.databaseBuilder(
             context = context,
@@ -53,7 +53,7 @@ class MainViewModel(context: Context): ViewModel() {
 
     init {
         DataHolder.refreshDataFunction = { updateData() }
-        updateData()
+        updateData() // help
     }
 
     private fun updateData() {

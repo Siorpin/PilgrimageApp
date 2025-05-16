@@ -32,6 +32,13 @@ fun SecondaryScreenTopBar(
     navController: NavHostController,
     modifier: Modifier = Modifier
 ) {
+    val titleSize = when(name.length) {
+        in 0..18 -> 28.sp
+        in 19..24 -> 25.sp
+        in 25..30 -> 22.sp
+        else -> 20.sp
+    }
+
     Row(
         verticalAlignment = Alignment.CenterVertically,
         horizontalArrangement = Arrangement.SpaceBetween,
@@ -56,7 +63,7 @@ fun SecondaryScreenTopBar(
         Text(
             text = name,
             fontFamily = Poppins,
-            fontSize = 28.sp
+            fontSize = titleSize
         )
         Spacer(modifier = Modifier.width(40.dp))
     }
