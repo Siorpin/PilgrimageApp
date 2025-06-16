@@ -5,5 +5,8 @@ import com.example.pielgrzymkabielskozywiecka.pielgrzymka.domain.errorHandling.A
 import com.example.pielgrzymkabielskozywiecka.pielgrzymka.domain.errorHandling.Result
 
 sealed interface ActivityStarter {
-    fun startActivity(context: Context): Result<Unit, ActivityError>
+    fun startActivity(
+        context: Context,
+        afterFunction: () -> Unit = {}
+    ): Result<() -> Unit, ActivityError>
 }

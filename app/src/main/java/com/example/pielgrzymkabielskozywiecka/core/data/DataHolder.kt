@@ -67,6 +67,10 @@ object DataHolder {
         ZakladkiUI(
             name = "Autorzy",
             destination = Screen.AUTORZY
+        ),
+        ZakladkiUI(
+            name = "Standardy ochrony małoletnich",
+            destination = Screen.KIDS_PROTECTION_STANDARDS
         )
     )
 

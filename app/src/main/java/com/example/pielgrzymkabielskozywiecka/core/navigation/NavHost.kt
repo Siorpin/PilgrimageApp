@@ -15,6 +15,7 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.navArgument
 import com.example.pielgrzymkabielskozywiecka.core.data.DataHolder
+import com.example.pielgrzymkabielskozywiecka.pielgrzymka.presentation.KidsProtectionScreen
 import com.example.pielgrzymkabielskozywiecka.pielgrzymka.presentation.authorsScreen.AuthorsScreen
 import com.example.pielgrzymkabielskozywiecka.pielgrzymka.presentation.conferencesScreen.ConferencesScreen
 import com.example.pielgrzymkabielskozywiecka.pielgrzymka.presentation.duchowiScreen.DuchowiScreen
@@ -84,6 +85,15 @@ fun AppNavigation(
             exitTransition = { slideOutHorizontally { it } }
         ) {
             AuthorsScreen(navController)
+        }
+
+        // KIDS PROTECTION STANDARDS
+        composable(
+            route = Screen.KIDS_PROTECTION_STANDARDS.name,
+            enterTransition = { slideInHorizontally { it } },
+            exitTransition = { slideOutHorizontally { it } }
+        ) {
+            KidsProtectionScreen(navController)
         }
 
         // Modlitewnik

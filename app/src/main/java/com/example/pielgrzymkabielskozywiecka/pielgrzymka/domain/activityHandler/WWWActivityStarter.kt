@@ -10,15 +10,15 @@ class WWWActivityStarter(
     private val uriHandler: UriHandler,
     private val uri: String
 ): ActivityStarter {
-    override fun startActivity(context: Context): Result<Unit, ActivityError> {
-        return try {
+    override fun startActivity(context: Context, afterFunction: () -> Unit): Result<() -> Unit, ActivityError> {
+        try {
             uriHandler.openUri(uri)
 
-            Result.Success(Unit)
+            return Result.Success(afterFunction)
         } catch (e: ActivityNotFoundException) {
-            Result.Error(ActivityError.Execution.ACTIVITY_NOT_FOUND)
+            return Result.Error(ActivityError.Execution.ACTIVITY_NOT_FOUND)
         } catch (e: Error) {
-            Result.Error(ActivityError.Execution.UNKNOWN)
+            return Result.Error(ActivityError.Execution.UNKNOWN)
         }
     }
 }

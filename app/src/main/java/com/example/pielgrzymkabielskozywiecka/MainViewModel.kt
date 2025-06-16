@@ -53,7 +53,7 @@ import kotlinx.coroutines.launch
 
     init {
         DataHolder.refreshDataFunction = { updateData() }
-        updateData() // help
+        updateData()
     }
 
     private fun updateData() {

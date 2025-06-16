@@ -6,27 +6,28 @@ import android.content.Intent
 import android.net.Uri
 import com.example.pielgrzymkabielskozywiecka.pielgrzymka.domain.errorHandling.ActivityError
 import com.example.pielgrzymkabielskozywiecka.pielgrzymka.domain.errorHandling.Result
+import androidx.core.net.toUri
+import androidx.navigation.ActivityNavigatorExtras
 
 abstract class SocialMediaStarter(
     private val appPackage: String,
     private val link: String
 ): ActivityStarter {
-    override fun startActivity(context: Context): Result<Unit, ActivityError> {
-        return try {
+    override fun startActivity(context: Context, afterFunction: () -> Unit): Result<() -> Unit, ActivityError> {
+        try {
             val intent = Intent(Intent.ACTION_VIEW)
-            intent.data = Uri.parse(link)
             intent.setPackage(appPackage)
             context.startActivity(intent)
 
-            Result.Success(Unit)
+            return Result.Success(afterFunction)
         } catch (e: ActivityNotFoundException) {
             val intent = Intent(Intent.ACTION_VIEW)
-            intent.data = Uri.parse(link)
+            intent.data = link.toUri()
             context.startActivity(intent)
 
-            Result.Success(Unit)
+            return Result.Error(ActivityError.Execution.ACTIVITY_NOT_FOUND)
         }  catch (e: Error) {
-            Result.Error(ActivityError.Execution.UNKNOWN)
+            return Result.Error(ActivityError.Execution.UNKNOWN)
         }
     }
 }

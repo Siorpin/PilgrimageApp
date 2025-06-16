@@ -10,9 +10,9 @@ class EmailHandler(
     private val text: String,
     private val receiver: String
 ) {
-    fun sendEmail(context: Context) {
+    fun sendEmail(context: Context, afterFunction: () -> Unit = {}) {
         val emailStarter = EmailActivityStarter(subject, text, receiver)
-        val result = emailStarter.startActivity(context)
+        val result = emailStarter.startActivity(context, afterFunction)
 
         if (result is Result.Error) {
             val toastMessage = when(result.error) {
@@ -21,6 +21,8 @@ class EmailHandler(
             }
 
             Toast.makeText(context, toastMessage, Toast.LENGTH_SHORT).show()
+        } else if(result is Result.Success) {
+            result.data()
         }
     }
 }

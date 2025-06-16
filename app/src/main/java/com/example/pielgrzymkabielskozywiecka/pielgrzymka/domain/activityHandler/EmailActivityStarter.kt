@@ -12,8 +12,9 @@ class EmailActivityStarter(
     private val receiver: String
 ): ActivityStarter {
     override fun startActivity(
-        context: Context
-    ): Result<Unit, ActivityError> {
+        context: Context,
+        afterFunction: () -> Unit
+    ): Result<() -> Unit, ActivityError> {
         try {
             val intent = Intent(Intent.ACTION_SEND)
             intent.type = "vnd.android.cursor.item/email"
@@ -22,7 +23,7 @@ class EmailActivityStarter(
             intent.putExtra(Intent.EXTRA_TEXT, text)
             context.startActivity(intent)
 
-            return Result.Success(Unit)
+            return Result.Success(afterFunction)
         } catch (e: ActivityNotFoundException) {
             return Result.Error(ActivityError.Execution.ACTIVITY_NOT_FOUND)
         } catch (e: Exception) {
